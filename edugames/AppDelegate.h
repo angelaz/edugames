@@ -7,11 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
+
 #import "LoginViewController.h"
+#import "CKSideBarController.h"
+#import "CKTestViewController.h"
+#import "ClassViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) LoginViewController *loginViewController;
+
+@property (strong, nonatomic) NSString *username;
+- (void)updateViewControllers;
+
+- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
+- (void)userLoggedIn;
+- (void)userLoggedOut;
+- (void)showMessage:(NSString *)text withTitle:(NSString *)title;
+- (void)logout;
+
 
 @end

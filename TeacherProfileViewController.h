@@ -1,5 +1,5 @@
 //
-//  MasterViewController.h
+//  TeacherProfileViewController.h
 //  edugames
 //
 //  Created by Lucy Guo on 2/15/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MasterViewController : UIViewController
+@interface TeacherProfileViewController : UIViewController
 
 @end

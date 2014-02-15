@@ -1,18 +1,18 @@
 //
-//  MasterViewController.m
+//  TeacherProfileViewController.m
 //  edugames
 //
 //  Created by Lucy Guo on 2/15/14.
 //  Copyright (c) 2014 Angela Zhang, Lucy Guo, Ivan Wang, Gregory Rose. All rights reserved.
 //
 
-#import "MasterViewController.h"
+#import "TeacherProfileViewController.h"
 
-@interface MasterViewController ()
+@interface TeacherProfileViewController ()
 
 @end
 
-@implementation MasterViewController
+@implementation TeacherProfileViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
