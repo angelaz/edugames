@@ -31,21 +31,20 @@
 <!-- basically where the body is -->
 <header>
   <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-12">
       <h1>
         Games
       </h1>
       <br>
     </div>
   </div>
-  <div class="row">
+  <div class="row" style="margin-left: 15%">
     <div class="col-lg-12">
       <ul id="games" ng-show="games">
-        <button class="game-icon" type="link" ng-click="location.path('games/' + game.$id)" ng-repeat="game in games | orderByPriority">
-          {{game.title}}
+        <button class="game-icon" type="link" ng-click="location.path('games/' + game.$id)" ng-repeat="game in games | orderByPriority" style:"line-height:200px">
+          <div class="title">{{game.title}}</div>
         </button>
-        <button class="game-icon" type="link" ng-click="addGame()">
-          Add a game...
+        <button class="create-icon" type="link" ng-click="addGame()">
         </button>
       </ul>
     </div>
