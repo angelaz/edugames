@@ -92,12 +92,12 @@
 //    [self.collectionView reloadData];
 }
 
-/*- (IBAction)presentGCTurnViewController:(id)sender {
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(290, 315);
 }
 
+/*
 
 - (void)didReceiveMemoryWarning
 {
