@@ -44,7 +44,7 @@
         <button class="game-icon" type="link" ng-click="location.path('games/' + game.$id)" ng-repeat="game in games | orderByPriority" style:"line-height:200px">
           <div class="title">{{game.title}}</div>
         </button>
-        <button class="create-icon" type="link" ng-click="addGame()">
+        <button class="create-icon" type="link" ng-click="addGame()" style:"margin-top:130px">
         </button>
       </ul>
     </div>
