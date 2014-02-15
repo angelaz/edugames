@@ -88,7 +88,8 @@
     //}
     
     // TODO: what is this?
-    //[self.collectionView reloadData];
+    [collectionView reloadData];
+//    [self.collectionView reloadData];
 }
 
 /*- (IBAction)presentGCTurnViewController:(id)sender {
