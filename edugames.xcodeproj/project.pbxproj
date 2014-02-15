@@ -204,6 +204,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Angela Zhang, Lucy Guo, Ivan Wang, Gregory Rose";
 				TargetAttributes = {
+					0B3AC1BA18AEF54F00346870 = {
+						DevelopmentTeam = 3FUZN6JJ2G;
+					};
 					0B3AC1DE18AEF54F00346870 = {
 						TestTargetID = 0B3AC1BA18AEF54F00346870;
 					};
@@ -386,10 +389,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "edugames/edugames-Prefix.pch";
 				INFOPLIST_FILE = "edugames/edugames-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -399,10 +405,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "edugames/edugames-Prefix.pch";
 				INFOPLIST_FILE = "edugames/edugames-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -468,6 +477,7 @@
 				0B3AC1F218AEF54F00346870 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0B3AC1F318AEF54F00346870 /* Build configuration list for PBXNativeTarget "edugamesTests" */ = {
 			isa = XCConfigurationList;
@@ -476,6 +486,7 @@
 				0B3AC1F518AEF54F00346870 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
