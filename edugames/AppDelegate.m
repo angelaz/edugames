@@ -123,6 +123,15 @@ BOOL shouldAlternate = YES;
         [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
         return navController;
     }
+//    else if ([s isEqualToString:@"game"])
+//    {
+//        GameViewController *controller = [[GameViewController alloc]init];
+//        controller.view.backgroundColor = [UIColor whiteColor];
+//        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+//        
+//        [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
+//        return navController;
+//    }
     
     else {
         CKTestViewController *controller = [[CKTestViewController alloc] init];

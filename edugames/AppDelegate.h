@@ -16,6 +16,7 @@
 #import "TeacherProfileViewController.h"
 #import "StudentProfileViewController.h"
 #import "SearchViewController.h"
+#import "GameViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
