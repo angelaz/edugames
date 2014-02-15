@@ -21,7 +21,7 @@
 
 #define CKSideBarWidth 100
 #define CKCornerRadius 1
-#define CKSideBarButtonHeight 100
+#define CKSideBarButtonHeight 120
 #define CKSideBarImageEdgeLength 65
 
 
