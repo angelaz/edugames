@@ -13,6 +13,9 @@
 #import "CKSideBarController.h"
 #import "CKTestViewController.h"
 #import "ClassViewController.h"
+#import "TeacherProfileViewController.h"
+#import "StudentProfileViewController.h"
+#import "SearchViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
