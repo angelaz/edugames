@@ -8,11 +8,7 @@
 #define FORCE_LOGOUT true
 
 #import "AppDelegate.h"
-#import <FacebookSDK/FacebookSDK.h>
 
-#import "LoginViewController.h"
-#import "CKSideBarController.h"
-#import "CKTestViewController.h"
 
 @interface AppDelegate () <CKSideBarControllerDelegate>
 
@@ -55,15 +51,15 @@
     [self.window makeKeyAndVisible];
     
     self.controller1 = [self navControllerWithImage:[UIImage imageNamed:@"game"]
-                                      selectedImage:[UIImage imageNamed:@"game-highlighted"]];
+                                      selectedImage:[UIImage imageNamed:@"game-highlighted"] tag:@"game"];
     self.controller2 = [self navControllerWithImage:[UIImage imageNamed:@"search"]
-                                      selectedImage:[UIImage imageNamed:@"search-highlighted"]];
+                                      selectedImage:[UIImage imageNamed:@"search-highlighted"] tag:@"search"];
     self.controller3 = [self navControllerWithImage:[UIImage imageNamed:@"folder"]
-                                      selectedImage:[UIImage imageNamed:@"folder-highlighted"]];
+                                      selectedImage:[UIImage imageNamed:@"folder-highlighted"] tag:@"folder"];
     self.controller4 = [self navControllerWithImage:[UIImage imageNamed:@"profile"]
-                                      selectedImage:[UIImage imageNamed:@"profile-highlighted"]];
+                                      selectedImage:[UIImage imageNamed:@"profile-highlighted"] tag:@"profile"];
     self.controller5 = [self navControllerWithImage:[UIImage imageNamed:@"settings"]
-                                      selectedImage:[UIImage imageNamed:@"settings-highlighted"]];
+                                      selectedImage:[UIImage imageNamed:@"settings-highlighted"] tag:@"settings"];
     
     //UIViewController *detachedController = [[UIViewController alloc] init];
     
@@ -97,13 +93,23 @@
 //Side bar controller stuff
 BOOL shouldAlternate = YES;
 
-- (UINavigationController *)navControllerWithImage:(UIImage *)defaultImage selectedImage:(UIImage *)selectedImage {
-    CKTestViewController *controller = [[CKTestViewController alloc] init];
-    controller.view.backgroundColor = [UIColor whiteColor];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-    [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
-    
-    return navController;
+- (UINavigationController *)navControllerWithImage:(UIImage *)defaultImage selectedImage:(UIImage *)selectedImage tag:(NSString *)s{
+    if ([s isEqualToString:@"folder"]) {
+        ClassViewController *controller = [[ClassViewController alloc] init];
+        controller.view.backgroundColor = [UIColor whiteColor];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        
+        [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
+        return navController;
+    } else {
+        CKTestViewController *controller = [[CKTestViewController alloc] init];
+        controller.view.backgroundColor = [UIColor whiteColor];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        
+        [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
+        return navController;
+    }
+    return nil;
 }
 
 - (void)updateViewControllers {

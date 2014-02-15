@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
+
 #import "LoginViewController.h"
+#import "CKSideBarController.h"
+#import "CKTestViewController.h"
+#import "ClassViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
