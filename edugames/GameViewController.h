@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "GCTurnBasedMatchHelper.h"
 
-@interface GameViewController : UICollectionViewController
-
-
-
+@interface GameViewController : UIViewController <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+{
+    UICollectionView *_collectionView;
+}
 @end
