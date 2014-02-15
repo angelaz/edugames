@@ -13,17 +13,20 @@
     NSInteger turnId;
     Boolean isMyTurn;
     Firebase* gameRef;
+    
+    ConquerViewController* cvc;
 }
 
-- (id) initWithTitle:(NSString *)title andOnUpdate:(void (^)(NSDictionary*))updateHandler
-    andOnPlayerInput:(void (^)(NSDictionary*))playerInputHandler
+- (id) initWithKey:(NSString *)key andController:(ConquerViewController*)newCvc
 {
     if (self = [super init])
     {
+        cvc = newCvc;
+        
         // Initialize the root of our Firebase namespace.
         self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
         
-        gameRef = [[self.firebase childByAppendingPath:@"gameInstances"] childByAppendingPath:title];
+        gameRef = [[self.firebase childByAppendingPath:@"gameInstances"] childByAppendingPath:key];
         NSLog(@"Querying Firebase");
         [gameRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
             NSLog(@"Got result");
@@ -35,10 +38,6 @@
             NSString* playerId = @"foo"; // TODO: UN-HARDCODE
             
             // Check if existing game has less than 2 players
-            [instances enumerateKeysAndObjectsUsingBlock: ^(NSString* instanceName, NSDictionary* instance, BOOL *stop) {
-                // do something with key and obj
-            }];
-            
             for (NSString* instanceName in instances) {
                 NSDictionary* instance = [instances objectForKey:instanceName];
                 
@@ -86,7 +85,6 @@
             // Check for game state updates
             [newInstance observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
                 [self onGameStateUpdate:snapshot.value];
-                updateHandler(snapshot.value);
             }];
         }];
     }
@@ -106,7 +104,7 @@
 }
 
 - (void) onGameStateUpdate:(NSDictionary *)newGameState {
-    NSLog(@"game state updated");
+    [cvc onUpdate:newGameState];
 }
 
 

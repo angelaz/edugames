@@ -85,8 +85,8 @@
 {
     // TODO: case on games
     //if ([games objectAtIndex:indexPath.row] isEqualToString:@"conqueror") {
-        ConquerViewController *conquerViewController = [[ConquerViewController alloc] init];
-        [self presentViewController:conquerViewController animated:YES completion:nil  ];
+        ConquerViewController *conquerViewController = [[ConquerViewController alloc] initWithKey:@"-JFolzigUK-BhNxu3jRv"]; // TODO: replace with actual key!
+        [self presentViewController:conquerViewController animated:YES completion:nil];
     //}
     
     // TODO: what is this?

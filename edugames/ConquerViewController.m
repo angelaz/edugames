@@ -11,19 +11,19 @@
 
 @implementation ConquerViewController
 
-void (^onUpdate)(NSDictionary*) = ^(NSDictionary* gameData) {
+- (void) onUpdate:(NSDictionary*) gameData {
     
 };
 
-void (^playerInput)(NSDictionary*) = ^(NSDictionary* inputData) {
+- (void) playerInput:(NSDictionary*) inputData {
     
 };
 
-- (id)initWithKey:(NSString*)key
+- (id)initWithKey:(NSString*) key
 {
     self = [super init];
     if (self) {
-        Game* conquerorGame = [[Game alloc] initWithTitle:@"conqueror" andOnUpdate:onUpdate andOnPlayerInput:playerInput];
+        Game* conquerorGame = [[Game alloc] initWithKey:key andController:self];
     }
     return self;
 }

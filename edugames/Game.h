@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Firebase/Firebase.h>
+#import "ConquerViewController.h"
 
 #define firebaseURL @"https://edugames.firebaseio.com/"
 
@@ -15,7 +16,6 @@
 
 @property (nonatomic, strong) Firebase *firebase;
 
-- (id) initWithTitle:(NSString *)title andOnUpdate:(void (^)(NSDictionary*))updateHandler
-    andOnPlayerInput:(void (^)(NSDictionary*))playerInputHandler;
+- (id) initWithKey:(NSString *)key andController:(ConquerViewController*)cvc;
 
 @end

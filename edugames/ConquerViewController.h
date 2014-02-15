@@ -10,4 +10,8 @@
 
 @interface ConquerViewController : UIViewController
 
+- (id)initWithKey:(NSString*) key;
+
+- (void) onUpdate:(NSDictionary*) gameData;
+
 @end
