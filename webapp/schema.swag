@@ -1,0 +1,25 @@
+
+games[]
+	<gameKey ex. "-JFolzigUK-BhNxu3jRv">
+		questions[]
+			<questionKey>
+				a: <string>
+				b: <string>
+				c: <string>
+				d: <string>
+				correct: <string>
+				text: <string>
+			<answerKey>
+
+		title: <string ex. "History quiz">
+		template: <string ex. "conqueror">
+
+
+
+gameInstances
+	<title>
+		<instanceID>
+			gameState: <object>
+			players[]:
+				<playerId>
+			turnId: <int>

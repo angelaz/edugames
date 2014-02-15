@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GCTurnBasedMatchHelper.h"
+#import "Game.h"
 
 @interface GameViewController : UICollectionViewController
 

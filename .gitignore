@@ -23,5 +23,4 @@ Pods
 ### Xcode ###
 build
 *.xcodeproj/*
-!*.xcodeproj/project.pbxproj
 !*.xcworkspace/contents.xcworkspacedata

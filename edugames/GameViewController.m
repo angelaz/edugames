@@ -40,7 +40,7 @@
     [self.collectionView setCollectionViewLayout:flow];
     
     // Set up games with Firebase
-    games = [NSArray arrayWithObject:@"login-button.png"];
+    games = [NSArray arrayWithObject:@"login-button.png"]; // TODO: change icons
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,9 +67,19 @@
     return cell;
 }
 
-- (IBAction)presentGCTurnViewController:(id)sender {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // TODO: case on games
+    //if ([games objectAtIndex:indexPath.row] isEqualToString:@"conqueror") {
+        Game* conquerorGame = [[Game alloc] initWithTitle:@"conqueror"];
+    //}
+    
+    [self.collectionView reloadData];
+}
+
+/*- (IBAction)presentGCTurnViewController:(id)sender {
     [[GCTurnBasedMatchHelper sharedInstance]
      findMatchWithMinPlayers:2 maxPlayers:3 viewController:self];
-}
+}*/
 
 @end
