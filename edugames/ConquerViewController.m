@@ -46,18 +46,13 @@
     // Create and configure the scene.
     SKScene * scene = [ConquerScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
+//    
+//    UIImage *image = [UIImage imageNamed:@"game-bg-2.png"];
+//    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:image];
+//    [skView addSubview:backgroundView];
     
     // Present the scene.
     [skView presentScene:scene];
-    
-    return;
-    
-    UIImage *image = [UIImage imageNamed:@"game-bg-2.png"];
-    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:image];
-    
-    [self.view addSubview:backgroundView];
-
-
 }
 
 
