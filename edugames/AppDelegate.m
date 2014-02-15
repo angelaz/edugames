@@ -8,7 +8,8 @@
 #define FORCE_LOGOUT true
 
 #import "AppDelegate.h"
-
+// At the top of the file
+#import "GCTurnBasedMatchHelper.h"
 
 @interface AppDelegate () <CKSideBarControllerDelegate>
 
@@ -75,6 +76,11 @@
     
     
     self.window.rootViewController = self.barController;
+    // At the end of applicationDidFinishLaunching, right before
+    // the return YES
+    [[GCTurnBasedMatchHelper sharedInstance] authenticateLocalUser];
+
+     
     return YES;
     
 }
@@ -123,15 +129,15 @@ BOOL shouldAlternate = YES;
         [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
         return navController;
     }
-//    else if ([s isEqualToString:@"game"])
-//    {
-//        GameViewController *controller = [[GameViewController alloc]init];
-//        controller.view.backgroundColor = [UIColor whiteColor];
-//        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-//        
-//        [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
-//        return navController;
-//    }
+    else if ([s isEqualToString:@"game"])
+    {
+        GameViewController *controller = [[GameViewController alloc]init];
+        controller.view.backgroundColor = [UIColor whiteColor];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        
+        [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
+        return navController;
+    }
     
     else {
         CKTestViewController *controller = [[CKTestViewController alloc] init];

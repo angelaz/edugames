@@ -35,6 +35,8 @@
 		0BF1059418AF1F92008CADA4 /* login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1059118AF1F92008CADA4 /* login-button.png */; };
 		0BF1059518AF1F92008CADA4 /* register-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1059218AF1F92008CADA4 /* register-button.png */; };
 		0BF1059918AF3B1A008CADA4 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1059818AF3B1A008CADA4 /* search.png */; };
+		F331C49318AF92DA005AC642 /* GCTurnBasedMatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F331C49218AF92DA005AC642 /* GCTurnBasedMatchHelper.m */; };
+		F355B0FC18AF920600DD52A3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F355B0FB18AF920600DD52A3 /* GameKit.framework */; };
 		F3D3000018AF7DF90031C06F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D3FFFF18AF7DF90031C06F /* FacebookSDK.framework */; };
 		F3D3004518AF7F620031C06F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D3002B18AF7F620031C06F /* AppDelegate.m */; };
 		F3D3004618AF7F620031C06F /* CKSideBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D3002D18AF7F620031C06F /* CKSideBarController.m */; };
@@ -93,6 +95,9 @@
 		0BF1059118AF1F92008CADA4 /* login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button.png"; sourceTree = "<group>"; };
 		0BF1059218AF1F92008CADA4 /* register-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-button.png"; sourceTree = "<group>"; };
 		0BF1059818AF3B1A008CADA4 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		F331C49118AF92DA005AC642 /* GCTurnBasedMatchHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTurnBasedMatchHelper.h; sourceTree = "<group>"; };
+		F331C49218AF92DA005AC642 /* GCTurnBasedMatchHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTurnBasedMatchHelper.m; sourceTree = "<group>"; };
+		F355B0FB18AF920600DD52A3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		F3D3002A18AF7F620031C06F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F3D3002B18AF7F620031C06F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F3D3002C18AF7F620031C06F /* CKSideBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKSideBarController.h; sourceTree = "<group>"; };
@@ -127,6 +132,7 @@
 				F3D3000018AF7DF90031C06F /* FacebookSDK.framework in Frameworks */,
 				0B3AC1C318AEF54F00346870 /* UIKit.framework in Frameworks */,
 				0B3AC1BF18AEF54F00346870 /* Foundation.framework in Frameworks */,
+				F355B0FC18AF920600DD52A3 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +171,7 @@
 		0B3AC1BD18AEF54F00346870 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F355B0FB18AF920600DD52A3 /* GameKit.framework */,
 				F3D3FFFF18AF7DF90031C06F /* FacebookSDK.framework */,
 				0B3AC1BE18AEF54F00346870 /* Foundation.framework */,
 				0B3AC1C018AEF54F00346870 /* CoreGraphics.framework */,
@@ -203,6 +210,8 @@
 				0B3AC1C518AEF54F00346870 /* Supporting Files */,
 				F3D3004318AF7F620031C06F /* TeacherProfileViewController.h */,
 				F3D3004418AF7F620031C06F /* TeacherProfileViewController.m */,
+				F331C49118AF92DA005AC642 /* GCTurnBasedMatchHelper.h */,
+				F331C49218AF92DA005AC642 /* GCTurnBasedMatchHelper.m */,
 			);
 			path = edugames;
 			sourceTree = "<group>";
@@ -325,7 +334,12 @@
 				ORGANIZATIONNAME = "Angela Zhang, Lucy Guo, Ivan Wang, Gregory Rose";
 				TargetAttributes = {
 					0B3AC1BA18AEF54F00346870 = {
-						DevelopmentTeam = 3FUZN6JJ2G;
+						DevelopmentTeam = 4XLWYATZ5P;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					0B3AC1DE18AEF54F00346870 = {
 						TestTargetID = 0B3AC1BA18AEF54F00346870;
@@ -398,6 +412,7 @@
 				F3D3004A18AF7F620031C06F /* DetailViewController.m in Sources */,
 				F3D3005218AF7F620031C06F /* TeacherProfileViewController.m in Sources */,
 				F3D3005018AF7F620031C06F /* SearchViewController.m in Sources */,
+				F331C49318AF92DA005AC642 /* GCTurnBasedMatchHelper.m in Sources */,
 				F3D3005118AF7F620031C06F /* StudentProfileViewController.m in Sources */,
 				F3D3004618AF7F620031C06F /* CKSideBarController.m in Sources */,
 				0BF1057718AF1883008CADA4 /* CKSideBarItem.m in Sources */,
@@ -533,8 +548,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Angela/Documents/Development/FacebookSDK,
@@ -554,8 +569,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Angela/Documents/Development/FacebookSDK,
