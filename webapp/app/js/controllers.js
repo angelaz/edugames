@@ -3,8 +3,7 @@
 /* Controllers */
 
 angular.module('edugames.controllers', [])
-   .controller('HomeCtrl', ['$scope', 'syncData', function($scope, syncData) {
-      syncData('syncedValue').$bind($scope, 'syncedValue');
+   .controller('HomeCtrl', ['$scope', function($scope) {
    }])
 
    .controller('GameListCtrl', ['$scope', 'syncData', '$location', function($scope, syncData, $location) {
