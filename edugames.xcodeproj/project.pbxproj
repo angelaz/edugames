@@ -14,14 +14,23 @@
 		0B3AC1CB18AEF54F00346870 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3AC1CA18AEF54F00346870 /* main.m */; };
 		0B3AC1CF18AEF54F00346870 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3AC1CE18AEF54F00346870 /* AppDelegate.m */; };
 		0B3AC1D218AEF54F00346870 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AC1D018AEF54F00346870 /* Main.storyboard */; };
-		0B3AC1D518AEF54F00346870 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3AC1D418AEF54F00346870 /* MasterViewController.m */; };
-		0B3AC1D818AEF54F00346870 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3AC1D718AEF54F00346870 /* DetailViewController.m */; };
 		0B3AC1DA18AEF54F00346870 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AC1D918AEF54F00346870 /* Images.xcassets */; };
 		0B3AC1E118AEF54F00346870 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3AC1E018AEF54F00346870 /* XCTest.framework */; };
 		0B3AC1E218AEF54F00346870 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3AC1BE18AEF54F00346870 /* Foundation.framework */; };
 		0B3AC1E318AEF54F00346870 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3AC1C218AEF54F00346870 /* UIKit.framework */; };
 		0B3AC1EB18AEF54F00346870 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AC1E918AEF54F00346870 /* InfoPlist.strings */; };
 		0B3AC1ED18AEF54F00346870 /* edugamesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3AC1EC18AEF54F00346870 /* edugamesTests.m */; };
+		0BF1055E18AF10C5008CADA4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1055D18AF10C5008CADA4 /* LoginViewController.m */; };
+		0BF1056118AF10D1008CADA4 /* login-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1056018AF10D1008CADA4 /* login-bg.png */; };
+		0BF1056418AF1854008CADA4 /* CKSideBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1056318AF1854008CADA4 /* CKSideBarController.m */; };
+		0BF1057018AF1883008CADA4 /* messages.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1056618AF1883008CADA4 /* messages.png */; };
+		0BF1057118AF1883008CADA4 /* messages@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1056718AF1883008CADA4 /* messages@2x.png */; };
+		0BF1057318AF1883008CADA4 /* compose.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1056A18AF1883008CADA4 /* compose.png */; };
+		0BF1057418AF1883008CADA4 /* compose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1056B18AF1883008CADA4 /* compose@2x.png */; };
+		0BF1057518AF1883008CADA4 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1056C18AF1883008CADA4 /* search.png */; };
+		0BF1057618AF1883008CADA4 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1056D18AF1883008CADA4 /* search@2x.png */; };
+		0BF1057718AF1883008CADA4 /* CKSideBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1056F18AF1883008CADA4 /* CKSideBarItem.m */; };
+		0BF1057A18AF1BC5008CADA4 /* CKTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1057818AF1BC5008CADA4 /* CKTestViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,16 +55,27 @@
 		0B3AC1CD18AEF54F00346870 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0B3AC1CE18AEF54F00346870 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0B3AC1D118AEF54F00346870 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0B3AC1D318AEF54F00346870 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		0B3AC1D418AEF54F00346870 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		0B3AC1D618AEF54F00346870 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		0B3AC1D718AEF54F00346870 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		0B3AC1D918AEF54F00346870 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0B3AC1DF18AEF54F00346870 /* edugamesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = edugamesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B3AC1E018AEF54F00346870 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0B3AC1E818AEF54F00346870 /* edugamesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "edugamesTests-Info.plist"; sourceTree = "<group>"; };
 		0B3AC1EA18AEF54F00346870 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B3AC1EC18AEF54F00346870 /* edugamesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = edugamesTests.m; sourceTree = "<group>"; };
+		0BF1055C18AF10C5008CADA4 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		0BF1055D18AF10C5008CADA4 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		0BF1056018AF10D1008CADA4 /* login-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-bg.png"; sourceTree = "<group>"; };
+		0BF1056218AF1854008CADA4 /* CKSideBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKSideBarController.h; sourceTree = "<group>"; };
+		0BF1056318AF1854008CADA4 /* CKSideBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKSideBarController.m; sourceTree = "<group>"; };
+		0BF1056618AF1883008CADA4 /* messages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messages.png; sourceTree = "<group>"; };
+		0BF1056718AF1883008CADA4 /* messages@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messages@2x.png"; sourceTree = "<group>"; };
+		0BF1056A18AF1883008CADA4 /* compose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compose.png; sourceTree = "<group>"; };
+		0BF1056B18AF1883008CADA4 /* compose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compose@2x.png"; sourceTree = "<group>"; };
+		0BF1056C18AF1883008CADA4 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		0BF1056D18AF1883008CADA4 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
+		0BF1056E18AF1883008CADA4 /* CKSideBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKSideBarItem.h; sourceTree = "<group>"; };
+		0BF1056F18AF1883008CADA4 /* CKSideBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKSideBarItem.m; sourceTree = "<group>"; };
+		0BF1057818AF1BC5008CADA4 /* CKTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKTestViewController.m; sourceTree = "<group>"; };
+		0BF1057918AF1BC5008CADA4 /* CKTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTestViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,11 +138,12 @@
 				0B3AC1CD18AEF54F00346870 /* AppDelegate.h */,
 				0B3AC1CE18AEF54F00346870 /* AppDelegate.m */,
 				0B3AC1D018AEF54F00346870 /* Main.storyboard */,
-				0B3AC1D318AEF54F00346870 /* MasterViewController.h */,
-				0B3AC1D418AEF54F00346870 /* MasterViewController.m */,
-				0B3AC1D618AEF54F00346870 /* DetailViewController.h */,
-				0B3AC1D718AEF54F00346870 /* DetailViewController.m */,
+				0BF1055C18AF10C5008CADA4 /* LoginViewController.h */,
+				0BF1055D18AF10C5008CADA4 /* LoginViewController.m */,
+				0BF1056218AF1854008CADA4 /* CKSideBarController.h */,
+				0BF1056318AF1854008CADA4 /* CKSideBarController.m */,
 				0B3AC1D918AEF54F00346870 /* Images.xcassets */,
+				0BF1055F18AF10D1008CADA4 /* images */,
 				0B3AC1C518AEF54F00346870 /* Supporting Files */,
 			);
 			path = edugames;
@@ -131,6 +152,7 @@
 		0B3AC1C518AEF54F00346870 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0BF1056518AF1875008CADA4 /* Resources */,
 				0B3AC1C618AEF54F00346870 /* edugames-Info.plist */,
 				0B3AC1C718AEF54F00346870 /* InfoPlist.strings */,
 				0B3AC1CA18AEF54F00346870 /* main.m */,
@@ -155,6 +177,31 @@
 				0B3AC1E918AEF54F00346870 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0BF1055F18AF10D1008CADA4 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				0BF1056018AF10D1008CADA4 /* login-bg.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		0BF1056518AF1875008CADA4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0BF1057818AF1BC5008CADA4 /* CKTestViewController.m */,
+				0BF1057918AF1BC5008CADA4 /* CKTestViewController.h */,
+				0BF1056618AF1883008CADA4 /* messages.png */,
+				0BF1056718AF1883008CADA4 /* messages@2x.png */,
+				0BF1056A18AF1883008CADA4 /* compose.png */,
+				0BF1056B18AF1883008CADA4 /* compose@2x.png */,
+				0BF1056C18AF1883008CADA4 /* search.png */,
+				0BF1056D18AF1883008CADA4 /* search@2x.png */,
+				0BF1056E18AF1883008CADA4 /* CKSideBarItem.h */,
+				0BF1056F18AF1883008CADA4 /* CKSideBarItem.m */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,7 +284,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B3AC1DA18AEF54F00346870 /* Images.xcassets in Resources */,
+				0BF1057518AF1883008CADA4 /* search.png in Resources */,
+				0BF1057418AF1883008CADA4 /* compose@2x.png in Resources */,
 				0B3AC1C918AEF54F00346870 /* InfoPlist.strings in Resources */,
+				0BF1057318AF1883008CADA4 /* compose.png in Resources */,
+				0BF1057018AF1883008CADA4 /* messages.png in Resources */,
+				0BF1056118AF10D1008CADA4 /* login-bg.png in Resources */,
+				0BF1057118AF1883008CADA4 /* messages@2x.png in Resources */,
+				0BF1057618AF1883008CADA4 /* search@2x.png in Resources */,
 				0B3AC1D218AEF54F00346870 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,10 +311,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BF1057718AF1883008CADA4 /* CKSideBarItem.m in Sources */,
 				0B3AC1CF18AEF54F00346870 /* AppDelegate.m in Sources */,
-				0B3AC1D518AEF54F00346870 /* MasterViewController.m in Sources */,
 				0B3AC1CB18AEF54F00346870 /* main.m in Sources */,
-				0B3AC1D818AEF54F00346870 /* DetailViewController.m in Sources */,
+				0BF1056418AF1854008CADA4 /* CKSideBarController.m in Sources */,
+				0BF1057A18AF1BC5008CADA4 /* CKTestViewController.m in Sources */,
+				0BF1055E18AF10C5008CADA4 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
