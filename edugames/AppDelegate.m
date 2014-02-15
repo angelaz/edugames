@@ -16,6 +16,9 @@
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     splitViewController.delegate = (id)navigationController.topViewController;
+    
+    //Need to set up Facebook login and Parse
+    
     return YES;
 }
 							
