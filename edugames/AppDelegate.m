@@ -102,7 +102,38 @@ BOOL shouldAlternate = YES;
         
         [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
         return navController;
-    } else {
+    }
+    //check if equal to profile AND if teacher or student to show correct image
+    else if ([s isEqualToString:@"profile"]) {
+//        TeacherProfileViewController *controller = [[TeacherProfileViewController alloc] init];
+        
+        StudentProfileViewController *controller = [[StudentProfileViewController alloc]init];
+        controller.view.backgroundColor = [UIColor whiteColor];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        
+        [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
+        return navController;
+    }
+    else if ([s isEqualToString:@"search"])
+    {
+        SearchViewController *controller = [[SearchViewController alloc]init];
+        controller.view.backgroundColor = [UIColor whiteColor];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        
+        [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
+        return navController;
+    }
+//    else if ([s isEqualToString:@"game"])
+//    {
+//        GameViewController *controller = [[GameViewController alloc]init];
+//        controller.view.backgroundColor = [UIColor whiteColor];
+//        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+//        
+//        [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
+//        return navController;
+//    }
+    
+    else {
         CKTestViewController *controller = [[CKTestViewController alloc] init];
         controller.view.backgroundColor = [UIColor whiteColor];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
