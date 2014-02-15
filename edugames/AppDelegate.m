@@ -111,6 +111,7 @@
                                            self.controller5
                                            ];
     
+    
     self.window.rootViewController = self.barController;
     return YES;
     
