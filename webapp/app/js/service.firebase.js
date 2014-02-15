@@ -22,6 +22,7 @@ angular.module('edugames.service.firebase', ['firebase'])
        * @param {String|Array...} path
        * @param {int} [limit]
        * @return a Firebase instance
+       * TODO: update path based on currently logged in teacher
        */
       return function(path, limit) {
          var ref = firebaseRef(path);
