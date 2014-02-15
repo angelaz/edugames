@@ -15,7 +15,10 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 //
 
+#import <QuartzCore/QuartzCore.h>
+#import <objc/runtime.h>
 #import <Foundation/Foundation.h>
+
 #import "CKSideBarItem.h"
 
 @protocol CKSideBarControllerDelegate;
