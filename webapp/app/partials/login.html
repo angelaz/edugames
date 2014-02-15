@@ -1,24 +1,46 @@
+<link rel="stylesheet" href="css/app.css"/>
+<link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
 
-<h2>Login Page</h2>
 
-<form>
-    <label>
-        <span>email</span>
-        <input type="text" ng-model="email" />
-    </label>
-    <label>
-        <span>password</span>
-        <input type="password" ng-model="pass" />
-    </label>
-    <label ng-cloak ng-show="createMode">
-        <span>confirm pass</span>
-        <input type="password" ng-model="confirm" />
-    </label>
-    <button ng-click="login()" ng-hide="createMode">Log In</button>
-    <button ng-click="createMode = true" ng-hide="createMode">Register</button>
-    <button ng-cloak ng-show="createMode" ng-click="createAccount()">Create Account</button>
-    <button ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
+<div class="container">
+    <h1>Login</h1>
+<div class="container">
+        
+            <section class="main">
+                <form class="form-1">
+                    <p class="field">
+                        <input type="text" name="login" placeholder="Username or email" ng-model="email">
+                        <i class="icon-user icon-large"></i>
+                    </p>
+                        <p class="field">
+                            <input type="password" name="password" placeholder="Password" ng-model="pass">
+                            <i class="icon-lock icon-large"></i>
+                        </p>
+
+                    <p class="submit" ng-click="login()" ng-hide="createMode">
+                        <button type="submit" name="submit"><i class="icon-arrow-right icon-large"></i></button>
+                    </p>
+                    
+                    <p class="field" ng-cloak ng-show="createMode">
+                        <input type="password" name="password" placeholder="Confirm Password" ng-model="confirm">
+                        <i class="icon-lock icon-large"></i>
+                    </p>
+                </form>
+
+                <button class="btn btn-info" ng-click="createMode = true" ng-hide="createMode"><i class="icon-white icon-heart"></i> Need to Register?</button>
+
+                <button class="btn btn-info" ng-cloak ng-show="createMode" ng-click="createAccount()">Create Account</button>
+
+                <button class="btn" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
 
     <p ng-show="err" class="error">{{err}}</p>
-</form>
+
+            </section>
+        </div>
+
+
+</div>
+
+
+    
 
