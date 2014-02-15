@@ -13,7 +13,6 @@
 		0B3AC1C918AEF54F00346870 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AC1C718AEF54F00346870 /* InfoPlist.strings */; };
 		0B3AC1CB18AEF54F00346870 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3AC1CA18AEF54F00346870 /* main.m */; };
 		0B3AC1CF18AEF54F00346870 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3AC1CE18AEF54F00346870 /* AppDelegate.m */; };
-		0B3AC1D218AEF54F00346870 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AC1D018AEF54F00346870 /* Main.storyboard */; };
 		0B3AC1DA18AEF54F00346870 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AC1D918AEF54F00346870 /* Images.xcassets */; };
 		0B3AC1E118AEF54F00346870 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3AC1E018AEF54F00346870 /* XCTest.framework */; };
 		0B3AC1E218AEF54F00346870 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3AC1BE18AEF54F00346870 /* Foundation.framework */; };
@@ -39,6 +38,7 @@
 		0BF1059518AF1F92008CADA4 /* register-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1059218AF1F92008CADA4 /* register-button.png */; };
 		0BF1059718AF3A74008CADA4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BF1059618AF3A74008CADA4 /* FacebookSDK.framework */; };
 		0BF1059918AF3B1A008CADA4 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1059818AF3B1A008CADA4 /* search.png */; };
+		0BF1059C18AF433F008CADA4 /* ClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF1059B18AF433F008CADA4 /* ClassViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +92,8 @@
 		0BF1059218AF1F92008CADA4 /* register-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-button.png"; sourceTree = "<group>"; };
 		0BF1059618AF3A74008CADA4 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		0BF1059818AF3B1A008CADA4 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		0BF1059A18AF433F008CADA4 /* ClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassViewController.h; sourceTree = "<group>"; };
+		0BF1059B18AF433F008CADA4 /* ClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,8 @@
 				0BF1055D18AF10C5008CADA4 /* LoginViewController.m */,
 				0BF1056218AF1854008CADA4 /* CKSideBarController.h */,
 				0BF1056318AF1854008CADA4 /* CKSideBarController.m */,
+				0BF1059A18AF433F008CADA4 /* ClassViewController.h */,
+				0BF1059B18AF433F008CADA4 /* ClassViewController.m */,
 				0B3AC1D918AEF54F00346870 /* Images.xcassets */,
 				0BF1055F18AF10D1008CADA4 /* images */,
 				0B3AC1C518AEF54F00346870 /* Supporting Files */,
@@ -331,7 +335,6 @@
 				0BF1059518AF1F92008CADA4 /* register-button.png in Resources */,
 				0BF1059318AF1F92008CADA4 /* login-bg.png in Resources */,
 				0BF1058E18AF1F8A008CADA4 /* settings-highlighted.png in Resources */,
-				0B3AC1D218AEF54F00346870 /* Main.storyboard in Resources */,
 				0BF1058718AF1F8A008CADA4 /* folder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,6 +358,7 @@
 				0B3AC1CF18AEF54F00346870 /* AppDelegate.m in Sources */,
 				0B3AC1CB18AEF54F00346870 /* main.m in Sources */,
 				0BF1056418AF1854008CADA4 /* CKSideBarController.m in Sources */,
+				0BF1059C18AF433F008CADA4 /* ClassViewController.m in Sources */,
 				0BF1057A18AF1BC5008CADA4 /* CKTestViewController.m in Sources */,
 				0BF1055E18AF10C5008CADA4 /* LoginViewController.m in Sources */,
 			);
@@ -494,6 +498,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "edugames/edugames-Prefix.pch";
 				INFOPLIST_FILE = "edugames/edugames-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -514,6 +526,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "edugames/edugames-Prefix.pch";
 				INFOPLIST_FILE = "edugames/edugames-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
