@@ -17,6 +17,8 @@
 
 @property (assign, readonly) BOOL gameCenterAvailable;
 
+@property (retain) GKTurnBasedMatch * currentMatch;
+
 + (GCTurnBasedMatchHelper *)sharedInstance;
 - (void)authenticateLocalUser;
 

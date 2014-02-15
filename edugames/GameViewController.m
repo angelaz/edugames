@@ -12,7 +12,9 @@
 
 @end
 
-@implementation GameViewController
+@implementation GameViewController {
+    NSArray *games;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,12 +29,42 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
+    
+    UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc] init];
+    [flow setItemSize:CGSizeMake(100, 100)];
+    [flow setScrollDirection:UICollectionViewScrollDirectionVertical];
+    
+    [self.collectionView setBackgroundColor:[UIColor whiteColor]];
+    [self.collectionView setCollectionViewLayout:flow];
+    
+    // Set up games with Firebase
+    games = [NSArray arrayWithObject:@"login-button.png"];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [games count];
+}
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"Cell";
+    
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
+    UIImageView *gameImageView = [[UIImageView alloc] init];
+    [gameImageView setImage:[UIImage imageNamed:[games objectAtIndex:indexPath.row]]];
+    gameImageView.frame = CGRectMake(30, 10, 124, 30);
+    [cell addSubview:gameImageView];
+    
+    return cell;
 }
 
 - (IBAction)presentGCTurnViewController:(id)sender {

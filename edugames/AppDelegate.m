@@ -131,8 +131,8 @@ BOOL shouldAlternate = YES;
     }
     else if ([s isEqualToString:@"game"])
     {
-        GameViewController *controller = [[GameViewController alloc]init];
-        controller.view.backgroundColor = [UIColor whiteColor];
+        UICollectionViewLayout* layout = [[UICollectionViewLayout alloc] init];
+        GameViewController *controller = [[GameViewController alloc]initWithCollectionViewLayout:layout];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
         
         [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];

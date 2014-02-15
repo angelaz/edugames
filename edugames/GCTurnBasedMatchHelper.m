@@ -11,6 +11,7 @@
 @implementation GCTurnBasedMatchHelper
 
 @synthesize gameCenterAvailable;
+@synthesize currentMatch;
 
 #pragma mark Initialization
 
@@ -108,6 +109,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                             didFindMatch:(GKTurnBasedMatch *)match {
     [presentingViewController
      dismissModalViewControllerAnimated:YES];
+    
+    self.currentMatch = match;
     NSLog(@"did find match, %@", match);
 }
 
