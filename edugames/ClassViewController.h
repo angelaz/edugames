@@ -11,5 +11,9 @@
 @interface ClassViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *classList;
+@property (nonatomic, strong) UITableView *classListView;
+
+@property (nonatomic, strong) NSMutableArray *studentList;
+@property (nonatomic, strong) UITableView *studentListView;
 
 @end
