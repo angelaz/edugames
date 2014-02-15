@@ -5,8 +5,12 @@
 //  Created by Angela Zhang on 2/14/14.
 //  Copyright (c) 2014 Angela Zhang, Lucy Guo, Ivan Wang, Gregory Rose. All rights reserved.
 //
+#define FORCE_LOGOUT true
 
 #import "AppDelegate.h"
+#import "MasterViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
+
 #import "LoginViewController.h"
 #import "CKSideBarController.h"
 #import "CKTestViewController.h"
@@ -58,6 +62,7 @@
     
     self.window.rootViewController = self.barController;
     return YES;
+    
 }
 
 //Side bar controller stuff
@@ -90,7 +95,7 @@ BOOL shouldAlternate = YES;
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -101,7 +106,9 @@ BOOL shouldAlternate = YES;
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    // Handle the user leaving the app while the Facebook login dialog is being shown
+    // For example: when the user presses the iOS "home" button while the login dialog is active
+    [FBAppCall handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -109,5 +116,126 @@ BOOL shouldAlternate = YES;
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)logout
+{
+    // Clear this token
+    [FBSession.activeSession closeAndClearTokenInformation];
+    // Show the user the logged-out UI
+    [self userLoggedOut];
+}
+
+// This method will handle ALL the session state changes in the app
+- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error
+{
+    // If the session was opened successfully
+    if (!error && state == FBSessionStateOpen){
+        NSLog(@"Session opened");
+        // Show the user the logged-in UI
+        [self userLoggedIn];
+        return;
+    }
+    if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed){
+        // If the session is closed
+        NSLog(@"Session closed");
+        // Show the user the logged-out UI
+        [self userLoggedOut];
+    }
+    
+    // Handle errors
+    if (error){
+        NSLog(@"Error");
+        NSString *alertText;
+        NSString *alertTitle;
+        // If the error requires people using an app to make an action outside of the app in order to recover
+        if ([FBErrorUtility shouldNotifyUserForError:error] == YES){
+            alertTitle = @"Something went wrong";
+            alertText = [FBErrorUtility userMessageForError:error];
+            [self showMessage:alertText withTitle:alertTitle];
+        } else {
+            
+            // If the user cancelled login, do nothing
+            if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
+                NSLog(@"User cancelled login");
+                
+                // Handle session closures that happen outside of the app
+            } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession){
+                alertTitle = @"Session Error";
+                alertText = @"Your current session is no longer valid. Please log in again.";
+                [self showMessage:alertText withTitle:alertTitle];
+                
+                // For simplicity, here we just show a generic message for all other errors
+                // You can learn how to handle other errors using our guide: https://developers.facebook.com/docs/ios/errors
+            } else {
+                //Get more error information from the error
+                NSDictionary *errorInformation = [[[error.userInfo objectForKey:@"com.facebook.sdk:ParsedJSONResponseKey"] objectForKey:@"body"] objectForKey:@"error"];
+                
+                // Show the user an error message
+                alertTitle = @"Something went wrong";
+                alertText = [NSString stringWithFormat:@"Please retry. \n\n If the problem persists contact us and mention this error code: %@", [errorInformation objectForKey:@"message"]];
+                [self showMessage:alertText withTitle:alertTitle];
+            }
+        }
+        [self logout];
+    }
+}
+
+// Show the user the logged-out UI
+- (void)userLoggedOut
+{
+    // Set the button title as "Log in with Facebook"
+    UIButton *loginButton = [self.loginViewController loginButton];
+    [loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
+    
+    // Confirm logout message
+    [self showMessage:@"You're now logged out" withTitle:@""];
+}
+
+// Show the user the logged-in UI
+- (void)userLoggedIn
+{
+    
+    // Set the button title as "Log out"
+    UIButton *loginButton = self.loginViewController.loginButton;
+    [loginButton setTitle:@"Log out" forState:UIControlStateNormal];
+    
+    [[FBRequest requestForMe] startWithCompletionHandler:
+     ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *aUser, NSError *error) {
+         if (error)
+             NSLog(@"Error retrieving user: %@", error.description);
+         else {
+             NSLog(@"User id %@",[aUser objectForKey:@"id"]);
+             self.username = aUser[@"id"];
+         }
+         
+         //use this to update games list once loaded :p
+         
+//         if ([self.loginViewController isViewLoaded])
+//         {
+//             [self.loginViewController dismissViewControllerAnimated:YES completion:^() {
+//                 InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
+//                 [self.eventListViewController presentViewController:interestsViewController animated:YES completion:^() {
+//                     [self.eventListViewController loadAndUpdateEvents];
+//                 }];
+//             }];
+//         } else {
+//             //InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
+//             //[self.eventListViewController presentViewController:interestsViewController animated:YES completion:^() {
+//             [self.eventListViewController loadAndUpdateEvents];
+//             //}];
+//         }
+     }];
+    
+    
+}
+
+// Show an alert message
+- (void)showMessage:(NSString *)text withTitle:(NSString *)title
+{
+    [[[UIAlertView alloc] initWithTitle:title
+                                message:text
+                               delegate:self
+                      cancelButtonTitle:@"OK!"
+                      otherButtonTitles:nil] show];
+}
 
 @end

@@ -1,0 +1,7 @@
+<h2>Games</h2>
+
+<ul id="games" ng-show="games">
+    <li ng-repeat="game in games | orderByPriority | reverse">{{game.title}}</li>
+    <li><a href="" ng-click="addGame()">Add a game...</a></li>
+</ul>
+
