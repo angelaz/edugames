@@ -26,12 +26,21 @@
 
 - (void)addBackgroundImage
 {
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"login-bg.png"] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+//    UIGraphicsBeginImageContext(self.view.frame.size);
+//    [[UIImage imageNamed:@"login-bg.png"] drawInRect:self.view.bounds];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    UIImage *image = [UIImage imageNamed:@"login-bg.png"];
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:image];
+    [self.view addSubview:backgroundView];
+}
+
+- (void)addButtons
+{
+    
 }
 
 - (void)viewDidLoad
