@@ -28,13 +28,11 @@
 
 - (void)loadView
 {
-    /*CGRect frame = [[UIScreen mainScreen] applicationFrame];
-    NSLog(@"%@", frame);
-    CGRect leftTableView = CGRectMake(0, 0, frame.size.width/2, frame.size.height);
-    UITableView *tableView = [[UITableView alloc] initWithFrame:leftTableView style:UITableViewStylePlain];*/
+    [super loadView];
+    CGRect frame = [[UIScreen mainScreen] applicationFrame];
     
-    //TODO: Make the above commented out code work so that we have a tableview that only takes up half the screen
-    UITableView *tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];
+    CGRect leftTableView = CGRectMake(0, 0, (frame.size.width-84)/2, frame.size.height);
+    UITableView *tableView = [[UITableView alloc] initWithFrame:leftTableView style:UITableViewStylePlain];
     
     tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     tableView.delegate = self;
