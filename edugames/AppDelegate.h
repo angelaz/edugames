@@ -22,9 +22,6 @@
 @property (strong, nonatomic) NSString *username;
 - (void)updateViewControllers;
 
-@property (strong, nonatomic) UINavigationController *navigationController;
-
-
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
 - (void)userLoggedIn;
 - (void)userLoggedOut;

@@ -21,65 +21,27 @@
 
 @end
 
-
 @implementation AppDelegate
-@synthesize username;
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-<<<<<<< Updated upstream
-=======
-    // Override point for customization after application launch.
-//    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-//    UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-//    splitViewController.delegate = (id)navigationController.topViewController;
-    
-    //setting up login view controller
-    LoginViewController *loginViewController = [[LoginViewController alloc] init];
-    self.loginViewController = loginViewController;
-    
-    //set up temporary thing to next controller
-    MasterViewController *masterViewController = [[MasterViewController alloc] init];
-    self.masterViewController = masterViewController;
-    
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
-    self.navigationController = navigationController;
-    
-    self.window.rootViewController = navigationController;
-    
-    //set root controller
-    //self.window.rootViewController = masterViewController;
-    
-    
-    [self.window makeKeyAndVisible];
->>>>>>> Stashed changes
     
     //Need to set up Facebook login and Parse
     // Whenever a person opens the app, check for a cached session
-    if (FORCE_LOGOUT)
-        [self logout];
-    
-    // Whenever a person opens the app, check for a cached session
     if (!FORCE_LOGOUT && FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithReadPermissions:@[@"email"]
-                                           allowLoginUI:YES
+        [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
+                                           allowLoginUI:NO
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           // Handler for session state changes
                                           // This method will be called EACH time the session state changes,
                                           // also for intermediate states and NOT just when the session open
                                           [self sessionStateChanged:session state:state error:error];
                                       }];
-        [self.navigationController popToRootViewControllerAnimated:YES];
     } else {
         //UIButton *loginButton = [self.loginViewController loginButton];
         //[loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
-<<<<<<< Updated upstream
         
-=======
-        [self.navigationController presentViewController:loginViewController animated:YES completion:NULL];
->>>>>>> Stashed changes
     }
     
     [[UINavigationBar appearance] setTintColor:[UIColor clearColor]];
@@ -129,7 +91,6 @@
     return [FBSession.activeSession handleOpenURL:url];
 }
 
-<<<<<<< Updated upstream
 //Side bar controller stuff
 BOOL shouldAlternate = YES;
 
@@ -191,8 +152,6 @@ BOOL shouldAlternate = YES;
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-=======
->>>>>>> Stashed changes
 - (void)logout
 {
     // Clear this token
@@ -204,7 +163,6 @@ BOOL shouldAlternate = YES;
 // This method will handle ALL the session state changes in the app
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error
 {
-    NSLog(@"Inside sessionStateChanged function");
     // If the session was opened successfully
     if (!error && state == FBSessionStateOpen){
         NSLog(@"Session opened");
@@ -283,22 +241,27 @@ BOOL shouldAlternate = YES;
          else {
              NSLog(@"User id %@",[aUser objectForKey:@"id"]);
              self.username = aUser[@"id"];
-
-            //add firebase stuff
-//             Firebase *userRefs = [[[Firebase alloc] initWithUrl:@"https://edugames.firebaseio.com/users"] childByAppendingPath:self.username];
-             
-             
-//             [userRefs observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snp) {
-//                 if (snp.value == [NSNull null]) {
-//                     [userRefs setValue:@{@"college": @"Carnegie Mellon University"}];
-//                 }
-//             }];
-             
          }
          
+         //use this to update games list once loaded :p
+         
+//         if ([self.loginViewController isViewLoaded])
+//         {
+//             [self.loginViewController dismissViewControllerAnimated:YES completion:^() {
+//                 InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
+//                 [self.eventListViewController presentViewController:interestsViewController animated:YES completion:^() {
+//                     [self.eventListViewController loadAndUpdateEvents];
+//                 }];
+//             }];
+//         } else {
+//             //InterestsViewController *interestsViewController = [[InterestsViewController alloc] init];
+//             //[self.eventListViewController presentViewController:interestsViewController animated:YES completion:^() {
+//             [self.eventListViewController loadAndUpdateEvents];
+//             //}];
+//         }
      }];
     
-
+    
 }
 
 // Show an alert message
@@ -309,34 +272,6 @@ BOOL shouldAlternate = YES;
                                delegate:self
                       cancelButtonTitle:@"OK!"
                       otherButtonTitles:nil] show];
-}
-
-
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
 @end
