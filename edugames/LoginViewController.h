@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
+#import "LoginViewController.h"
+
 
 @interface LoginViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
+
+@property (strong, nonatomic) UIViewController *modalView;
+
+
 
 @end
