@@ -8,15 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginViewController.h"
-#import "MasterViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) LoginViewController *loginViewController;
-@property (strong, nonatomic) MasterViewController *masterViewController;
 
 @property (strong, nonatomic) NSString *username;
+- (void)updateViewControllers;
 
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
 - (void)userLoggedIn;
@@ -24,7 +23,5 @@
 - (void)showMessage:(NSString *)text withTitle:(NSString *)title;
 - (void)logout;
 
-
-- (void)updateViewControllers;
 
 @end

@@ -37,6 +37,8 @@
 		0BF1059318AF1F92008CADA4 /* login-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1059018AF1F92008CADA4 /* login-bg.png */; };
 		0BF1059418AF1F92008CADA4 /* login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1059118AF1F92008CADA4 /* login-button.png */; };
 		0BF1059518AF1F92008CADA4 /* register-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1059218AF1F92008CADA4 /* register-button.png */; };
+		0BF1059718AF3A74008CADA4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BF1059618AF3A74008CADA4 /* FacebookSDK.framework */; };
+		0BF1059918AF3B1A008CADA4 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF1059818AF3B1A008CADA4 /* search.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		0BF1059018AF1F92008CADA4 /* login-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-bg.png"; sourceTree = "<group>"; };
 		0BF1059118AF1F92008CADA4 /* login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button.png"; sourceTree = "<group>"; };
 		0BF1059218AF1F92008CADA4 /* register-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-button.png"; sourceTree = "<group>"; };
+		0BF1059618AF3A74008CADA4 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		0BF1059818AF3B1A008CADA4 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BF1059718AF3A74008CADA4 /* FacebookSDK.framework in Frameworks */,
 				0B3AC1C118AEF54F00346870 /* CoreGraphics.framework in Frameworks */,
 				0B3AC1C318AEF54F00346870 /* UIKit.framework in Frameworks */,
 				0B3AC1BF18AEF54F00346870 /* Foundation.framework in Frameworks */,
@@ -136,6 +141,7 @@
 		0B3AC1BD18AEF54F00346870 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BF1059618AF3A74008CADA4 /* FacebookSDK.framework */,
 				0B3AC1BE18AEF54F00346870 /* Foundation.framework */,
 				0B3AC1C018AEF54F00346870 /* CoreGraphics.framework */,
 				0B3AC1C218AEF54F00346870 /* UIKit.framework */,
@@ -223,6 +229,7 @@
 				0BF1057F18AF1F8A008CADA4 /* game.png */,
 				0BF1058018AF1F8A008CADA4 /* profile-highlighted.png */,
 				0BF1058118AF1F8A008CADA4 /* profile.png */,
+				0BF1059818AF3B1A008CADA4 /* search.png */,
 				0BF1058218AF1F8A008CADA4 /* search-highlighted.png */,
 				0BF1058418AF1F8A008CADA4 /* settings-highlighted.png */,
 				0BF1058518AF1F8A008CADA4 /* settings.png */,
@@ -312,6 +319,7 @@
 				0BF1058A18AF1F8A008CADA4 /* profile-highlighted.png in Resources */,
 				0BF1058618AF1F8A008CADA4 /* folder-highlighted.png in Resources */,
 				0B3AC1DA18AEF54F00346870 /* Images.xcassets in Resources */,
+				0BF1059918AF3B1A008CADA4 /* search.png in Resources */,
 				0BF1058B18AF1F8A008CADA4 /* profile.png in Resources */,
 				0BF1058818AF1F8A008CADA4 /* game-highlighted.png in Resources */,
 				0BF1059418AF1F92008CADA4 /* login-button.png in Resources */,
@@ -479,6 +487,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Angela/Documents/Development/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "edugames/edugames-Prefix.pch";
 				INFOPLIST_FILE = "edugames/edugames-Info.plist";
@@ -495,6 +507,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Angela/Documents/Development/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "edugames/edugames-Prefix.pch";
 				INFOPLIST_FILE = "edugames/edugames-Info.plist";
