@@ -15,8 +15,6 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <QuartzCore/QuartzCore.h>
-#import <objc/runtime.h>
 #import "CKSideBarController.h"
 
 #define CKSideBarWidth 100
