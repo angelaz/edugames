@@ -15,13 +15,11 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <QuartzCore/QuartzCore.h>
-#import <objc/runtime.h>
 #import "CKSideBarController.h"
 
 #define CKSideBarWidth 100
 #define CKCornerRadius 1
-#define CKSideBarButtonHeight 100
+#define CKSideBarButtonHeight 120
 #define CKSideBarImageEdgeLength 65
 
 
