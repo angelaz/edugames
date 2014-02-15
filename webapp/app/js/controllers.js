@@ -10,7 +10,6 @@ angular.module('edugames.controllers', [])
    .controller('GameListCtrl', ['$scope', 'syncData', function($scope, syncData) {
       $scope.games = syncData('games', 10);
 
-
       // add new games to the list
       $scope.addGame = function() {
          $scope.games.$add({title: "Teh Best Gaem Evar"});
@@ -20,12 +19,15 @@ angular.module('edugames.controllers', [])
    .controller('GameCtrl', ['$scope', 'syncData', '$routeParams', function($scope, syncData, $routeParams) {
       $scope.gameId = $routeParams.gameId;
       $scope.game = syncData('games/' + $scope.gameId);
-
-      syncData('games/' + $scope.gameId + '/title').$bind($scope, 'game.title');
+      syncData('games/' + $scope.gameId).$bind($scope, 'game');
 
       $scope.deleteGame = function() {
          $scope.game.$remove();
-      }
+      };
+
+      $scope.addQuestion = function() {
+         $scope.game.$child('questions').$add({text: "", a: "A: ", b: "B: ", c: "C: ", d: "D: "});
+      };
    }])
 
   .controller('ChatCtrl', ['$scope', 'syncData', function($scope, syncData) {
