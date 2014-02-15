@@ -7,6 +7,7 @@
 //
 
 #import "GameViewController.h"
+#import "ConquerViewController.h"
 
 @interface GameViewController ()
 
@@ -84,12 +85,12 @@
 {
     // TODO: case on games
     //if ([games objectAtIndex:indexPath.row] isEqualToString:@"conqueror") {
-        Game* conquerorGame = [[Game alloc] initWithTitle:@"conqueror"];
+        ConquerViewController *conquerViewController = [[ConquerViewController alloc] initWithKey:@"-JFolzigUK-BhNxu3jRv"]; // TODO: replace with actual key!
+        [self presentViewController:conquerViewController animated:YES completion:nil];
     //}
     
     // TODO: what is this?
-    [collectionView reloadData];
-//    [self.collectionView reloadData];
+//    [collectionView reloadData];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
