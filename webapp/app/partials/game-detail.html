@@ -1,14 +1,25 @@
-<input ng-model="game.title" type="text" placeholder="Game Title"/>
+<input class="game-title" ng-model="game.title" type="text" placeholder="Game Title"/>
+<br/>
+<select ng-model="game.template">
+	<option value="conqueror">Conqueror</option>
+	<option value="boardgame">Board Game</option>
+</select>
 
 <ul>
 	<li ng-repeat="(id, question) in game.questions | orderByPriority">
-    	<input ng-model="question.text" type="text" placeholder="Add a question..." />
+    	<input class="question" ng-model="question.text" type="text" placeholder="Add a question..." />
 		<div>
+			<input ng-model="question.correct" type="radio" value="a" />
 			<input ng-model="question.a" type="text" placeholder="A:" />
+
+			<input ng-model="question.correct" type="radio" value="b" />
 			<input ng-model="question.b" type="text" placeholder="B:" />
+
+			<input ng-model="question.correct" type="radio" value="c" />
 			<input ng-model="question.c" type="text" placeholder="C:" />
+
+			<input ng-model="question.correct" type="radio" value="d" />
 			<input ng-model="question.d" type="text" placeholder="D:" />
-			</li>
 		</div>
 	</li>
 	<button type="submit" ng-click="addQuestion()">Add Question</button>

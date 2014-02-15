@@ -1,9 +1,9 @@
 <h2>Games</h2>
 
 <ul id="games" ng-show="games">
-    <li ng-repeat="game in games | orderByPriority">
-    	<a href="#/games/{{game.$id}}">{{game.title}}</a>
-    </li>
-    <li><a ng-click="addGame()">Add a game...</a></li>
+    <button class="game-icon" type="link" ng-click="location.path('games/' + game.$id)" ng-repeat="game in games | orderByPriority">
+    	{{game.title}}
+    </button>
+    <button class="game-icon" type="link" ng-click="addGame()">Add a game...</button>
 </ul>
 
