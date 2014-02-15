@@ -50,18 +50,19 @@
             'js/module.waitForAuth.js'
         ], function() {
             // when all is done, execute bootstrap angular application
-            angular.bootstrap(document, ['myApp']);
+            angular.bootstrap(document, ['edugames']);
         })
     });
   </script>
-  <title>My AngularJS App</title>
+  <title>EduGames</title>
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body ng-cloak-auth class="hide">
 
     <ul class="menu">
         <li><a href="#/home">home</a></li>
-        <li><a href="#/chat">bats</a></li>
+        <li><a href="#/chat">chats</a></li>
+        <li><a href="#/games">games</a></li>
         <li ng-show-auth="logout,error"><a href="#/login">login</a></li>
         <li ng-show-auth="login"><a href="#/account">account</a></li>
     </ul>

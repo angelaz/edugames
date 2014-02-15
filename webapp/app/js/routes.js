@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('myApp.routes', ['ngRoute'])
+angular.module('edugames.routes', ['ngRoute'])
 
    // configure views; the authRequired parameter is used for specifying pages
    // which should only be available while logged in
@@ -16,8 +16,15 @@ angular.module('myApp.routes', ['ngRoute'])
       });
 
       $routeProvider.when('/games', {
+         authRequired: true,
          templateUrl: 'partials/games.html',
          controller: 'GameListCtrl'
+      });
+
+      $routeProvider.when('/games/:gameId', {
+         authRequired: true,
+         templateUrl: 'partials/game-detail.html',
+         controller: 'GameCtrl'
       });
 
       $routeProvider.when('/account', {

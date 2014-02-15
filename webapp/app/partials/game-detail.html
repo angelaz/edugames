@@ -1,0 +1,19 @@
+<input ng-model="game.title" type="text" />
+
+<li ng-repeat="question in game.questions | orderByPriority">
+    <input ng-model="question.text" />
+
+    {{question.answers}}
+
+    <!-- <input ng-model="question.answers" /> -->
+	<ul>
+		<li ng-repeat="answer in question.answers | orderByPriority">
+		<input ng-model="answer" ng-change="save()"/>
+		</li>
+	</ul>
+
+    <!-- <button type="submit" ng-click="addQuestion()">Add question</button> -->
+</li>
+
+<a href="#/games">Back</a>
+<a href="#/games" ng-click="deleteGame()">Delete</a>
