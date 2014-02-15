@@ -75,23 +75,23 @@
               </a>
             </li>
             <li>
-              <a class="gn-icon gn-icon-download">
-                Downloads
+              <a class="gn-icon gn-icon-help" href="#/chat">
+                Chat
               </a>
             </li>
             <li>
-              <a class="gn-icon gn-icon-cog">
-                Settings
+              <a class="gn-icon gn-icon-download" href="#/games">
+                Games
               </a>
             </li>
-            <li>
-              <a class="gn-icon gn-icon-help">
-                Help
+            <li ng-show-auth="logout,error">
+              <a class="gn-icon gn-icon-cog" href="#/login">
+                Login
               </a>
             </li>
-            <li>
-              <a class="gn-icon gn-icon-archive">
-                Archives
+            <li ng-show-auth="login">
+              <a class="gn-icon gn-icon-archive" href="#/account">
+                Account
               </a>
             </li>
           </ul>
@@ -102,7 +102,7 @@
 
     <!-- logo -->
     <li>
-      <a href="/">
+      <a href="#/games">
         EduGames
       </a>
     </li>
@@ -141,7 +141,7 @@
           </a>
         </li>
         <li>
-          <a href="login.html">
+          <a ng-click="logout()">
             <i class="icon-key">
             </i>
             Log Out
