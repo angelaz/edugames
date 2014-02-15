@@ -1,0 +1,18 @@
+<input ng-model="game.title" type="text" placeholder="Game Title"/>
+
+<ul>
+	<li ng-repeat="(id, question) in game.questions | orderByPriority">
+    	<input ng-model="question.text" type="text" placeholder="Add a question..." />
+		<div>
+			<input ng-model="question.a" type="text" placeholder="A:" />
+			<input ng-model="question.b" type="text" placeholder="B:" />
+			<input ng-model="question.c" type="text" placeholder="C:" />
+			<input ng-model="question.d" type="text" placeholder="D:" />
+			</li>
+		</div>
+	</li>
+	<button type="submit" ng-click="addQuestion()">Add Question</button>
+</ul>
+
+<a href="#/games">Back</a>
+<a href="#/games" ng-click="deleteGame()">Delete</a>

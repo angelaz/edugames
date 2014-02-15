@@ -22,6 +22,10 @@
         
         //TODO: Ivan+Gregory, please replace this with a Firebase query of the currently logged in's teacher's classes!
         _classList = [NSMutableArray arrayWithObjects:@"Spanish", @"English", @"Math", nil];
+        
+        //TODO: Same here, except then also fill in the didSelectRowAtIndexPath method so that
+        //      selecting a course will populate table with relevant students
+        _studentList = [NSMutableArray arrayWithObjects:@"Greg", @"Grreg", @"Grog", nil];
     }
     return self;
 }
@@ -32,14 +36,20 @@
     CGRect frame = [[UIScreen mainScreen] applicationFrame];
     
     CGRect leftTableView = CGRectMake(0, 0, (frame.size.width-84)/2, frame.size.height);
-    UITableView *tableView = [[UITableView alloc] initWithFrame:leftTableView style:UITableViewStylePlain];
+    _classListView = [[UITableView alloc] initWithFrame:leftTableView style:UITableViewStylePlain];
+    _classListView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    _classListView.delegate = self;
+    _classListView.dataSource = self;
+    [_classListView reloadData];
+    [self.view addSubview:_classListView];
     
-    tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [tableView reloadData];
-    
-    [self.view addSubview:tableView];
+    CGRect rightTableView = CGRectMake((frame.size.width+84)/2+20, 64, (frame.size.width-84)/2, frame.size.height);
+    _studentListView = [[UITableView alloc] initWithFrame:rightTableView style:UITableViewStylePlain];
+    _studentListView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    _studentListView.delegate = self;
+    _studentListView.dataSource = self;
+    [_studentListView reloadData];
+    [self.view addSubview:_studentListView];
 }
 
 - (void)viewDidLoad
@@ -51,7 +61,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 // Table View Stuff
@@ -60,24 +69,33 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Number of rows is the number of time zones in the region for the specified section.
-    return [_classList count];
+    if (tableView == _classListView) {
+        return [_classList count];
+    }
+    return [_studentList count];
 }
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    // The header for the section is the region name -- get this from the region at the section index.
-    return @"My Classes";
+    if (tableView == _classListView) {
+        return @"My Classes";
+    }
+    return @"My Students";
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *MyIdentifier = @"MyReuseIdentifier";
+    static NSString *MyIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:MyIdentifier];
     }
-    cell.textLabel.text = [_classList objectAtIndex:indexPath.row];
+    if (tableView == _classListView) {
+        cell.textLabel.text = [_classList objectAtIndex:indexPath.row];
+    }
+    if (tableView == _studentListView) {
+        cell.textLabel.text = [_studentList objectAtIndex:indexPath.row];
+    }
     return cell;
 }
 
