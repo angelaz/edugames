@@ -38,5 +38,5 @@ angular.module('edugames.routes', ['ngRoute'])
          controller: 'LoginCtrl'
       });
 
-      $routeProvider.otherwise({redirectTo: '/home'});
+      $routeProvider.otherwise({redirectTo: '/games'});
    }]);
