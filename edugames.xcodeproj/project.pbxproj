@@ -102,6 +102,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BF1059718AF3A74008CADA4 /* FacebookSDK.framework in Frameworks */,
+				8D5B2CA918AF2D8F00E0E900 /* FacebookSDK.framework in Frameworks */,
 				0B3AC1C118AEF54F00346870 /* CoreGraphics.framework in Frameworks */,
 				0B3AC1C318AEF54F00346870 /* UIKit.framework in Frameworks */,
 				0B3AC1BF18AEF54F00346870 /* Foundation.framework in Frameworks */,
@@ -144,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				0BF1059618AF3A74008CADA4 /* FacebookSDK.framework */,
+				8D5B2CA818AF2D8F00E0E900 /* FacebookSDK.framework */,
 				0B3AC1BE18AEF54F00346870 /* Foundation.framework */,
 				0B3AC1C018AEF54F00346870 /* CoreGraphics.framework */,
 				0B3AC1C218AEF54F00346870 /* UIKit.framework */,
@@ -155,6 +157,7 @@
 		0B3AC1C418AEF54F00346870 /* edugames */ = {
 			isa = PBXGroup;
 			children = (
+				8D5B2C8418AF0AB000E0E900 /* images */,
 				0B3AC1CD18AEF54F00346870 /* AppDelegate.h */,
 				0B3AC1CE18AEF54F00346870 /* AppDelegate.m */,
 				0B3AC1D018AEF54F00346870 /* Main.storyboard */,
@@ -167,6 +170,8 @@
 				0B3AC1D918AEF54F00346870 /* Images.xcassets */,
 				0BF1055F18AF10D1008CADA4 /* images */,
 				0B3AC1C518AEF54F00346870 /* Supporting Files */,
+				8D5B2C8118AF060D00E0E900 /* LoginViewController.h */,
+				8D5B2C8218AF060D00E0E900 /* LoginViewController.m */,
 			);
 			path = edugames;
 			sourceTree = "<group>";
@@ -206,6 +211,17 @@
 			children = (
 				0BF1057B18AF1F8A008CADA4 /* navbar */,
 				0BF1056018AF10D1008CADA4 /* login-bg.png */,
+		8D5B2C8418AF0AB000E0E900 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				8D5B2CA618AF2A6000E0E900 /* regular-login.png */,
+				8D5B2CA418AF2A5B00E0E900 /* facebook-login.png */,
+				8D5B2CA218AF287C00E0E900 /* modal-bg.png */,
+				8D5B2CA018AF20CB00E0E900 /* close-button.png */,
+				8D5B2C8B18AF1F0F00E0E900 /* navbar */,
+				8D5B2C8718AF174400E0E900 /* login-button.png */,
+				8D5B2C8818AF174400E0E900 /* register-button.png */,
+				8D5B2C8518AF0AB000E0E900 /* login-bg.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -237,6 +253,20 @@
 				0BF1058218AF1F8A008CADA4 /* search-highlighted.png */,
 				0BF1058418AF1F8A008CADA4 /* settings-highlighted.png */,
 				0BF1058518AF1F8A008CADA4 /* settings.png */,
+
+		8D5B2C8B18AF1F0F00E0E900 /* navbar */ = {
+			isa = PBXGroup;
+			children = (
+				8D5B2C8C18AF1F0F00E0E900 /* folder-highlighted.png */,
+				8D5B2C8D18AF1F0F00E0E900 /* folder.png */,
+				8D5B2C8E18AF1F0F00E0E900 /* game-highlighted.png */,
+				8D5B2C8F18AF1F0F00E0E900 /* game.png */,
+				8D5B2C9018AF1F0F00E0E900 /* profile-highlighted.png */,
+				8D5B2C9118AF1F0F00E0E900 /* profile.png */,
+				8D5B2C9218AF1F0F00E0E900 /* search-highlighted.png */,
+				8D5B2C9318AF1F0F00E0E900 /* search.png */,
+				8D5B2C9418AF1F0F00E0E900 /* settings-highlighted.png */,
+				8D5B2C9518AF1F0F00E0E900 /* settings.png */,
 			);
 			path = navbar;
 			sourceTree = "<group>";
@@ -336,6 +366,26 @@
 				0BF1059318AF1F92008CADA4 /* login-bg.png in Resources */,
 				0BF1058E18AF1F8A008CADA4 /* settings-highlighted.png in Resources */,
 				0BF1058718AF1F8A008CADA4 /* folder.png in Resources */,
+				8D5B2CA718AF2A6000E0E900 /* regular-login.png in Resources */,
+				8D5B2C9F18AF1F0F00E0E900 /* settings.png in Resources */,
+				8D5B2C9A18AF1F0F00E0E900 /* profile-highlighted.png in Resources */,
+				0B3AC1DA18AEF54F00346870 /* Images.xcassets in Resources */,
+				8D5B2C9918AF1F0F00E0E900 /* game.png in Resources */,
+				8D5B2C9D18AF1F0F00E0E900 /* search.png in Resources */,
+				8D5B2CA118AF20CB00E0E900 /* close-button.png in Resources */,
+				8D5B2C9718AF1F0F00E0E900 /* folder.png in Resources */,
+				8D5B2C9C18AF1F0F00E0E900 /* search-highlighted.png in Resources */,
+				8D5B2C9818AF1F0F00E0E900 /* game-highlighted.png in Resources */,
+				8D5B2C9E18AF1F0F00E0E900 /* settings-highlighted.png in Resources */,
+				8D5B2CA518AF2A5B00E0E900 /* facebook-login.png in Resources */,
+				0B3AC1C918AEF54F00346870 /* InfoPlist.strings in Resources */,
+				8D5B2C8618AF0AB000E0E900 /* login-bg.png in Resources */,
+				8D5B2CA318AF287C00E0E900 /* modal-bg.png in Resources */,
+				8D5B2C9B18AF1F0F00E0E900 /* profile.png in Resources */,
+				8D5B2C9618AF1F0F00E0E900 /* folder-highlighted.png in Resources */,
+				0B3AC1D218AEF54F00346870 /* Main.storyboard in Resources */,
+				8D5B2C8A18AF174400E0E900 /* register-button.png in Resources */,
+				8D5B2C8918AF174400E0E900 /* login-button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +411,8 @@
 				0BF1059C18AF433F008CADA4 /* ClassViewController.m in Sources */,
 				0BF1057A18AF1BC5008CADA4 /* CKTestViewController.m in Sources */,
 				0BF1055E18AF10C5008CADA4 /* LoginViewController.m in Sources */,
+				0B3AC1D818AEF54F00346870 /* DetailViewController.m in Sources */,
+				8D5B2C8318AF060D00E0E900 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +546,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Angela/Documents/Development/FacebookSDK,
+					/Users/Lucy/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "edugames/edugames-Prefix.pch";
@@ -522,6 +575,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Angela/Documents/Development/FacebookSDK,
+					/Users/Lucy/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "edugames/edugames-Prefix.pch";
