@@ -1,34 +1,4 @@
-<!-- <h1>      Games</h1>
-
-<ul id="games" ng-show="games">
-    <button class="game-icon" type="link" ng-click="location.path('games/' + game.$id)" ng-repeat="game in games | orderByPriority">
-        {{game.title}}
-    </button>
-    <button class="game-icon" type="link" ng-click="addGame()">Add a game...</button>
-</ul>
-<div class="row span5">
-<div class="content span 2">
-                <ul class="bmenu">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Illustrations</a></li>
-                    <li><a href="#">Photography</a></li>
-                    <li><a href="#">Web Design</a></li>
-                    <li><a href="#">Personal Projects</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                
-            </div>
-<div class="span 7">
-            <ul id="games" ng-show="games">
-    <button class="game-icon" type="link" ng-click="location.path('games/' + game.$id)" ng-repeat="game in games | orderByPriority">
-        {{game.title}}
-    </button>
-    <button class="game-icon" type="link" ng-click="addGame()">Add a game...</button>
-</ul>
-</div>
- -->
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="no-js">
     <head>
         <meta charset="UTF-8" />
@@ -47,7 +17,7 @@
         <link href="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
         <link rel="stylesheet" href="css/loggedin/owl.carousel.css" type="text/css">
         <!-- Custom styles for this template -->
-        <link href="css/style-responsive.css" rel="stylesheet" />
+        <link href="css/loggedin/style-responsive.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="css/loggedin/style.css" />
         <!-- Cool Sidebar -->
         <link rel="stylesheet" type="text/css" href="css/loggedin/normalize.css" />
@@ -55,7 +25,7 @@
         <link rel="stylesheet" type="text/css" href="css/loggedin/component.css" />
 
 
-        
+        <script src="js/modernizr.custom.js"></script>
     </head>
     <body>
         <div class="container">
@@ -104,23 +74,60 @@
             <header>
                 <div class="row">
                     <div class="col-lg-2">
-                        <h1>Games</h1><br>
+                        <h1>CrowdLearn</h1><br>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <ul id="games" ng-show="games">
-    <button class="game-icon" type="link" ng-click="location.path('games/' + game.$id)" ng-repeat="game in games | orderByPriority">
-        {{game.title}}
-    </button>
-    <button class="game-icon" type="link" ng-click="addGame()">Add a game...</button>
-</ul>
+                        <h1><span>A crowdsourced learning platform built by <a href="http://www.lucy.ws">me</a> :)</span></h1>
                     </div>
                 </div>
             </header> 
         </div><!-- /container -->
-        
+        <script src="js/classie.js"></script>
+        <script src="js/gnmenu.js"></script>
+        <script>
+            new gnMenu( document.getElementById( 'gn-menu' ) );
+        </script>
     </body>
 
-    
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.scrollTo.min.js"></script>
+    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="js/jquery.sparkline.js" type="text/javascript"></script>
+    <script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="js/owl.carousel.js" ></script>
+    <script src="js/jquery.customSelect.min.js" ></script>
+
+    <!--common script for all pages-->
+    <script src="js/common-scripts.js"></script>
+
+    <!--script for this page-->
+    <script src="js/sparkline-chart.js"></script>
+    <script src="js/easy-pie-chart.js"></script>
+
+    <script>
+
+          //owl carousel
+
+          $(document).ready(function() {
+              $("#owl-demo").owlCarousel({
+                  navigation : true,
+                  slideSpeed : 300,
+                  paginationSpeed : 400,
+                  singleItem : true
+
+              });
+          });
+
+          //custom select box
+
+          $(function(){
+              $('select.styled').customSelect();
+          });
+
+    </script>
 </html>
