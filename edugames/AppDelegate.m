@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @implementation AppDelegate
 
@@ -16,6 +17,14 @@
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     splitViewController.delegate = (id)navigationController.topViewController;
+    
+    //setting up login view controller
+    LoginViewController *loginViewController = [[LoginViewController alloc] init];
+    
+    self.loginViewController = loginViewController;    
+    self.window.rootViewController = loginViewController;
+    
+
     
     //Need to set up Facebook login and Parse
     
@@ -48,5 +57,6 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 @end
