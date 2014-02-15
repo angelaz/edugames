@@ -14,34 +14,76 @@
 
 @implementation GameViewController {
     NSArray *games;
+    NSMutableArray *myGames;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        //  TODO: Need to populate this properly with teacher's games.
+        //  Would be nice if teacher games could be stored with format [Title, Image Name, Game ID] (or if necessary we can
+        //    have numbers that correspond to different game templates and associate those)
+        myGames = [[NSMutableArray alloc] initWithObjects:@[@"Simple Addition", @1, @12345], @[@"Chapter 1 History", @2, @12345], @[@"Hyrodgen Facts", @3, @12345], nil];
     }
     return self;
 }
 
+//  Collection view methods
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    CGRect frame = [[UIScreen mainScreen] applicationFrame];
     
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
+    UICollectionViewFlowLayout *layout= [[UICollectionViewFlowLayout alloc] init];
+    layout.minimumInteritemSpacing = 0;
+    layout.minimumLineSpacing = 50;
     
-    UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc] init];
-    [flow setItemSize:CGSizeMake(100, 100)];
-    [flow setScrollDirection:UICollectionViewScrollDirectionVertical];
+    _collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, frame.size.height-100, frame.size.width)  collectionViewLayout:layout];
+    [_collectionView setDataSource:self];
+    [_collectionView setDelegate:self];
     
-    [self.collectionView setBackgroundColor:[UIColor whiteColor]];
-    [self.collectionView setCollectionViewLayout:flow];
+    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
+    [_collectionView setBackgroundColor:[UIColor colorWithRed:0.969 green:0.969 blue:0.969 alpha:1.0]];
     
-    // Set up games with Firebase
+    [self.view addSubview:_collectionView];
+    
     games = [NSArray arrayWithObject:@"login-button.png"];
+    
+    [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
 }
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [myGames count];
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+    
+    NSLog(@"%zd", indexPath.row);
+    cell.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"card-millionaire.png"]];
+    
+    //  TODO: This is temporary before we associate either image names directly or use IDs for templates
+    if ([[[myGames objectAtIndex:indexPath.row] objectAtIndex:1] isEqual:@2]) {
+        cell.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"card-millionaire-alt.png"]];
+    }
+    
+    UILabel *gameNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 320, 290, 25)];
+    gameNameLabel.text = [[myGames objectAtIndex:indexPath.row] objectAtIndex:0];
+    gameNameLabel.textAlignment = NSTextAlignmentCenter;
+    [cell addSubview:gameNameLabel];
+    
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(290, 315);
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -49,25 +91,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [games count];
-}
-
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *identifier = @"Cell";
-    
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    
-    UIImageView *gameImageView = [[UIImageView alloc] init];
-    [gameImageView setImage:[UIImage imageNamed:[games objectAtIndex:indexPath.row]]];
-    gameImageView.frame = CGRectMake(30, 10, 124, 30);
-    [cell addSubview:gameImageView];
-    
-    return cell;
-}
-
-- (IBAction)presentGCTurnViewController:(id)sender {
+- (IBAction)presentGCTurnViewController:(id)sender
+{
     [[GCTurnBasedMatchHelper sharedInstance]
      findMatchWithMinPlayers:2 maxPlayers:3 viewController:self];
 }

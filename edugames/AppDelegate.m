@@ -131,8 +131,7 @@ BOOL shouldAlternate = YES;
     }
     else if ([s isEqualToString:@"game"])
     {
-        UICollectionViewLayout* layout = [[UICollectionViewLayout alloc] init];
-        GameViewController *controller = [[GameViewController alloc]initWithCollectionViewLayout:layout];
+        GameViewController *controller = [[GameViewController alloc] init];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
         
         [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
