@@ -5,16 +5,50 @@
 }
 
 .game-icon {
-  height: 100px;
+  /*height: 100px;
   width: 200px;
   margin: 20px;
   text-align: center;
   display: inline-block;
-  background-color: #B4DCF0;
+  background-color: #B4DCF0;*/
+  background: url('../img/gamecard-millionaire.png') no-repeat scroll 0 0 transparent;
+  border-style: none;
+    height: 259.6px;
+    width: 222.8px;
+    background-size: 100% 100%;
+    margin: 10px;
 }
+
+.title {
+  margin-top: 200px;
+  color: #646464;
+}
+
 .game-icon:hover {
   cursor: pointer;
+  opacity: .5;
 }
+
+.create-icon {
+  /*height: 100px;
+  width: 200px;
+  margin: 20px;
+  text-align: center;
+  display: inline-block;
+  background-color: #B4DCF0;*/
+  background: url('../img/create-game.png') no-repeat scroll 0 0 transparent;
+  border-style: none;
+    height: 259.6px;
+    width: 222.8px;
+    background-size: 100% 100%;
+    margin: 10px;
+}
+
+.create-icon:hover {
+  opacity: .5;
+}
+
+
 
 .game-title {
   font-size: 30px;
