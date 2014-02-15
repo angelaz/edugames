@@ -26,14 +26,19 @@
 
 @implementation CKSideBarItem
 
-- (void)setImage:(UIImage *)image {
+- (void)setImage:(UIImage *)image highlightedImage: (UIImage *) selectedImage{
     if (_image != image) {
         _image = image;
-
-        self.unSelectedImage = [self tabBarImage:image size:image.size backgroundImage:nil];
-        self.selectedImage = [self tabBarImage:image size:image.size backgroundImage:[UIImage imageNamed:@"selected-image-background.png"]];
+        //self.unSelectedImage = [self tabBarImage:image size:image.size backgroundImage:image];
+        //self.selectedImage = [self tabBarImage:selectedImage size:selectedImage.size backgroundImage:selectedImage];
+        
+        self.unSelectedImage = image;
+        self.selectedImage = selectedImage;
+        
     }
 }
+
+
 
 
 -(UIImage*)tabBarImage:(UIImage*)startImage size:(CGSize)targetSize backgroundImage:(UIImage*)backgroundImageSource {
@@ -55,15 +60,11 @@
 
     UIImage* tabBarImage = [UIImage imageWithCGImage:tabBarImageRef scale:startImage.scale orientation:startImage.imageOrientation];
 
-    // Cleanup
-    CGImageRelease(imageMask);
-    CGImageRelease(tabBarImageRef);
-
     // Create a new context with the right size
     UIGraphicsBeginImageContextWithOptions(targetSize, NO, 0.0);
 
     // Draw the new tab bar image at the center
-    [tabBarImage drawInRect:CGRectMake((targetSize.width/2.0) - (startImage.size.width/2.0), (targetSize.height/2.0) - (startImage.size.height/2.0), startImage.size.width, startImage.size.height)];
+    [tabBarImage drawInRect:CGRectMake((targetSize.width) - (startImage.size.width), (targetSize.height) - (startImage.size.height), startImage.size.width, startImage.size.height)];
 
     // Generate a new image
     UIImage* resultImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -71,6 +72,7 @@
 
     return resultImage;
 }
+
 
 // Convert the image's fill color to black and background to white
 - (UIImage *)blackFilledImageWithWhiteBackgroundUsing:(UIImage*)startImage {

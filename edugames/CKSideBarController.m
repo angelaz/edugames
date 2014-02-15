@@ -21,8 +21,8 @@
 
 #define CKSideBarWidth 84
 #define CKCornerRadius 6
-#define CKSideBarButtonHeight 84
-#define CKSideBarImageEdgeLength 28
+#define CKSideBarButtonHeight 80
+#define CKSideBarImageEdgeLength 45
 
 
 @interface CKSideBarCell : UITableViewCell
@@ -30,11 +30,8 @@
 @property (nonatomic) UIImageView *iconView;
 @property (nonatomic) UIImage *selectedImage;
 @property (nonatomic) UIImage *unSelectedImage;
-@property (nonatomic) UILabel *titleLabel;
-@property (nonatomic) UIImageView *glowView;
 
 - (void)setIsActive:(BOOL)isActive;
-- (void)setIsGlowing:(BOOL)isGlowing;
 
 @end
 
@@ -48,32 +45,18 @@
         self.iconView = [[UIImageView alloc] initWithFrame:CGRectZero];
         [self addSubview:self.iconView];
 
-        self.glowView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        self.glowView.image = [UIImage imageNamed:@"tabbar-glow.png"];
-        self.glowView.hidden = YES;
-        [self addSubview:self.glowView];
-
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        [self addSubview:self.titleLabel];
-        self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.backgroundColor = [UIColor clearColor];
-        self.titleLabel.font = [UIFont boldSystemFontOfSize:11];
     }
     return self;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    CGFloat spacing = 6.0;
     CGFloat width = self.bounds.size.width - CKCornerRadius;
     CGFloat height = self.bounds.size.height;
-    self.iconView.frame = CGRectMake((width / 2) - (CKSideBarImageEdgeLength / 2), (height / 2) - (CKSideBarImageEdgeLength / 2) - ((spacing + 11) / 2), CKSideBarImageEdgeLength, CKSideBarImageEdgeLength);
-    self.titleLabel.frame = CGRectMake(0, CGRectGetMaxY(self.iconView.frame) + spacing, width, 11);
-    self.glowView.frame = CGRectMake(0, (height / 2) - (self.glowView.image.size.height / 2), self.glowView.image.size.width, self.glowView.image.size.height);
+    self.iconView.frame = CGRectMake((width / 2) - (CKSideBarImageEdgeLength / 2), (height / 2) - (CKSideBarImageEdgeLength / 2), CKSideBarImageEdgeLength, CKSideBarImageEdgeLength);
 }
 
 - (void)setIsActive:(BOOL)isActive {
-    self.titleLabel.textColor = isActive ? [UIColor whiteColor] : [UIColor lightGrayColor];
     if (isActive) {
         self.iconView.image = self.selectedImage;
     } else {
@@ -81,9 +64,6 @@
     }
 }
 
-- (void)setIsGlowing:(BOOL)isGlowing {
-    self.glowView.hidden = !isGlowing;
-}
 
 @end
 
@@ -105,9 +85,9 @@
     
     self = [super init];
     if (self) {
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"rough_diagonal.png"]];
-
-        self.sideBarView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, CKSideBarWidth + CKCornerRadius, self.view.bounds.size.height) style:UITableViewStylePlain];
+        self.view.backgroundColor = [UIColor clearColor];
+        
+        self.sideBarView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, CKSideBarWidth + CKCornerRadius, self.view.bounds.size.height) style:UITableViewStylePlain];
         self.sideBarView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
         self.sideBarView.backgroundColor = [UIColor clearColor];
         self.sideBarView.scrollEnabled = NO;
@@ -232,11 +212,12 @@
     UIViewController *viewController = self.viewControllers[indexPath.row];
     CKSideBarItem *sideBarItem = viewController.sideBarItem;
 
-    cell.titleLabel.text = sideBarItem.title;
     cell.selectedImage = sideBarItem.selectedImage;
     cell.unSelectedImage = sideBarItem.unSelectedImage;
+    
+    cell.backgroundColor = [UIColor clearColor];
+    
     [cell setIsActive:(viewController == self.selectedViewController)];
-    [cell setIsGlowing:sideBarItem.isGlowing];
 
     return cell;
 }
@@ -272,7 +253,6 @@ static char const * const CKSideBarItemKey = "CKSideBarItemKey";
     CKSideBarItem *item = objc_getAssociatedObject(self, CKSideBarItemKey);
     if (!item) {
         item = [[CKSideBarItem alloc] init];
-        item.title = self.title;
         item.image = [UIImage imageNamed:@"default-tabbar-icon.png"];
         [self setSideBarItem:item];
     }

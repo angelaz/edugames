@@ -20,11 +20,11 @@
 
 @interface CKSideBarItem : NSObject
 
-@property (nonatomic) NSString *title;
 @property (nonatomic) UIImage *image;
-@property (nonatomic) BOOL isGlowing;
 
 @property (nonatomic, readonly) UIImage *selectedImage;
 @property (nonatomic, readonly) UIImage *unSelectedImage;
+
+- (void)setImage:(UIImage *)image highlightedImage: (UIImage *)selectedImage;
 
 @end

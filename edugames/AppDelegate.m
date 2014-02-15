@@ -14,9 +14,11 @@
 @interface AppDelegate () <CKSideBarControllerDelegate>
 
 @property(nonatomic) CKSideBarController *barController;
-@property(nonatomic) UINavigationController *controller2;
 @property(nonatomic) UINavigationController *controller1;
+@property(nonatomic) UINavigationController *controller2;
 @property(nonatomic) UINavigationController *controller3;
+@property(nonatomic) UINavigationController *controller4;
+@property(nonatomic) UINavigationController *controller5;
 
 @end
 
@@ -24,25 +26,34 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[UINavigationBar appearance] setTintColor:[UIColor colorWithHue:0.6 saturation:0.55 brightness: 0.69 alpha:1.0]];
-    
+    //[[UINavigationBar appearance] setTintColor:[UIColor colorWithHue:0.6 saturation:0.55 brightness: 0.69 alpha:1.0]];
+    [[UINavigationBar appearance] setTintColor:[UIColor clearColor]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];
     
-    self.controller1 = [self navControllerWithTitle:@"Tweets" barImage:[UIImage imageNamed:@"compose.png"]];
-    self.controller2 = [self navControllerWithTitle:@"Connect" barImage:[UIImage imageNamed:@"compose.png"]];
-    self.controller3 = [self navControllerWithTitle:@"Can't Touch" barImage:[UIImage imageNamed:@"search.png"]];
+    self.controller1 = [self navControllerWithImage:[UIImage imageNamed:@"game"]
+                                      selectedImage:[UIImage imageNamed:@"game-highlighted"]];
+    self.controller2 = [self navControllerWithImage:[UIImage imageNamed:@"search"]
+                                      selectedImage:[UIImage imageNamed:@"search-highlighted"]];
+    self.controller3 = [self navControllerWithImage:[UIImage imageNamed:@"folder"]
+                                      selectedImage:[UIImage imageNamed:@"folder-highlighted"]];
+    self.controller4 = [self navControllerWithImage:[UIImage imageNamed:@"profile"]
+                                      selectedImage:[UIImage imageNamed:@"profile-highlighted"]];
+    self.controller5 = [self navControllerWithImage:[UIImage imageNamed:@"settings"]
+                                      selectedImage:[UIImage imageNamed:@"settings-highlighted"]];
     
-    UIViewController *detachedController = [[UIViewController alloc] init];
+    //UIViewController *detachedController = [[UIViewController alloc] init];
     
     self.barController = [[CKSideBarController alloc] init];
     self.barController.delegate = self;
     self.barController.viewControllers = @[
                                            self.controller1,
                                            self.controller2,
-                                           self.controller3
+                                           self.controller3,
+                                           self.controller4,
+                                           self.controller5
                                            ];
     
     self.window.rootViewController = self.barController;
@@ -52,18 +63,11 @@
 //Side bar controller stuff
 BOOL shouldAlternate = YES;
 
-- (UINavigationController *)navControllerWithTitle:(NSString *)title barImage:(UIImage *)image {
+- (UINavigationController *)navControllerWithImage:(UIImage *)defaultImage selectedImage:(UIImage *)selectedImage {
     CKTestViewController *controller = [[CKTestViewController alloc] init];
-    controller.title = title;
     controller.view.backgroundColor = [UIColor whiteColor];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-    //if (shouldAlternate)
-        navController.sideBarItem.title = title;
-    //if (image)
-        navController.sideBarItem.image = image;
-    navController.sideBarItem.isGlowing = shouldAlternate;
-    
-    //shouldAlternate = !shouldAlternate;
+    [navController.sideBarItem setImage:defaultImage highlightedImage:selectedImage];
     
     return navController;
 }
@@ -71,8 +75,10 @@ BOOL shouldAlternate = YES;
 - (void)updateViewControllers {
     self.barController.viewControllers = @[
                                            self.controller1,
+                                           self.controller2,
                                            self.controller3,
-                                           self.controller2
+                                           self.controller4,
+                                           self.controller5
                                            ];
 }
 
