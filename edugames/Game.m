@@ -15,8 +15,9 @@
     Firebase* gameRef;
 }
 
-
-- (id) initWithTitle:(NSString *)title {
+- (id) initWithTitle:(NSString *)title andOnUpdate:(void (^)(NSDictionary*))updateHandler
+    andOnPlayerInput:(void (^)(NSDictionary*))playerInputHandler
+{
     if (self = [super init])
     {
         // Initialize the root of our Firebase namespace.
@@ -85,6 +86,7 @@
             // Check for game state updates
             [newInstance observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
                 [self onGameStateUpdate:snapshot.value];
+                updateHandler(snapshot.value);
             }];
         }];
     }

@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) Firebase *firebase;
 
-- (id) initWithTitle:(NSString *)title;
+- (id) initWithTitle:(NSString *)title andOnUpdate:(void (^)(NSDictionary*))updateHandler
+    andOnPlayerInput:(void (^)(NSDictionary*))playerInputHandler;
 
 @end
