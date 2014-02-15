@@ -8,6 +8,7 @@
 
 #import "ConquerViewController.h"
 #import "Game.h"
+#import "ConquerScene.h"
 
 @implementation ConquerViewController
 
@@ -33,7 +34,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    // Hack to change view to SKView
+    self.view = [[SKView alloc] initWithFrame:self.view.frame];
+    
+    // Configure the view.
+    SKView * skView = (SKView *)self.view;
+//    skView.showsFPS = YES;
+//    skView.showsNodeCount = YES;
+    
+    // Create and configure the scene.
+    SKScene * scene = [ConquerScene sceneWithSize:skView.bounds.size];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    
+    // Present the scene.
+    [skView presentScene:scene];
+    
+    return;
+    
+    UIImage *image = [UIImage imageNamed:@"game-bg-2.png"];
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:image];
+    
+    [self.view addSubview:backgroundView];
+
 
 }
 
