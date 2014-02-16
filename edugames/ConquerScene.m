@@ -42,30 +42,68 @@ NSNumber* pack(int i, int j)
     return [NSNumber numberWithInt:(5*i + j)];
 }
 
+NSNumber* cgpack(CGPoint p)
+{
+    return pack(p.x, p.y);
+}
+
 CGPoint cgCoordToPoint(CGPoint p)
 {
     return coordToPoint(p.x, p.y);
 }
+
+static const int STARTX = 205;
+static const int STARTYLOWER = 330;
+static const int STARTYUPPER = 445;
+static const int DX = 100;
+static const int DY = 60;
 
 CGPoint coordToPoint(int i, int j)
 {
     int startx, starty;
     if (i == 0)
     {
-        startx = 80;
-        starty = 570;
+        startx = STARTX;
+        starty = STARTYUPPER;
     } else
     {
-        startx = 80 + 100*(i-1);
-        starty = 455 - 60*(i-1);
+        startx = STARTX + DX*(i-1);
+        starty = STARTYLOWER - DY*(i-1);
     }
-    startx += 125;
-    starty -= 125;
     
-    int x = startx + j*100;
-    int y = starty + j*60;
+    int x = startx + j*DX;
+    int y = starty + j*DY;
     
     return CGPointMake(x,y);
+}
+
+// Given a position p, return the board coordinates
+// of the nearest hexagon
+CGPoint pointToCoord(CGPoint p)
+{
+    int col = round(((int)p.x - STARTX)/(double)DX);
+    int x = STARTX + col*DX;
+    
+    int starty;
+    // avoids issues with 1 vs -1
+    if (col % 2 == 0)
+        starty = STARTYUPPER;
+    else
+        starty = STARTYLOWER + DY;
+    
+    int row = round(((int)p.y - starty)/(double)(2*DY));
+    int y = starty + row*(2*DY);
+    
+    int base = -round(((y - col*DY) - STARTYUPPER)/(double)(2*DY));
+    int basecol;
+    if (base == 0)
+        basecol = 0;
+    else
+        basecol = base - 1;
+    
+    int baseOffset = col - basecol;
+    
+    return CGPointMake(base, baseOffset);
 }
 
 + (NSMutableDictionary*) createGameState {
@@ -156,22 +194,30 @@ CGPoint coordToPoint(int i, int j)
         
         //SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"singlehexagon"];
         
+        CGPoint coord = pointToCoord(location);
         NSArray *nodes = [self nodesAtPoint:[touch locationInNode:self]];
         
+        SKSpriteNode* hexagon = hexagons[cgpack(coord)];
+        [hexagon setColor:[UIColor greenColor]];
+
+        
+        SKAction *moveNodeUp = [SKAction moveTo:cgCoordToPoint(coord) duration:0.5];
+        [player1Sprite runAction: moveNodeUp];
+        
         // TODO:
-        for (SKSpriteNode *other in nodes)
-        {
-            for (SKSpriteNode *spr in [hexagons allValues])
-            {
-                if (other == spr)
-                {
-                    [spr setColor:[UIColor greenColor]];
-                    
-                    SKAction *moveNodeUp = [SKAction moveTo:spr.position duration:0.5];
-                    [player1Sprite runAction: moveNodeUp];
-                }
-            }
-        }
+//        for (SKSpriteNode *other in nodes)
+//        {
+//            for (SKSpriteNode *spr in [hexagons allValues])
+//            {
+//                if (other == spr)
+//                {
+//                    [spr setColor:[UIColor greenColor]];
+//                    
+//                    SKAction *moveNodeUp = [SKAction moveTo:spr.position duration:0.5];
+//                    [player1Sprite runAction: moveNodeUp];
+//                }
+//            }
+//        }
             //[spr setColor:[UIColor greenColor]];
         
         
