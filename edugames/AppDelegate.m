@@ -105,6 +105,11 @@
     return [FBSession.activeSession handleOpenURL:url];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 //Side bar controller stuff
 BOOL shouldAlternate = YES;
 
