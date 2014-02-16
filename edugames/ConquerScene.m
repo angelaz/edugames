@@ -59,6 +59,9 @@ CGPoint coordToPoint(int i, int j)
         startx = 80 + 100*(i-1);
         starty = 455 - 60*(i-1);
     }
+    startx += 125;
+    starty -= 125;
+    
     int x = startx + j*100;
     int y = starty + j*60;
     
@@ -127,12 +130,13 @@ CGPoint coordToPoint(int i, int j)
         player1Sprite = [SKSpriteNode spriteNodeWithImageNamed:@"leafers.png"];
         [player1Sprite setScale:0.5];
         player1Sprite.xScale *= -1.0;
-        //player1Sprite.position = coordToPoint(0, 0);
+        player1Sprite.position = coordToPoint(0, 0);
+        
         [self addChild:player1Sprite];
         
         player2Sprite = [SKSpriteNode spriteNodeWithImageNamed:@"piceratops.png"];
         [player2Sprite setScale:0.5];
-        //player2Sprite.position = coordToPoint(4, 3);
+        player2Sprite.position = coordToPoint(4, 3);
         [self addChild:player2Sprite];
         
     }
@@ -150,6 +154,11 @@ CGPoint coordToPoint(int i, int j)
         
         sprite.position = location;
         
+        NSLog(@"x: %f, y: %f", location.x, location.y);
+        
+        SKAction *moveNodeUp = [SKAction moveTo:location duration:2.0];
+        [player1Sprite runAction: moveNodeUp];
+        
         SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
         
         [sprite runAction:[SKAction repeatActionForever:action]];
@@ -164,6 +173,11 @@ CGPoint coordToPoint(int i, int j)
 - (void) onUpdate:(NSDictionary*) gameData {
     NSLog(@"Got update");
     NSDictionary* gameState = gameData[@"gameState"];
+    
+    id x = gameState[@"player1"];
+    CGPoint y = unpack(gameState[@"player1"]);
+    CGPoint z = cgCoordToPoint(unpack(gameState[@"player1"]));
+    
     player1Sprite.position = cgCoordToPoint(unpack(gameState[@"player1"]));
     player2Sprite.position = cgCoordToPoint(unpack(gameState[@"player2"]));
     NSArray* points = gameState[@"points"];
@@ -176,6 +190,11 @@ CGPoint coordToPoint(int i, int j)
         SKSpriteNode *hexagon = hexagons[n];// [NSNumber numberWithBool:(blocked == j)];
         [hexagon setHidden:![points[i] boolValue]];
     }
+//    player1Sprite.position = CGPointMake(400,400);
+    //player1Sprite.position = coordToPoint(0, 0);
+    //[self addChild:player1Sprite];
+
+    
     NSLog(@"Updated!");
 };
 
