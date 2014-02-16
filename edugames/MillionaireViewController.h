@@ -25,6 +25,5 @@
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (strong, nonatomic) UILabel *moneyLabel;
-@property (strong, nonatomic) UIButton *closeButton;
 
 @end
