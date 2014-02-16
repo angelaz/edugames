@@ -27,24 +27,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    //Need to set up Facebook login and Parse
-    // Whenever a person opens the app, check for a cached session
-    if (!FORCE_LOGOUT && FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-        // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
-                                           allowLoginUI:NO
-                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                          // Handler for session state changes
-                                          // This method will be called EACH time the session state changes,
-                                          // also for intermediate states and NOT just when the session open
-                                          [self sessionStateChanged:session state:state error:error];
-                                      }];
-    } else {
-        //UIButton *loginButton = [self.loginViewController loginButton];
-        //[loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
-        
-    }
-    
     [[UINavigationBar appearance] setTintColor:[UIColor clearColor]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -84,6 +66,29 @@
     
     
     self.window.rootViewController = self.barController;
+    
+    
+    //Need to set up Facebook login and Parse
+    // Whenever a person opens the app, check for a cached session
+    if (!FORCE_LOGOUT && FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        // If there's one, just open the session silently, without showing the user the login UI
+        [FBSession openActiveSessionWithReadPermissions:@[@"basic_info"]
+                                           allowLoginUI:NO
+                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                          // Handler for session state changes
+                                          // This method will be called EACH time the session state changes,
+                                          // also for intermediate states and NOT just when the session open
+                                          [self sessionStateChanged:session state:state error:error];
+                                          [self.controller1 dismissViewControllerAnimated:YES completion:nil];
+                                      }];
+    } else {
+        //UIButton *loginButton = [self.loginViewController loginButton];
+        //[loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
+        LoginViewController *loginViewController = [[LoginViewController alloc] init];
+        [self.controller1 presentViewController:loginViewController animated:YES completion:NULL];
+        
+    }
+    
     // At the end of applicationDidFinishLaunching, right before
     // the return YES
     [[GCTurnBasedMatchHelper sharedInstance] authenticateLocalUser];

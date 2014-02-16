@@ -18,6 +18,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *topRight;
 @property (strong, nonatomic) IBOutlet UIButton *bottomRight;
 
+@property (strong, nonatomic) IBOutlet UIButton *closeButton;
+
 @property (strong, nonatomic) NSMutableDictionary *questions;
 @property (strong, nonatomic) UILabel *questionLabel;
 
