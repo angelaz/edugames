@@ -247,6 +247,9 @@ bool moveAllowed(CGPoint start, CGPoint end)
             // Check if new destination is within player's reach
             if (moveAllowed(current, dest))
             {
+                //[self presentViewController:quizViewController animated:YES completion:NULL];
+
+                
                 [hexagon setColor:playerColor];
                 game.gameState[playerString] = cgpack(dest);
                 game.gameState[@"turnId"] = [NSNumber numberWithInt:(3 - currentTurn)];

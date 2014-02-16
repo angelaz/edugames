@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-#import "AppDelegate.h"
 
 @interface LoginViewController ()
 
@@ -26,6 +25,7 @@
     }
     return self;
 }
+
 
 - (IBAction)buttonTouched:(id)sender
 {
