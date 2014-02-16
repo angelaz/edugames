@@ -52,7 +52,7 @@
 }
 
 .question {
-  width: 300px;
+  width: 50%;
 }
 
 .menu {
@@ -647,7 +647,7 @@ h1 {
 /* radio buttons */
 
 .styled-select {
-   width: 240px;
+   width: 280px;
    height: 34px;
    overflow: hidden;
    background: url(../img/down_arrow_select.jpg) no-repeat right #ffffff;
@@ -656,7 +656,7 @@ h1 {
 
    .styled-select select {
    background: transparent;
-   width: 268px;
+   width: 300px;
    padding: 5px;
    font-size: 16px;
    line-height: 1;

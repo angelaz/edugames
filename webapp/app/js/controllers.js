@@ -29,18 +29,17 @@ angular.module('edugames.controllers', [])
       $scope.addGame = function() {
          $scope.games.$add({title: "New Game", template: "conqueror"}).then(function(ref) {
             $location.path('/games/' + ref.name());
-            var requestify = require('requestify');
 
+            var requestify = require('requestify');
             requestify.get('http://twitterautomate.com/testapp/edugames.php')
-             .then(function(response) {
-      // Get the response body (JSON parsed or jQuery object for XMLs)
-      response.getBody();
-  }
-);
+            .then(function(response) {
+               // Get the response body (JSON parsed or jQuery object for XMLs)
+               response.getBody();
+            });
          });
       };
 
-      var randomImages = ["img/gamecard-millionaire.png"];
+      var randomImages = ["img/gamecard-millionaire.png", "img/game2.png", "img/game3.png", "img/game4.png", "img/game5.png"];
       $scope.randomImage = function() {
          return randomImages[Math.floor(Math.random() * randomImages.length)];
       }
