@@ -67,7 +67,7 @@
     
     self.window.rootViewController = self.barController;
     
-    
+    /*
     //Need to set up Facebook login and Parse
     // Whenever a person opens the app, check for a cached session
     if (!FORCE_LOGOUT && FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
@@ -93,7 +93,7 @@
     // the return YES
     [[GCTurnBasedMatchHelper sharedInstance] authenticateLocalUser];
 
-     
+     */
     return YES;
     
 }

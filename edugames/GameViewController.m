@@ -64,6 +64,14 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
     // Do any additional setup after loading the view, typically from a nib.
+    
+    [self performSelector:@selector(presentLogin) withObject:nil afterDelay:0.1];
+}
+
+- (void)presentLogin
+{
+    LoginViewController *lvc = [[LoginViewController alloc] init];
+    [self presentViewController:lvc animated:NO completion:nil];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

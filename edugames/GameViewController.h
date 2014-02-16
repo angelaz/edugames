@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Game.h"
 #import "MillionaireViewController.h"
+
 #import <Firebase/Firebase.h>
 
 #define firebaseURL @"https://edugames.firebaseio.com/"
 
+#import "LoginViewController.h"
 
 @interface GameViewController : UIViewController <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
