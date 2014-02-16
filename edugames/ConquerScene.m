@@ -16,9 +16,6 @@
     SKSpriteNode* player1Sprite;
     SKSpriteNode* player2Sprite;
     Game* game;
-    
-    // map of hexagons
-    // player locations
 }
 
 int geti(int u)
@@ -128,6 +125,19 @@ bool coordInBounds(CGPoint p)
     return true;
 }
 
+bool moveAllowed(CGPoint start, CGPoint end)
+{
+    int endy = end.x == 0 ? end.y + 1 : end.y;
+    int starty = start.x == 0 ? start.y + 1 : start.y;
+    
+    // Check if new destination is within player's reach
+    return abs(start.x - end.x) <= 1 &&
+        abs(start.y - end.y) <= 1 &&
+        !((end.x - start.x) == 1 && (endy - starty) == 1) &&
+        !((end.x - start.x) == -1 && (endy - starty) == -1) &&
+    coordInBounds(end);
+}
+
 + (NSMutableDictionary*) createGameState {
     NSMutableDictionary* points = [[NSMutableDictionary alloc] init];
     
@@ -148,7 +158,7 @@ bool coordInBounds(CGPoint p)
     NSNumber* player2 = pack(4, 3);
     
     
-    return [NSMutableDictionary dictionaryWithObjects:@[points, player1, player2] forKeys:@[@"points", @"player1", @"player2"]];
+    return [NSMutableDictionary dictionaryWithObjects:@[points, player1, player2, @0] forKeys:@[@"points", @"player1", @"player2", @"turnId"]];
 }
 
 /* Setup your scene here */
@@ -167,7 +177,7 @@ bool coordInBounds(CGPoint p)
         myLabel.text = @"Conqueror!";
         myLabel.fontSize = 30;
         myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame) + 250);
+                                       CGRectGetMidY(self.frame) + 330);
         
         [self addChild:myLabel];
         
@@ -214,56 +224,36 @@ bool coordInBounds(CGPoint p)
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
-        //SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"singlehexagon"];
-        
         CGPoint dest = pointToCoord(location);
-        NSArray *nodes = [self nodesAtPoint:[touch locationInNode:self]];
-        
         SKSpriteNode* hexagon = hexagons[cgpack(dest)];
         
-
-        CGPoint current = unpack(game.gameState[@"player1"]);
-        
-        int desty = dest.x == 0 ? dest.y + 1 : dest.y;
-        int currenty = current.x == 0 ? current.y + 1 : current.y;
-        
-        if (abs(current.x - dest.x) <= 1 &&
-            abs(current.y - dest.y) <= 1 &&
-            !((dest.x - current.x) == 1 && (desty - currenty) == 1) &&
-            !((dest.x - current.x) == -1 && (desty - currenty) == -1) &&
-            coordInBounds(dest))
+        int currentTurn = [game.gameState[@"turnId"] intValue];
+        if (true) //currentTurn == game.turnId)
         {
-            [hexagon setColor:[UIColor greenColor]];
-            game.gameState[@"player1"] = cgpack(dest);
-            [game pushGameState:game.gameState];
+            NSString* playerString;
+            UIColor *playerColor;
+            if (currentTurn == 1)
+            {
+                playerString = @"player1";
+                playerColor = [UIColor greenColor];
+            } else
+            {
+                playerString = @"player2";
+                playerColor = [UIColor redColor];
+            }
+            
+            CGPoint current = unpack(game.gameState[playerString]);
+        
+            // Check if new destination is within player's reach
+            if (moveAllowed(current, dest))
+            {
+                [hexagon setColor:playerColor];
+                game.gameState[playerString] = cgpack(dest);
+                game.gameState[@"turnId"] = [NSNumber numberWithInt:(3 - currentTurn)];
+                [game pushGameState:game.gameState];
+                
+            }
         }
-        
-        // TODO:
-//        for (SKSpriteNode *other in nodes)
-//        {
-//            for (SKSpriteNode *spr in [hexagons allValues])
-//            {
-//                if (other == spr)
-//                {
-//                    [spr setColor:[UIColor greenColor]];
-//                    
-//                    SKAction *moveNodeUp = [SKAction moveTo:spr.position duration:0.5];
-//                    [player1Sprite runAction: moveNodeUp];
-//                }
-//            }
-//        }
-            //[spr setColor:[UIColor greenColor]];
-        
-        
-        //sprite.position = location;
-        
-        //NSLog(@"x: %f, y: %f", location.x, location.y);
-        
-        //SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        //[sprite runAction:[SKAction repeatActionForever:action]];
-        
-        //[self addChild:sprite];
     }
 }
 
@@ -271,17 +261,19 @@ bool coordInBounds(CGPoint p)
     /* Called before each frame is rendered */
 }
 - (void) onUpdate:(NSDictionary*) gameData {
-    NSLog(@"Got update");
+    NSLog(@"Updated!");
     NSDictionary* gameState = gameData[@"gameState"];
     
-    id x = gameState[@"player1"];
-    CGPoint y = unpack(gameState[@"player1"]);
-    CGPoint z = cgCoordToPoint(unpack(gameState[@"player1"]));
+    //id x = gameState[@"player1"];
+    //CGPoint y = unpack(gameState[@"player1"]);
+    //CGPoint z = cgCoordToPoint(unpack(gameState[@"player1"]));
     
-    SKAction *moveNodeUp = [SKAction moveTo:cgCoordToPoint(unpack(gameState[@"player1"])) duration:0.5];
-    [player1Sprite runAction: moveNodeUp];
+    SKAction *moveNodeOne = [SKAction moveTo:cgCoordToPoint(unpack(gameState[@"player1"])) duration:0.5];
+    [player1Sprite runAction: moveNodeOne];
     
-    player2Sprite.position = cgCoordToPoint(unpack(gameState[@"player2"]));
+    SKAction *moveNodeTwo = [SKAction moveTo:cgCoordToPoint(unpack(gameState[@"player2"])) duration:0.5];
+    [player2Sprite runAction: moveNodeTwo];
+    
     NSArray* points = gameState[@"points"];
     
     for (int i = 0; i < [points count]; i++)
@@ -292,12 +284,10 @@ bool coordInBounds(CGPoint p)
         SKSpriteNode *hexagon = hexagons[n];// [NSNumber numberWithBool:(blocked == j)];
         [hexagon setHidden:![points[i] boolValue]];
     }
-//    player1Sprite.position = CGPointMake(400,400);
+    //player1Sprite.position = CGPointMake(400,400);
     //player1Sprite.position = coordToPoint(0, 0);
     //[self addChild:player1Sprite];
 
-    
-    NSLog(@"Updated!");
 };
 
 @end
