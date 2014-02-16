@@ -103,6 +103,24 @@ CGPoint pointToCoord(CGPoint p)
     
     int baseOffset = col - basecol;
     
+    // TODO(Greg): return NONE so we know to ignore
+    if (base < 0)
+        base = 0;
+    else if (base > 4)
+        base = 4;
+    if (baseOffset < 0)
+        baseOffset = 0;
+    else if (base == 0 || base == 4)
+    {
+        if (baseOffset > 3)
+            baseOffset = 3;
+    } else
+    {
+        if (baseOffset > 4)
+            baseOffset = 4;
+    }
+    
+    
     return CGPointMake(base, baseOffset);
 }
 

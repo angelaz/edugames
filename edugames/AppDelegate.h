@@ -28,7 +28,7 @@
 
 @property (strong, nonatomic) Firebase *firebase;
 @property (strong, nonatomic) NSString *username;
-@property (strong, nonatomic) BOOL *isTeacher;
+@property BOOL isTeacher;
 
 - (void)updateViewControllers;
 
