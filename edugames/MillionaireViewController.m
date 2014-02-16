@@ -40,23 +40,23 @@
     return self;
 }
 
-- (void)addMoneyLabel
-- (void)addMoneyLabel
+- (void)addMoneyLabel {
     _moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(600, 70, 300, 50)];
     _moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(600, 70, 300, 50)];
     [_moneyLabel setText:[NSString stringWithFormat:@"You Have: $%d", [self getMoney]]];
     [_moneyLabel setFont:[UIFont fontWithName:@"Helvetica" size:26]];
     [_moneyLabel setTextColor:[UIColor yellowColor]];
-    [_moneyLabel setLineBreakMode:NSLineBreakByWordWrapping];
-    [_moneyLabel setNumberOfLines:0];
-    [_moneyLabel setTextAlignment:NSTextAlignmentLeft];
+    [self.moneyLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [self.moneyLabel setNumberOfLines:0];
+    [self.moneyLabel setTextAlignment:NSTextAlignmentLeft];
     [self.view addSubview:_moneyLabel];
+}
 
 
 - (void)addCloseButton
 {
     
-    _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_closeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_closeButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     
@@ -283,10 +283,10 @@
     }];
 
     
-    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/pokemon.mp3", [[NSBundle mainBundle] resourcePath]]];
+    NSURL *url2 = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/pokemon.mp3", [[NSBundle mainBundle] resourcePath]]];
 	
 	NSError *error;
-	_audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+	_audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url2 error:&error];
 	_audioPlayer.numberOfLoops = -1;
 	
 	if (_audioPlayer == nil)
