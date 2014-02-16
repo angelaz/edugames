@@ -35,7 +35,7 @@
 
 - (void)addQuestionLabel
 {
-    _questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.height/4, self.view.frame.size.width/2+15, self.view.frame.size.width/1.4, 200)];
+    _questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.height/4, self.view.frame.size.width/2-20, self.view.frame.size.width/1.4, 200)];
     [_questionLabel setText:@"Look it's a really long sample question to test the size of this box and also to check if the word wrapping is working correctly hopefully it is oh look at my lack of commas or coherency. Question?"];
     [_questionLabel setTextColor:[UIColor blackColor]];
     [_questionLabel setLineBreakMode:NSLineBreakByWordWrapping];
@@ -53,7 +53,7 @@
     [_topLeft setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_topLeft setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     
-    _topLeft.frame = CGRectMake(30, 570, self.view.frame.size.width/2+80, buttonHeight);
+    _topLeft.frame = CGRectMake(30, 570, self.view.frame.size.width/2+20, buttonHeight);
     [_topLeft addTarget:self action:@selector(buttonTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     UIImage *btnImage = [UIImage imageNamed:@"game-button-1.png"];
@@ -74,7 +74,7 @@
     [_topLeft setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_topLeft setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     
-    _topLeft.frame = CGRectMake(30, 670, self.view.frame.size.width/2+80, buttonHeight);
+    _topLeft.frame = CGRectMake(30, 670, self.view.frame.size.width/2+20, buttonHeight);
     [_topLeft addTarget:self action:@selector(buttonTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     UIImage *btnImage = [UIImage imageNamed:@"game-button-1.png"];
@@ -95,7 +95,7 @@
     [_topLeft setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_topLeft setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     
-    _topLeft.frame = CGRectMake(self.view.frame.size.height/2 + 10, 670, self.view.frame.size.width/2+80, buttonHeight);
+    _topLeft.frame = CGRectMake(self.view.frame.size.height/2 - 10, 670, self.view.frame.size.width/2, buttonHeight);
     [_topLeft addTarget:self action:@selector(buttonTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     UIImage *btnImage = [UIImage imageNamed:@"game-button-1.png"];
@@ -116,7 +116,7 @@
     [_topLeft setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_topLeft setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     
-    _topLeft.frame = CGRectMake(self.view.frame.size.height/2 + 10, 570, self.view.frame.size.width/2+80, buttonHeight);
+    _topLeft.frame = CGRectMake(self.view.frame.size.height/2 - 10, 570, self.view.frame.size.width/2, buttonHeight);
     [_topLeft addTarget:self action:@selector(buttonTouched:) forControlEvents:UIControlEventTouchUpInside];
     
     UIImage *btnImage = [UIImage imageNamed:@"game-button-1.png"];

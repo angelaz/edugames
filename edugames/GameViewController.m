@@ -84,6 +84,13 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"Look: %zd", indexPath.row);
+    
+    MillionaireViewController *mvc = [[MillionaireViewController alloc] initWithNibName:nil bundle:nil];
+    //[self presentViewController:mvc animated:YES completion:nil];
+    
+    [self.navigationController pushViewController:mvc animated:YES];
+    /*
     // TODO: case on games
     //if ([games objectAtIndex:indexPath.row] isEqualToString:@"conqueror") {
         ConquerViewController *conquerViewController = [[ConquerViewController alloc] initWithKey:@"-JFolzigUK-BhNxu3jRv"]; // TODO: replace with actual key!
@@ -98,7 +105,7 @@
     }
     
     
-    // TODO: what is this?
+    // TODO: what is this?*/
 //    [collectionView reloadData];
 }
 
