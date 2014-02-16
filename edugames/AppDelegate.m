@@ -45,6 +45,9 @@
         
     }
     
+    // Initialize the root of our Firebase namespace.
+    self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
+
     [[UINavigationBar appearance] setTintColor:[UIColor clearColor]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -291,8 +294,10 @@ BOOL shouldAlternate = YES;
              NSLog(@"User id %@",[aUser objectForKey:@"id"]);
              self.username = aUser[@"id"];
          }
-         
-         //use this to update games list once loaded :p
+        
+         if ([self isTeacher]) {
+          //use this to update games list once loaded :p
+         }
          
 //         if ([self.loginViewController isViewLoaded])
 //         {
@@ -311,6 +316,20 @@ BOOL shouldAlternate = YES;
      }];
     
     
+}
+
+// Check user's status (teacher or student)
+- (BOOL)isTeacher
+{
+    Firebase* usersRef = [[self.firebase childByAppendingPath:@"users"]];
+    [usersRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        NSDictionary* users = snapshot.value;
+        for (NSDictionary* user in users) {
+            if ([user[@"name"] isEqualToString:self.username])
+                return YES;
+        }
+        return NO;
+    }
 }
 
 // Show an alert message
