@@ -24,7 +24,7 @@
     if (scene)
         [scene onUpdate:gameData];
 
-    if (!didStart && [gameData[@"turnId"] intValue] != 0)
+    if (!didStart && [gameData[@"gameState"][@"turnId"] intValue] != 0)
     {
         [self gameStart];
         didStart = true;
