@@ -117,39 +117,18 @@
 
 - (void)gameStart
 {
-    
-    
     [loadingLabel setHidden:YES];
     
     // Configure the view.
     SKView * skView = (SKView *)self.view;
-    
-//    skView.showsFPS = YES;
-//    skView.showsNodeCount = YES;
-    
-    // Create and configure the scene.
 
     scene = [[ConquerScene alloc] initWithSize:skView.bounds.size andGame:conquerorGame andController:self];
     scene.scaleMode = SKSceneScaleModeAspectFill;
-//
+
     [self addCloseButton];
-//    UIImage *image = [UIImage imageNamed:@"game-bg-2.png"];
-//    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:image];
-//    [skView addSubview:backgroundView];
-    
-    // Present the scene.
-//    QuizViewController *quizViewController = [[QuizViewController alloc] initWithQuestions:
-//                                              @{@"a":@"Wa-pa-pa-pa-pa-pa-pow!",
-//                                                @"b":@"Hatee-hatee-hatee-ho!",
-//                                                @"c":@"Ring-ding-ding-ding-dingeringeding!",
-//                                                @"d":@"Jacha-chacha-chacha-chow!",
-//                                                @"text":@"What does the fox say?",
-//                                                @"correct":@"b"}];
-//    [self.view.window.rootViewController presentViewController:quizViewController animated:YES completion:NULL];
+
     [skView presentScene:scene];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-//        [self presentViewController:quizViewController animated:YES completion:NULL];
-//    });
+
     
     
 }

@@ -84,12 +84,14 @@
 {
     UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
-    cell.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"card-millionaire.png"]];
+    NSString* key = [self.gameKeys objectAtIndex:indexPath.row];
+    NSDictionary* game = self.myGames[key];
     
-    //  TODO: This is temporary before we associate either image names directly or use IDs for templates
-    /*if ([[[myGames objectAtIndex:indexPath.row] objectAtIndex:1] isEqual:@2]) {
-        cell.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"card-millionaire-alt.png"]];
-    }*/
+    cell.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"card-millionaire-alt-old.png"]];
+    
+    if ([game[@"template"] isEqualToString:@"conqueror"]) {
+        cell.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"card-conquerer.png"]];
+    }
     
     UILabel *gameNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 280, 280, 25)];
     gameNameLabel.text = self.myGames[[self.gameKeys objectAtIndex:indexPath.row]][@"title"];
@@ -101,30 +103,21 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    //MillionaireViewController *mvc = [[MillionaireViewController alloc] initWithNibName:nil bundle:nil];
-    //[self presentViewController:mvc animated:YES completion:nil];
-    
-    //[self.navigationController pushViewController:mvc animated:YES];
-    
+
     // TODO: case on games
     NSString* key = [self.gameKeys objectAtIndex:indexPath.row];
     NSDictionary* game = self.myGames[key];
     
     if ([game[@"template"] isEqualToString:@"conqueror"]) {
-        
         ConquerViewController *conquerViewController = [[ConquerViewController alloc] initWithKey:key andGameInfo:game];
         [self.navigationController presentViewController:conquerViewController animated:YES completion:nil];
     }
     
     if ([game[@"template"] isEqualToString:@"millionaire"]) {
-        
         MillionaireViewController *mvc = [[MillionaireViewController alloc] init];
         [self.navigationController presentViewController:mvc animated:YES completion:nil];
     }
     
-    
-    // TODO: what is this?
     [collectionView reloadData];
 }
 
@@ -133,18 +126,5 @@
     return CGSizeMake(280, 325);
 }
 
-/*
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)presentGCTurnViewController:(id)sender
-{
-    [[GCTurnBasedMatchHelper sharedInstance]
-     findMatchWithMinPlayers:2 maxPlayers:3 viewController:self];
-}*/
 
 @end
