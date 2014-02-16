@@ -21,6 +21,6 @@
 
 @property (strong, nonatomic) UIViewController *modalView;
 
-- (id)initWithQuestions:(NSDictionary*)newQuestions;
+- (id)initWithQuestions:(NSDictionary*)newQuestions andCallback:(void (^)(bool))callback;
 
 @end

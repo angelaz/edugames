@@ -13,13 +13,15 @@
     Firebase* gameRef;
     
     ConquerViewController* cvc;
+    NSDictionary*  gameInfo;
 }
 
-- (id) initWithKey:(NSString *)key andController:(ConquerViewController*)newCvc
+- (id) initWithKey:(NSString *)key andController:(ConquerViewController*)newCvc andGameInfo:(NSDictionary*)newGameInfo
 {
     if (self = [super init])
     {
         cvc = newCvc;
+        gameInfo = newGameInfo;
         
         // Initialize the root of our Firebase namespace.
         self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];

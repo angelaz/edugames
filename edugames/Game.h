@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSMutableDictionary *gameState;
 @property NSInteger turnId;
 
-- (id) initWithKey:(NSString *)key andController:(ConquerViewController*)cvc;
+- (id) initWithKey:(NSString *)key andController:(ConquerViewController*)newCvc andGameInfo:(NSDictionary*)newGameInfo;
 - (void) pushGameState:(NSMutableDictionary*)newGameState;
 
 @end

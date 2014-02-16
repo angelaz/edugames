@@ -12,10 +12,11 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *closeButton;
 
-- (id)initWithKey:(NSString*) key;
+- (id)initWithKey:(NSString*) key andGameInfo:(NSDictionary*)gameInfo;
 
 - (void) onUpdate:(NSDictionary*) gameData;
 - (void) gameStart; // called when both players ready
 - (void) showQuestions;
+- (void) showQuestionsWithCallback:(void (^)(bool))callback;
 
 @end

@@ -105,7 +105,7 @@
     
     if ([game[@"template"] isEqualToString:@"conqueror"]) {
         
-        ConquerViewController *conquerViewController = [[ConquerViewController alloc] initWithKey:key];
+        ConquerViewController *conquerViewController = [[ConquerViewController alloc] initWithKey:key andGameInfo:game];
         [self.navigationController presentViewController:conquerViewController animated:YES completion:nil];
     }
     

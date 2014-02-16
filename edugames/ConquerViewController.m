@@ -18,6 +18,7 @@
     UILabel* loadingLabel;
     bool didStart;
     CGRect saved;
+    NSDictionary* gameInfo;
 }
 
 - (void) onUpdate:(NSDictionary*) gameData {
@@ -36,12 +37,13 @@
     
 };
 
-- (id)initWithKey:(NSString*) key
+- (id)initWithKey:(NSString*) key andGameInfo:(NSDictionary*)newGameInfo
 {
     self = [super init];
     if (self) {
         didStart = false;
-        conquerorGame = [[Game alloc] initWithKey:key andController:self];
+        conquerorGame = [[Game alloc] initWithKey:key andController:self andGameInfo:newGameInfo];
+        gameInfo = newGameInfo;
     }
     return self;
 }
@@ -97,15 +99,21 @@
     
 }
 
-- (void) showQuestions
+- (void) showQuestionsWithCallback:(void (^)(bool))callback
 {
-    QuizViewController *quizViewController = [[QuizViewController alloc] initWithQuestions:
-                                              @{@"a":@"Wa-pa-pa-pa-pa-pa-pow!",
-                                                @"b":@"Hatee-hatee-hatee-ho!",
-                                                @"c":@"Ring-ding-ding-ding-dingeringeding!",
-                                                @"d":@"Jacha-chacha-chacha-chow!",
-                                                @"text":@"What does the fox say?",
-                                                @"correct":@"b"}];
+    NSArray* questionSets = [(NSDictionary*)gameInfo[@"questions"] allValues];
+//    @{@"a":@"Wa-pa-pa-pa-pa-pa-pow!",
+//      @"b":@"Hatee-hatee-hatee-ho!",
+//      @"c":@"Ring-ding-ding-ding-dingeringeding!",
+//      @"d":@"Jacha-chacha-chacha-chow!",
+//      @"text":@"What does the fox say?",
+//      @"correct":@"b"}
+    
+    uint32_t rnd = arc4random_uniform([questionSets count]);
+    NSDictionary* question = [questionSets objectAtIndex:rnd];
+    
+    
+    QuizViewController *quizViewController = [[QuizViewController alloc] initWithQuestions:question andCallback:callback];
     [self presentViewController:quizViewController animated:YES completion:NULL];
 }
 

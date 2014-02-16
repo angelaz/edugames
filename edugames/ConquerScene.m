@@ -252,13 +252,16 @@ bool moveAllowed(CGPoint start, CGPoint end)
             {
                 //[self presentViewController:quizViewController animated:YES completion:NULL];
                 
-                [cvc showQuestions];
-                
-//                [hexagon setColor:playerColor];
-//                game.gameState[playerString] = cgpack(dest);
-//                game.gameState[@"turnId"] = [NSNumber numberWithInt:(3 - currentTurn)];
-//                [game pushGameState:game.gameState];
-                
+                [cvc showQuestionsWithCallback:^(bool correct)
+                 {
+                     if (correct)
+                     {
+                         [hexagon setColor:playerColor];
+                         game.gameState[playerString] = cgpack(dest);
+                     }
+                     game.gameState[@"turnId"] = [NSNumber numberWithInt:(3 - currentTurn)];
+                     [game pushGameState:game.gameState];
+                 }];
             }
         }
     }

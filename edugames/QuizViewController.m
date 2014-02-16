@@ -11,6 +11,7 @@
 @implementation QuizViewController
 {
     NSDictionary* questions;
+    void (^callbackOnResponse)(bool);
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,9 +35,10 @@
     return self;
 }
 
-- (id)initWithQuestions:(NSDictionary*)newQuestions
+- (id)initWithQuestions:(NSDictionary*)newQuestions andCallback:(void (^)(bool))callback
 {
     questions = newQuestions;
+    callbackOnResponse = callback;
     self = [super init];
     if (self) {
         
@@ -76,7 +78,9 @@
     else
         button = @"d";
     
-    if (button == questions[@"correct"])
+    bool correct = [button isEqualToString:questions[@"correct"]];
+    
+    if (correct)
     {
         NSLog(@"that is correct!");
         self.view.backgroundColor = [UIColor greenColor];
@@ -89,7 +93,9 @@
     }
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [[self presentingViewController] dismissViewControllerAnimated:YES completion:NULL];
+        [[self presentingViewController] dismissViewControllerAnimated:YES completion:^{
+            callbackOnResponse(correct);
+        }];
     });
 }
 
