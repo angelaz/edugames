@@ -319,16 +319,18 @@ BOOL shouldAlternate = YES;
 }
 
 // Check user's status (teacher or student)
-- (BOOL)isTeacher
+- (void)checkTeacher
 {
     Firebase* usersRef = [[self.firebase childByAppendingPath:@"users"]];
     [usersRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         NSDictionary* users = snapshot.value;
         for (NSDictionary* user in users) {
-            if ([user[@"name"] isEqualToString:self.username])
-                return YES;
+            if ([user[@"name"] isEqualToString:self.username]) {
+                self.isTeacher = YES;
+                return;
+            }
         }
-        return NO;
+        self.isTeacher = NO;
     }
 }
 
