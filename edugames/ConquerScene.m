@@ -103,25 +103,29 @@ CGPoint pointToCoord(CGPoint p)
     
     int baseOffset = col - basecol;
     
+    return CGPointMake(base, baseOffset);
+}
+
+bool coordInBounds(CGPoint p)
+{
     // TODO(Greg): return NONE so we know to ignore
-    if (base < 0)
-        base = 0;
-    else if (base > 4)
-        base = 4;
-    if (baseOffset < 0)
-        baseOffset = 0;
-    else if (base == 0 || base == 4)
+    if (p.x < 0)
+        return false;
+    else if (p.x > 4)
+        return false;
+    if (p.y < 0)
+        return false;
+    else if (p.x == 0 || p.x == 4)
     {
-        if (baseOffset > 3)
-            baseOffset = 3;
+        if (p.y > 3)
+            return false;
     } else
     {
-        if (baseOffset > 4)
-            baseOffset = 4;
+        if (p.y > 4)
+            return false;
     }
     
-    
-    return CGPointMake(base, baseOffset);
+    return true;
 }
 
 + (NSMutableDictionary*) createGameState {
@@ -179,7 +183,7 @@ CGPoint pointToCoord(CGPoint p)
             SKSpriteNode *hexagon = [SKSpriteNode spriteNodeWithImageNamed:@"singlehexagon"];
             [hexagon setColor:[UIColor redColor]];
             hexagon.color = [UIColor blueColor];
-            hexagon.colorBlendFactor = 0.5;
+            hexagon.colorBlendFactor = 0.3;
             
             hexagon.position = cgCoordToPoint(unpack(n));
             [hexagon setHidden:![points[i] boolValue]];
@@ -212,16 +216,27 @@ CGPoint pointToCoord(CGPoint p)
         
         //SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"singlehexagon"];
         
-        CGPoint coord = pointToCoord(location);
+        CGPoint dest = pointToCoord(location);
         NSArray *nodes = [self nodesAtPoint:[touch locationInNode:self]];
         
-        SKSpriteNode* hexagon = hexagons[cgpack(coord)];
-        [hexagon setColor:[UIColor greenColor]];
-
+        SKSpriteNode* hexagon = hexagons[cgpack(dest)];
         
-       
-        game.gameState[@"player1"] = cgpack(coord);
-        [game pushGameState:game.gameState];
+
+        CGPoint current = unpack(game.gameState[@"player1"]);
+        
+        int desty = dest.x == 0 ? dest.y + 1 : dest.y;
+        int currenty = current.x == 0 ? current.y + 1 : current.y;
+        
+        if (abs(current.x - dest.x) <= 1 &&
+            abs(current.y - dest.y) <= 1 &&
+            !((dest.x - current.x) == 1 && (desty - currenty) == 1) &&
+            !((dest.x - current.x) == -1 && (desty - currenty) == -1) &&
+            coordInBounds(dest))
+        {
+            [hexagon setColor:[UIColor greenColor]];
+            game.gameState[@"player1"] = cgpack(dest);
+            [game pushGameState:game.gameState];
+        }
         
         // TODO:
 //        for (SKSpriteNode *other in nodes)
@@ -242,9 +257,9 @@ CGPoint pointToCoord(CGPoint p)
         
         //sprite.position = location;
         
-        NSLog(@"x: %f, y: %f", location.x, location.y);
+        //NSLog(@"x: %f, y: %f", location.x, location.y);
         
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
+        //SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
         
         //[sprite runAction:[SKAction repeatActionForever:action]];
         
