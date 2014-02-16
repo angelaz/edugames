@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StudentProfileViewController.h"
 
 @interface ClassViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -15,5 +16,8 @@
 
 @property (nonatomic, strong) NSMutableArray *studentList;
 @property (nonatomic, strong) UITableView *studentListView;
+
+@property (nonatomic, strong) UIButton *closeButton;
+@property (nonatomic, strong) StudentProfileViewController *temp;
 
 @end

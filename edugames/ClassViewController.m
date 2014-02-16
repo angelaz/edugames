@@ -7,6 +7,7 @@
 //
 
 #import "ClassViewController.h"
+#import "StudentProfileViewController.h"
 
 @interface ClassViewController ()
 
@@ -25,7 +26,7 @@
         
         //TODO: Same here, except then also fill in the didSelectRowAtIndexPath method so that
         //      selecting a course will populate table with relevant students
-        _studentList = [NSMutableArray arrayWithObjects:@"Greg", @"Grreg", @"Grog", nil];
+        _studentList = [NSMutableArray arrayWithObjects:@"Matthew Thomas", @"Hailey Rah", @"Cara Roe", nil];
         
     }
     return self;
@@ -114,6 +115,36 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //checking for double taps here
+    self.temp = [[StudentProfileViewController alloc] init];
+    [self presentViewController:self.temp animated:YES completion:nil];
+    [self addCloseButton];
+    
+}
+
+- (void)addCloseButton
+{
+    _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_closeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_closeButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    
+    _closeButton.frame = CGRectMake(25, 25, 28,28);
+    [_closeButton addTarget:self action:@selector(closeButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImage *btnImage = [UIImage imageNamed:@"close-button.png"];
+    [_closeButton setBackgroundImage:btnImage forState:UIControlStateNormal];
+    _closeButton.contentMode = UIViewContentModeScaleToFill;
+    
+    _closeButton.tag = 0;
+    
+    [self.temp.view addSubview:_closeButton];
+}
+
+- (void)closeButton:(UIButton *)sender
+{
+    [self.temp.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+}
 
 
 
