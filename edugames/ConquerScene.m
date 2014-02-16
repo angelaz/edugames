@@ -79,7 +79,7 @@ CGPoint coordToPoint(int i, int j)
         int blocked = arc4random() % limit;
         for (int j = 0; j < limit; j++) {
             NSString* u = [NSString stringWithFormat:@"%@", pack(i, j)];
-            points[u] = [NSNumber numberWithBool:(blocked == j)];
+            points[u] = [NSNumber numberWithBool:YES /*(blocked == j) */];
         }
     }
     
@@ -120,7 +120,11 @@ CGPoint coordToPoint(int i, int j)
             
             NSNumber* n = [NSNumber numberWithInt:i];
             
-            SKSpriteNode *hexagon = [SKSpriteNode spriteNodeWithImageNamed:@"close-button.png"];
+            SKSpriteNode *hexagon = [SKSpriteNode spriteNodeWithImageNamed:@"singlehexagon"];
+            [hexagon setColor:[UIColor redColor]];
+            hexagon.color = [UIColor blueColor];
+            hexagon.colorBlendFactor = 0.5;
+            
             hexagon.position = cgCoordToPoint(unpack(n));
             [hexagon setHidden:![points[i] boolValue]];
             [self addChild:hexagon];
@@ -150,20 +154,36 @@ CGPoint coordToPoint(int i, int j)
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"close-button"];
+        //SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"singlehexagon"];
         
-        sprite.position = location;
+        NSArray *nodes = [self nodesAtPoint:[touch locationInNode:self]];
+        
+        // TODO:
+        for (SKSpriteNode *other in nodes)
+        {
+            for (SKSpriteNode *spr in [hexagons allValues])
+            {
+                if (other == spr)
+                {
+                    [spr setColor:[UIColor greenColor]];
+                    
+                    SKAction *moveNodeUp = [SKAction moveTo:spr.position duration:0.5];
+                    [player1Sprite runAction: moveNodeUp];
+                }
+            }
+        }
+            //[spr setColor:[UIColor greenColor]];
+        
+        
+        //sprite.position = location;
         
         NSLog(@"x: %f, y: %f", location.x, location.y);
         
-        SKAction *moveNodeUp = [SKAction moveTo:location duration:2.0];
-        [player1Sprite runAction: moveNodeUp];
-        
         SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
         
-        [sprite runAction:[SKAction repeatActionForever:action]];
+        //[sprite runAction:[SKAction repeatActionForever:action]];
         
-        [self addChild:sprite];
+        //[self addChild:sprite];
     }
 }
 
