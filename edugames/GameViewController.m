@@ -33,6 +33,7 @@
 //  Collection view methods
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     CGRect frame = [[UIScreen mainScreen] applicationFrame];
     
     UICollectionViewFlowLayout *layout= [[UICollectionViewFlowLayout alloc] init];
@@ -51,8 +52,8 @@
     
     // Set up games with Firebase
     games = [NSArray arrayWithObject:@"login-button.png"]; // TODO: change icons
-    
-    [super viewDidLoad];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    //[super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -86,18 +87,18 @@
 {
     NSLog(@"Look: %zd", indexPath.row);
     
-    MillionaireViewController *mvc = [[MillionaireViewController alloc] initWithNibName:nil bundle:nil];
+    //MillionaireViewController *mvc = [[MillionaireViewController alloc] initWithNibName:nil bundle:nil];
     //[self presentViewController:mvc animated:YES completion:nil];
     
-    [self.navigationController pushViewController:mvc animated:YES];
-    /*
+    //[self.navigationController pushViewController:mvc animated:YES];
+    
     // TODO: case on games
     //if ([games objectAtIndex:indexPath.row] isEqualToString:@"conqueror") {
         ConquerViewController *conquerViewController = [[ConquerViewController alloc] initWithKey:@"-JFolzigUK-BhNxu3jRv"]; // TODO: replace with actual key!
-        [self presentViewController:conquerViewController animated:YES completion:nil];
+        [self.navigationController presentViewController:conquerViewController animated:YES completion:nil];
     //}
     
-    NSLog(@"%@", [[myGames objectAtIndex:indexPath.row] objectAtIndex:1]);
+    /*NSLog(@"%@", [[myGames objectAtIndex:indexPath.row] objectAtIndex:1]);
     if ([[[myGames objectAtIndex:indexPath.row] objectAtIndex:1] isEqual:@0]) {
         MillionaireViewController *mvc = [[MillionaireViewController alloc] init];
         //[self presentViewController:mvc animated:YES completion:nil];

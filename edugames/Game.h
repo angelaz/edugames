@@ -14,8 +14,11 @@
 
 @interface Game : NSObject
 
+
 @property (nonatomic, strong) Firebase *firebase;
+@property (nonatomic, strong) NSMutableDictionary *gameState;
 
 - (id) initWithKey:(NSString *)key andController:(ConquerViewController*)cvc;
+- (void) pushGameState:(NSMutableDictionary*)newGameState;
 
 @end

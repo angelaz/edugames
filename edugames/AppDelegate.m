@@ -62,6 +62,14 @@
     self.controller5 = [self navControllerWithImage:[UIImage imageNamed:@"settings"]
                                       selectedImage:[UIImage imageNamed:@"settings-highlighted"] tag:@"settings"];
     
+    self.controller1.navigationBar.hidden = YES;
+    self.controller2.navigationBar.hidden = YES;
+    self.controller3.navigationBar.hidden = YES;
+    self.controller4.navigationBar.hidden = YES;
+    self.controller5.navigationBar.hidden = YES;
+    
+    
+    
     //UIViewController *detachedController = [[UIViewController alloc] init];
     
     self.barController = [[CKSideBarController alloc] init];
@@ -95,6 +103,11 @@
          annotation:(id)annotation
 {
     return [FBSession.activeSession handleOpenURL:url];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 //Side bar controller stuff

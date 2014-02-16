@@ -1,18 +1,18 @@
 //
-//  ConquerViewController.h
+//  ConquerScene.h
 //  edugames
 //
 //  Created by Gregory Rose on 2/15/14.
 //  Copyright (c) 2014 Angela Zhang, Lucy Guo, Ivan Wang, Gregory Rose. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <SpriteKit/SpriteKit.h>
+#import "Game.h"
 
-@interface ConquerViewController : UIViewController
-
-- (id)initWithKey:(NSString*) key;
+@interface ConquerScene : SKScene
 
 - (void) onUpdate:(NSDictionary*) gameData;
-- (void) gameStart; // called when both players ready
+- (id)initWithSize:(CGSize)size andGame:(Game*)newGame;
++ (NSMutableDictionary*) createGameState;
 
 @end
