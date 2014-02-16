@@ -26,11 +26,39 @@
         [self addTopRightButton];
         [self addBottomRightButton];
         [self addQuestionLabel];
+        [self addCloseButton];
         
         //  TODO: Hey guys, can you populate this with the result of querying for some random set of questions please? :D
         _questions = [[NSMutableArray alloc] initWithObjects:@"", nil];
     }
     return self;
+}
+
+- (void)addCloseButton
+{
+    
+    _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_closeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_closeButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    
+    _closeButton.frame = CGRectMake(25, 25, 46, 46);
+    [_closeButton addTarget:self action:@selector(closeButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImage *btnImage = [UIImage imageNamed:@"game-close.png"];
+    [_closeButton setBackgroundImage:btnImage forState:UIControlStateNormal];
+    _closeButton.contentMode = UIViewContentModeScaleToFill;
+    
+    _closeButton.tag = 0;
+    
+    [self.view addSubview:_closeButton];
+}
+
+- (void)closeButton:(UIButton *)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    //[[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
+
 }
 
 - (void)addQuestionLabel
@@ -149,7 +177,21 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/pokemon.mp3", [[NSBundle mainBundle] resourcePath]]];
+	
+	NSError *error;
+	_audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+	_audioPlayer.numberOfLoops = -1;
+	
+	if (_audioPlayer == nil)
+		NSLog([error description]);
+	else
+		[_audioPlayer play];
+    
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
