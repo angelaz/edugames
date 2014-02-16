@@ -135,7 +135,7 @@ bool moveAllowed(CGPoint start, CGPoint end)
         abs(start.y - end.y) <= 1 &&
         !((end.x - start.x) == 1 && (endy - starty) == 1) &&
         !((end.x - start.x) == -1 && (endy - starty) == -1) &&
-    coordInBounds(end);
+    coordInBounds(end) && !(start.x == end.x && start.y == end.y);
 }
 
 + (NSMutableDictionary*) createGameState {
@@ -247,6 +247,9 @@ bool moveAllowed(CGPoint start, CGPoint end)
             // Check if new destination is within player's reach
             if (moveAllowed(current, dest))
             {
+                //[self presentViewController:quizViewController animated:YES completion:NULL];
+
+                
                 [hexagon setColor:playerColor];
                 game.gameState[playerString] = cgpack(dest);
                 game.gameState[@"turnId"] = [NSNumber numberWithInt:(3 - currentTurn)];

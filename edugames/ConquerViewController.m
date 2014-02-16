@@ -24,7 +24,7 @@
     if (scene)
         [scene onUpdate:gameData];
 
-    if (!didStart && [gameData[@"turnId"] intValue] != 0)
+    if (!didStart && [gameData[@"gameState"][@"turnId"] intValue] != 0)
     {
         [self gameStart];
         didStart = true;
@@ -60,14 +60,12 @@
 //    return;
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 360, 400, 50)];
+    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 360, 400, 50)];
     loadingLabel.text = @"Waiting for player...";
     loadingLabel.font = [UIFont fontWithName:@"Chalkduster" size:30];
     loadingLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:loadingLabel];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    
-//    [loadingLabel setBackgroundColor:[UIColor whiteColor]];
     
     //[self gameStart];
 }

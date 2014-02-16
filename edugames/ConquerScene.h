@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "Game.h"
+#import "QuizViewController.h"
 
 @interface ConquerScene : SKScene
 
