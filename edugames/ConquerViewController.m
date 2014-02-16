@@ -94,6 +94,7 @@
 - (void)closeButton:(UIButton *)sender
 {
     [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+    [conquerorGame deleteInstance];
 }
 
 - (void) showQuestionsWithCallback:(void (^)(bool))callback

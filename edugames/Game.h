@@ -21,5 +21,6 @@
 
 - (id) initWithKey:(NSString *)key andController:(ConquerViewController*)newCvc andGameInfo:(NSDictionary*)newGameInfo;
 - (void) pushGameState:(NSMutableDictionary*)newGameState;
+- (void) deleteInstance;
 
 @end

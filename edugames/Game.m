@@ -116,6 +116,11 @@
     [cvc onUpdate:newGameData];
 }
 
+- (void) deleteInstance {
+    [gameRef removeAllObservers];
+    [gameRef removeValue];
+}
+
 
 
 @end
