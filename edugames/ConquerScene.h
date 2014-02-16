@@ -15,5 +15,6 @@
 - (void) onUpdate:(NSDictionary*) gameData;
 - (id)initWithSize:(CGSize)size andGame:(Game*)newGame;
 + (NSMutableDictionary*) createGameState;
+- (id)initWithSize:(CGSize)size andGame:(Game*)newGame andController:(ConquerViewController*)cont;
 
 @end

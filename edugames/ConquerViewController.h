@@ -10,9 +10,12 @@
 
 @interface ConquerViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIButton *closeButton;
+
 - (id)initWithKey:(NSString*) key;
 
 - (void) onUpdate:(NSDictionary*) gameData;
 - (void) gameStart; // called when both players ready
+- (void) showQuestions;
 
 @end

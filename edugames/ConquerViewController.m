@@ -67,8 +67,48 @@
     [self.view addSubview:loadingLabel];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
+    
     //[self gameStart];
 }
+
+- (void)addCloseButton
+{
+    _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_closeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_closeButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    
+    _closeButton.frame = CGRectMake(25, 25, 46, 46);
+    [_closeButton addTarget:self action:@selector(closeButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImage *btnImage = [UIImage imageNamed:@"game-close.png"];
+    [_closeButton setBackgroundImage:btnImage forState:UIControlStateNormal];
+    _closeButton.contentMode = UIViewContentModeScaleToFill;
+    
+    _closeButton.tag = 0;
+    
+    [self.view addSubview:_closeButton];
+}
+
+- (void)closeButton:(UIButton *)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    //[[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
+    
+}
+
+- (void) showQuestions
+{
+    QuizViewController *quizViewController = [[QuizViewController alloc] initWithQuestions:
+                                              @{@"a":@"Wa-pa-pa-pa-pa-pa-pow!",
+                                                @"b":@"Hatee-hatee-hatee-ho!",
+                                                @"c":@"Ring-ding-ding-ding-dingeringeding!",
+                                                @"d":@"Jacha-chacha-chacha-chow!",
+                                                @"text":@"What does the fox say?",
+                                                @"correct":@"b"}];
+    [self presentViewController:quizViewController animated:YES completion:NULL];
+}
+
 
 - (void)gameStart
 {
@@ -84,7 +124,7 @@
     
     // Create and configure the scene.
 
-    scene = [[ConquerScene alloc] initWithSize:skView.bounds.size andGame:conquerorGame];
+    scene = [[ConquerScene alloc] initWithSize:skView.bounds.size andGame:conquerorGame andController:self];
     scene.scaleMode = SKSceneScaleModeAspectFill;
 //    
 //    UIImage *image = [UIImage imageNamed:@"game-bg-2.png"];
@@ -92,7 +132,20 @@
 //    [skView addSubview:backgroundView];
     
     // Present the scene.
+//    QuizViewController *quizViewController = [[QuizViewController alloc] initWithQuestions:
+//                                              @{@"a":@"Wa-pa-pa-pa-pa-pa-pow!",
+//                                                @"b":@"Hatee-hatee-hatee-ho!",
+//                                                @"c":@"Ring-ding-ding-ding-dingeringeding!",
+//                                                @"d":@"Jacha-chacha-chacha-chow!",
+//                                                @"text":@"What does the fox say?",
+//                                                @"correct":@"b"}];
+//    [self.view.window.rootViewController presentViewController:quizViewController animated:YES completion:NULL];
     [skView presentScene:scene];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//        [self presentViewController:quizViewController animated:YES completion:NULL];
+//    });
+    
+    
 }
 
 

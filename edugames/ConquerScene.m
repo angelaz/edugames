@@ -16,6 +16,8 @@
     SKSpriteNode* player1Sprite;
     SKSpriteNode* player2Sprite;
     Game* game;
+    
+    ConquerViewController* cvc;
 }
 
 int geti(int u)
@@ -162,9 +164,10 @@ bool moveAllowed(CGPoint start, CGPoint end)
 }
 
 /* Setup your scene here */
-- (id)initWithSize:(CGSize)size andGame:(Game*)newGame {
+- (id)initWithSize:(CGSize)size andGame:(Game*)newGame andController:(ConquerViewController*)cont {
     if (self = [super initWithSize:size]) {
         game = newGame;
+        cvc = cont;
         
         //self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         
@@ -248,12 +251,13 @@ bool moveAllowed(CGPoint start, CGPoint end)
             if (moveAllowed(current, dest))
             {
                 //[self presentViewController:quizViewController animated:YES completion:NULL];
-
                 
-                [hexagon setColor:playerColor];
-                game.gameState[playerString] = cgpack(dest);
-                game.gameState[@"turnId"] = [NSNumber numberWithInt:(3 - currentTurn)];
-                [game pushGameState:game.gameState];
+                [cvc showQuestions];
+                
+//                [hexagon setColor:playerColor];
+//                game.gameState[playerString] = cgpack(dest);
+//                game.gameState[@"turnId"] = [NSNumber numberWithInt:(3 - currentTurn)];
+//                [game pushGameState:game.gameState];
                 
             }
         }
