@@ -31,6 +31,11 @@ angular.module('edugames.controllers', [])
             $location.path('/games/' + ref.name());
          });
       };
+
+      var randomImages = ["img/gamecard-millionaire.png"];
+      $scope.randomImage = function() {
+         return randomImages[Math.floor(Math.random() * randomImages.length)];
+      }
    }])
 
    .controller('GameCtrl', ['$scope', 'syncData', '$routeParams', function($scope, syncData, $routeParams) {
