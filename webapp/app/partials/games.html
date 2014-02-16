@@ -41,9 +41,11 @@
       <ul id="games" ng-show="games">
         <button class="game-icon" type="link" ng-click="location.path('games/' + game.$id)"
                 ng-repeat="game in games | orderByPriority | filter:filteredGames" style:"line-height:200px">
+          <img ng-src="{{randomImage()}}"></img>
           <div class="title">{{game.title}}</div>
         </button>
         <button class="create-icon" type="link" ng-click="addGame()" style:"margin-top:130px">
+            <img src="img/create-game.png"></img>
         </button>
       </ul>
     </div>

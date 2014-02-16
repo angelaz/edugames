@@ -4,23 +4,22 @@
    display: none;
 }
 
-.game-icon {
-  /*height: 100px;
-  width: 200px;
-  margin: 20px;
-  text-align: center;
-  display: inline-block;
-  background-color: #B4DCF0;*/
-  background: url('../img/gamecard-millionaire.png') no-repeat scroll 0 0 transparent;
+.game-icon, .create-icon {
   border-style: none;
-    height: 259.6px;
-    width: 222.8px;
-    background-size: 100% 100%;
-    margin: 10px;
+  height: 259.6px;
+  width: 222.8px;
+  background-size: 100% 100%;
+  margin: 10px;
+}
+
+.game-icon > img, .create-icon > img {
+  width: 222.8px;
+  background-size: 100% 100%;
 }
 
 .title {
-  margin-top: 200px;
+  margin-top: -35px;
+  margin-bottom: 15px;
   color: #646464;
 }
 
@@ -30,18 +29,11 @@
 }
 
 .create-icon {
-  /*height: 100px;
-  width: 200px;
-  margin: 20px;
-  text-align: center;
-  display: inline-block;
-  background-color: #B4DCF0;*/
-  background: url('../img/create-game.png') no-repeat scroll 0 0 transparent;
-  border-style: none;
-    height: 259.6px;
-    width: 222.8px;
-    background-size: 100% 100%;
-    margin: 10px;
+  background-color: #f1f2f7;
+}
+
+.create-icon > img {
+  height: 250px;
 }
 
 .create-icon:hover {
@@ -60,7 +52,7 @@
 }
 
 .question {
-  width: 300px;
+  width: 50%;
 }
 
 .menu {
@@ -655,7 +647,7 @@ h1 {
 /* radio buttons */
 
 .styled-select {
-   width: 240px;
+   width: 280px;
    height: 34px;
    overflow: hidden;
    background: url(../img/down_arrow_select.jpg) no-repeat right #ffffff;
@@ -664,7 +656,7 @@ h1 {
 
    .styled-select select {
    background: transparent;
-   width: 268px;
+   width: 300px;
    padding: 5px;
    font-size: 16px;
    line-height: 1;

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import <Firebase/Firebase.h>
 
 #import "LoginViewController.h"
 #import "CKSideBarController.h"
@@ -18,12 +19,17 @@
 #import "SearchViewController.h"
 #import "GameViewController.h"
 
+#define firebaseURL @"https://edugames.firebaseio.com/"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) LoginViewController *loginViewController;
 
+@property (strong, nonatomic) Firebase *firebase;
 @property (strong, nonatomic) NSString *username;
+@property (strong, nonatomic) BOOL *isTeacher;
+
 - (void)updateViewControllers;
 
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
