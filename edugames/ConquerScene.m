@@ -219,8 +219,9 @@ CGPoint pointToCoord(CGPoint p)
         [hexagon setColor:[UIColor greenColor]];
 
         
-        SKAction *moveNodeUp = [SKAction moveTo:cgCoordToPoint(coord) duration:0.5];
-        [player1Sprite runAction: moveNodeUp];
+       
+        game.gameState[@"player1"] = cgpack(coord);
+        [game pushGameState:game.gameState];
         
         // TODO:
 //        for (SKSpriteNode *other in nodes)
@@ -262,7 +263,9 @@ CGPoint pointToCoord(CGPoint p)
     CGPoint y = unpack(gameState[@"player1"]);
     CGPoint z = cgCoordToPoint(unpack(gameState[@"player1"]));
     
-    player1Sprite.position = cgCoordToPoint(unpack(gameState[@"player1"]));
+    SKAction *moveNodeUp = [SKAction moveTo:cgCoordToPoint(unpack(gameState[@"player1"])) duration:0.5];
+    [player1Sprite runAction: moveNodeUp];
+    
     player2Sprite.position = cgCoordToPoint(unpack(gameState[@"player2"]));
     NSArray* points = gameState[@"points"];
     

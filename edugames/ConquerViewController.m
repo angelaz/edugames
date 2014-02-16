@@ -28,7 +28,7 @@
     int y =[gameData[@"turnId"] intValue];
 
     // HACK to start game faster
-    if (true) //(!didStart && [gameData[@"turnId"] intValue] != 0)
+    if (!didStart) //(!didStart && [gameData[@"turnId"] intValue] != 0)
     {
         [self gameStart];
         didStart = true;
