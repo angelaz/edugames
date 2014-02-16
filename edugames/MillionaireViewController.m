@@ -47,9 +47,9 @@
     [_moneyLabel setText:[NSString stringWithFormat:@"You Have: $%d", [self getMoney]]];
     [_moneyLabel setFont:[UIFont fontWithName:@"Helvetica" size:26]];
     [_moneyLabel setTextColor:[UIColor yellowColor]];
-    [_moneyLabel setLineBreakMode:NSLineBreakByWordWrapping];
-    [_moneyLabel setNumberOfLines:0];
-    [_moneyLabel setTextAlignment:NSTextAlignmentLeft];
+    [self.moneyLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [self.moneyLabel setNumberOfLines:0];
+    [self.moneyLabel setTextAlignment:NSTextAlignmentLeft];
     [self.view addSubview:_moneyLabel];
 }
 

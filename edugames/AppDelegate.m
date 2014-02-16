@@ -296,8 +296,10 @@ BOOL shouldAlternate = YES;
              NSLog(@"User id %@",[aUser objectForKey:@"id"]);
              self.username = aUser[@"id"];
          }
-         
-         //use this to update games list once loaded :p
+        
+         if ([self isTeacher]) {
+          //use this to update games list once loaded :p
+         }
          
 //         if ([self.loginViewController isViewLoaded])
 //         {
@@ -316,6 +318,22 @@ BOOL shouldAlternate = YES;
      }];
     
     
+}
+
+// Check user's status (teacher or student)
+- (void)checkTeacher
+{
+    Firebase* usersRef = [self.firebase childByAppendingPath:@"users"];
+    [usersRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        NSDictionary* users = snapshot.value;
+        for (NSDictionary* user in users) {
+            if ([user[@"name"] isEqualToString:self.username]) {
+                self.isTeacher = YES;
+                return;
+            }
+        }
+        self.isTeacher = NO;
+    }];
 }
 
 // Show an alert message

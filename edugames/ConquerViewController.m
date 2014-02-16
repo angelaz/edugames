@@ -16,10 +16,24 @@
     Game* conquerorGame;
     
     UILabel* loadingLabel;
+    bool didStart;
+    CGRect saved;
 }
 
 - (void) onUpdate:(NSDictionary*) gameData {
-    [scene onUpdate:gameData];
+    if (scene)
+        [scene onUpdate:gameData];
+    
+    id x = gameData[@"turnId"];
+    int y =[gameData[@"turnId"] intValue];
+
+    // HACK to start game faster
+    if (!didStart) //(!didStart && [gameData[@"turnId"] intValue] != 0)
+    {
+        [self gameStart];
+        didStart = true;
+    }
+    
 };
 
 - (void) playerInput:(NSDictionary*) inputData {
@@ -30,6 +44,7 @@
 {
     self = [super init];
     if (self) {
+        didStart = false;
         conquerorGame = [[Game alloc] initWithKey:key andController:self];
     }
     return self;
@@ -40,6 +55,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // Hack to change view to SKView
+    self.view = [[SKView alloc] initWithFrame:saved];
+    
+    // TODO(Greg): remove later
+//    [self gameStart];
+//    return;
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 360, 400, 50)];
@@ -47,14 +69,18 @@
     loadingLabel.font = [UIFont fontWithName:@"Chalkduster" size:30];
     loadingLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:loadingLabel];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+//    [loadingLabel setBackgroundColor:[UIColor whiteColor]];
+    
+    //[self gameStart];
 }
 
 - (void)gameStart
 {
-    [loadingLabel setHidden:YES];
     
-    // Hack to change view to SKView
-    self.view = [[SKView alloc] initWithFrame:self.view.frame];
+    
+    [loadingLabel setHidden:YES];
     
     // Configure the view.
     SKView * skView = (SKView *)self.view;

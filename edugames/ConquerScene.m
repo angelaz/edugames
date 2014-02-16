@@ -42,27 +42,90 @@ NSNumber* pack(int i, int j)
     return [NSNumber numberWithInt:(5*i + j)];
 }
 
+NSNumber* cgpack(CGPoint p)
+{
+    return pack(p.x, p.y);
+}
+
 CGPoint cgCoordToPoint(CGPoint p)
 {
     return coordToPoint(p.x, p.y);
 }
+
+static const int STARTX = 205;
+static const int STARTYLOWER = 330;
+static const int STARTYUPPER = 445;
+static const int DX = 100;
+static const int DY = 60;
 
 CGPoint coordToPoint(int i, int j)
 {
     int startx, starty;
     if (i == 0)
     {
-        startx = 80;
-        starty = 570;
+        startx = STARTX;
+        starty = STARTYUPPER;
     } else
     {
-        startx = 80 + 100*(i-1);
-        starty = 455 - 60*(i-1);
+        startx = STARTX + DX*(i-1);
+        starty = STARTYLOWER - DY*(i-1);
     }
-    int x = startx + j*100;
-    int y = starty + j*60;
+    
+    int x = startx + j*DX;
+    int y = starty + j*DY;
     
     return CGPointMake(x,y);
+}
+
+// Given a position p, return the board coordinates
+// of the nearest hexagon
+CGPoint pointToCoord(CGPoint p)
+{
+    int col = round(((int)p.x - STARTX)/(double)DX);
+    int x = STARTX + col*DX;
+    
+    int starty;
+    // avoids issues with 1 vs -1
+    if (col % 2 == 0)
+        starty = STARTYUPPER;
+    else
+        starty = STARTYLOWER + DY;
+    
+    int row = round(((int)p.y - starty)/(double)(2*DY));
+    int y = starty + row*(2*DY);
+    
+    int base = -round(((y - col*DY) - STARTYUPPER)/(double)(2*DY));
+    int basecol;
+    if (base == 0)
+        basecol = 0;
+    else
+        basecol = base - 1;
+    
+    int baseOffset = col - basecol;
+    
+    return CGPointMake(base, baseOffset);
+}
+
+bool coordInBounds(CGPoint p)
+{
+    // TODO(Greg): return NONE so we know to ignore
+    if (p.x < 0)
+        return false;
+    else if (p.x > 4)
+        return false;
+    if (p.y < 0)
+        return false;
+    else if (p.x == 0 || p.x == 4)
+    {
+        if (p.y > 3)
+            return false;
+    } else
+    {
+        if (p.y > 4)
+            return false;
+    }
+    
+    return true;
 }
 
 + (NSMutableDictionary*) createGameState {
@@ -76,7 +139,7 @@ CGPoint coordToPoint(int i, int j)
         int blocked = arc4random() % limit;
         for (int j = 0; j < limit; j++) {
             NSString* u = [NSString stringWithFormat:@"%@", pack(i, j)];
-            points[u] = [NSNumber numberWithBool:(blocked == j)];
+            points[u] = [NSNumber numberWithBool:YES /*(blocked == j) */];
         }
     }
     
@@ -117,7 +180,11 @@ CGPoint coordToPoint(int i, int j)
             
             NSNumber* n = [NSNumber numberWithInt:i];
             
-            SKSpriteNode *hexagon = [SKSpriteNode spriteNodeWithImageNamed:@"close-button.png"];
+            SKSpriteNode *hexagon = [SKSpriteNode spriteNodeWithImageNamed:@"singlehexagon"];
+            [hexagon setColor:[UIColor redColor]];
+            hexagon.color = [UIColor blueColor];
+            hexagon.colorBlendFactor = 0.3;
+            
             hexagon.position = cgCoordToPoint(unpack(n));
             [hexagon setHidden:![points[i] boolValue]];
             [self addChild:hexagon];
@@ -127,12 +194,13 @@ CGPoint coordToPoint(int i, int j)
         player1Sprite = [SKSpriteNode spriteNodeWithImageNamed:@"leafers.png"];
         [player1Sprite setScale:0.5];
         player1Sprite.xScale *= -1.0;
-        //player1Sprite.position = coordToPoint(0, 0);
+        player1Sprite.position = coordToPoint(0, 0);
+        
         [self addChild:player1Sprite];
         
         player2Sprite = [SKSpriteNode spriteNodeWithImageNamed:@"piceratops.png"];
         [player2Sprite setScale:0.5];
-        //player2Sprite.position = coordToPoint(4, 3);
+        player2Sprite.position = coordToPoint(4, 3);
         [self addChild:player2Sprite];
         
     }
@@ -146,15 +214,56 @@ CGPoint coordToPoint(int i, int j)
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"close-button"];
+        //SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"singlehexagon"];
         
-        sprite.position = location;
+        CGPoint dest = pointToCoord(location);
+        NSArray *nodes = [self nodesAtPoint:[touch locationInNode:self]];
         
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
+        SKSpriteNode* hexagon = hexagons[cgpack(dest)];
         
-        [sprite runAction:[SKAction repeatActionForever:action]];
+
+        CGPoint current = unpack(game.gameState[@"player1"]);
         
-        [self addChild:sprite];
+        int desty = dest.x == 0 ? dest.y + 1 : dest.y;
+        int currenty = current.x == 0 ? current.y + 1 : current.y;
+        
+        if (abs(current.x - dest.x) <= 1 &&
+            abs(current.y - dest.y) <= 1 &&
+            !((dest.x - current.x) == 1 && (desty - currenty) == 1) &&
+            !((dest.x - current.x) == -1 && (desty - currenty) == -1) &&
+            coordInBounds(dest))
+        {
+            [hexagon setColor:[UIColor greenColor]];
+            game.gameState[@"player1"] = cgpack(dest);
+            [game pushGameState:game.gameState];
+        }
+        
+        // TODO:
+//        for (SKSpriteNode *other in nodes)
+//        {
+//            for (SKSpriteNode *spr in [hexagons allValues])
+//            {
+//                if (other == spr)
+//                {
+//                    [spr setColor:[UIColor greenColor]];
+//                    
+//                    SKAction *moveNodeUp = [SKAction moveTo:spr.position duration:0.5];
+//                    [player1Sprite runAction: moveNodeUp];
+//                }
+//            }
+//        }
+            //[spr setColor:[UIColor greenColor]];
+        
+        
+        //sprite.position = location;
+        
+        //NSLog(@"x: %f, y: %f", location.x, location.y);
+        
+        //SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
+        
+        //[sprite runAction:[SKAction repeatActionForever:action]];
+        
+        //[self addChild:sprite];
     }
 }
 
@@ -164,7 +273,14 @@ CGPoint coordToPoint(int i, int j)
 - (void) onUpdate:(NSDictionary*) gameData {
     NSLog(@"Got update");
     NSDictionary* gameState = gameData[@"gameState"];
-    player1Sprite.position = cgCoordToPoint(unpack(gameState[@"player1"]));
+    
+    id x = gameState[@"player1"];
+    CGPoint y = unpack(gameState[@"player1"]);
+    CGPoint z = cgCoordToPoint(unpack(gameState[@"player1"]));
+    
+    SKAction *moveNodeUp = [SKAction moveTo:cgCoordToPoint(unpack(gameState[@"player1"])) duration:0.5];
+    [player1Sprite runAction: moveNodeUp];
+    
     player2Sprite.position = cgCoordToPoint(unpack(gameState[@"player2"]));
     NSArray* points = gameState[@"points"];
     
@@ -176,6 +292,11 @@ CGPoint coordToPoint(int i, int j)
         SKSpriteNode *hexagon = hexagons[n];// [NSNumber numberWithBool:(blocked == j)];
         [hexagon setHidden:![points[i] boolValue]];
     }
+//    player1Sprite.position = CGPointMake(400,400);
+    //player1Sprite.position = coordToPoint(0, 0);
+    //[self addChild:player1Sprite];
+
+    
     NSLog(@"Updated!");
 };
 
