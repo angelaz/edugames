@@ -13,5 +13,6 @@
 - (id)initWithKey:(NSString*) key;
 
 - (void) onUpdate:(NSDictionary*) gameData;
+- (void) gameStart; // called when both players ready
 
 @end

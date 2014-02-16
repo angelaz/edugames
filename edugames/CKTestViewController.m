@@ -18,7 +18,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [NSString stringWithFormat:@"Section %i", section];
+    return [NSString stringWithFormat:@"Section %li", (long)section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -26,7 +26,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellId"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"Row %i", indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"Row %li", (long)indexPath.row];
     return cell;
 }
 
