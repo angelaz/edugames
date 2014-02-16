@@ -43,7 +43,7 @@
                 
                 if ([instance[@"players"] count] == 1) {
                     
-                    turnId = (NSInteger) instance[@"turnId"];
+                    turnId = 2; //(NSInteger) instance[@"turnId"];
                     self.gameState = [(NSDictionary*)instance[@"gameState"] mutableCopy];
                     
                     // Update players list on Firebase
@@ -53,6 +53,7 @@
                     
                     gameRef = [instancesRef childByAppendingPath:instanceName];
                     [[gameRef childByAppendingPath:@"players"] setValue:players];
+                    [[gameRef childByAppendingPath:@"turnId"] setValue:@1];
                     
                     NSLog(@"Joined game at %@", [gameRef description]);
                     
@@ -72,14 +73,13 @@
             
             // Otherwise, create your own game
             NSLog(@"Creating own game");
-            turnId = 0;
+            turnId = 1;
             self.gameState = [[NSMutableDictionary alloc] init];
             self.gameState = [self newGameState];
-            isMyTurn = YES;
+            isMyTurn = NO;
             
             // Push to Firebase
             gameRef = [instancesRef childByAutoId];
-            
             [gameRef setValue:@{@"players": @[playerId], @"turnId": @0, @"gameState": self.gameState}];
             
             NSLog(@"Created new value at %@", [gameRef description]);
@@ -109,6 +109,9 @@
 }
 
 - (void) onGameDataUpdate:(NSDictionary *)newGameData {
+    isMyTurn = [newGameData[@"turnId"] intValue] == turnId;
+    self.gameState = [(NSDictionary*)newGameData[@"gameState"] mutableCopy];
+    
     [cvc onUpdate:newGameData];
 }
 

@@ -16,10 +16,22 @@
     Game* conquerorGame;
     
     UILabel* loadingLabel;
+    bool didStart;
 }
 
 - (void) onUpdate:(NSDictionary*) gameData {
-    [scene onUpdate:gameData];
+    if (scene)
+        [scene onUpdate:gameData];
+    
+    id x = gameData[@"turnId"];
+    int y =[gameData[@"turnId"] intValue];
+
+    if (!didStart && [gameData[@"turnId"] intValue] != 0)
+    {
+        [self gameStart];
+        didStart = true;
+    }
+    
 };
 
 - (void) playerInput:(NSDictionary*) inputData {
@@ -30,6 +42,7 @@
 {
     self = [super init];
     if (self) {
+        didStart = false;
         conquerorGame = [[Game alloc] initWithKey:key andController:self];
     }
     return self;
