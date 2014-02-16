@@ -33,6 +33,7 @@
 //  Collection view methods
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     CGRect frame = [[UIScreen mainScreen] applicationFrame];
     
     UICollectionViewFlowLayout *layout= [[UICollectionViewFlowLayout alloc] init];
@@ -51,8 +52,8 @@
     
     // Set up games with Firebase
     games = [NSArray arrayWithObject:@"login-button.png"]; // TODO: change icons
-    
-    [super viewDidLoad];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    //[super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
