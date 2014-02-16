@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) Firebase *firebase;
 @property (nonatomic, strong) NSMutableDictionary *gameState;
+@property NSInteger turnId;
 
 - (id) initWithKey:(NSString *)key andController:(ConquerViewController*)cvc;
 - (void) pushGameState:(NSMutableDictionary*)newGameState;

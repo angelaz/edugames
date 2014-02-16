@@ -23,9 +23,6 @@
 - (void) onUpdate:(NSDictionary*) gameData {
     if (scene)
         [scene onUpdate:gameData];
-    
-    id x = gameData[@"turnId"];
-    int y =[gameData[@"turnId"] intValue];
 
     // HACK to start game faster
     if (!didStart) //(!didStart && [gameData[@"turnId"] intValue] != 0)

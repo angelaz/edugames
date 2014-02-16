@@ -10,8 +10,6 @@
 #import "ConquerScene.h"
 
 @implementation Game {
-    NSInteger turnId;
-    Boolean isMyTurn;
     Firebase* gameRef;
     
     ConquerViewController* cvc;
@@ -43,8 +41,9 @@
                 
                 if ([instance[@"players"] count] == 1) {
                     
-                    turnId = 2; //(NSInteger) instance[@"turnId"];
+                    self.turnId = 2;
                     self.gameState = [(NSDictionary*)instance[@"gameState"] mutableCopy];
+                    self.gameState[@"turnId"] = @1;
                     
                     // Update players list on Firebase
                     NSLog(@"Adding another player");
@@ -53,11 +52,9 @@
                     
                     gameRef = [instancesRef childByAppendingPath:instanceName];
                     [[gameRef childByAppendingPath:@"players"] setValue:players];
-                    [[gameRef childByAppendingPath:@"turnId"] setValue:@1];
+                    [self pushGameState:self.gameState];
                     
                     NSLog(@"Joined game at %@", [gameRef description]);
-                    
-                    isMyTurn = NO;
                     
                     // Check for game state updates
                     [gameRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
@@ -73,14 +70,13 @@
             
             // Otherwise, create your own game
             NSLog(@"Creating own game");
-            turnId = 1;
+            self.turnId = 1;
             self.gameState = [[NSMutableDictionary alloc] init];
             self.gameState = [self newGameState];
-            isMyTurn = NO;
             
             // Push to Firebase
             gameRef = [instancesRef childByAutoId];
-            [gameRef setValue:@{@"players": @[playerId], @"turnId": @0, @"gameState": self.gameState}];
+            [gameRef setValue:@{@"players": @[playerId], @"gameState": self.gameState}];
             
             NSLog(@"Created new value at %@", [gameRef description]);
             
@@ -109,7 +105,6 @@
 }
 
 - (void) onGameDataUpdate:(NSDictionary *)newGameData {
-    isMyTurn = [newGameData[@"turnId"] intValue] == turnId;
     self.gameState = [(NSDictionary*)newGameData[@"gameState"] mutableCopy];
     
     [cvc onUpdate:newGameData];
