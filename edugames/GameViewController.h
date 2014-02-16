@@ -9,10 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "Game.h"
 #import "MillionaireViewController.h"
+#import <Firebase/Firebase.h>
+
+#define firebaseURL @"https://edugames.firebaseio.com/"
 
 
 @interface GameViewController : UIViewController <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     UICollectionView *_collectionView;
 }
+
+@property (nonatomic, strong) Firebase *firebase;
+@property (nonatomic, strong) NSDictionary *myGames;
+@property (nonatomic, strong) NSArray *gameKeys;
+
 @end

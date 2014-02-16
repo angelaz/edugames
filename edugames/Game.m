@@ -25,44 +25,48 @@
         self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
         
         Firebase* instancesRef = [[self.firebase childByAppendingPath:@"gameInstances"] childByAppendingPath:key];
-        NSLog(@"Querying Firebase");
+        NSLog(@"Querying Firebase at %@", [instancesRef description]);
         [instancesRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
             NSLog(@"Got result");
             
             // Check Firebase for existing game!
+            id x = snapshot.value;
             NSDictionary* instances = snapshot.value;
 //            NSString* instanceName = snapshot.name;
             
             NSString* playerId = @"foo"; // TODO: UN-HARDCODE
             
             // Check if existing game has less than 2 players
-            for (NSString* instanceName in instances) {
-                NSDictionary* instance = [instances objectForKey:instanceName];
-                
-                if ([instance[@"players"] count] == 1) {
+            if (instances != (id)[NSNull null])
+            {
+                for (NSString* instanceName in instances) {
+                    NSDictionary* instance = [instances objectForKey:instanceName];
                     
-                    self.turnId = 2;
-                    self.gameState = [(NSDictionary*)instance[@"gameState"] mutableCopy];
-                    self.gameState[@"turnId"] = @1;
-                    
-                    // Update players list on Firebase
-                    NSLog(@"Adding another player");
-                    NSMutableArray* players = instance[@"players"];
-                    [players addObject:playerId];
-                    
-                    gameRef = [instancesRef childByAppendingPath:instanceName];
-                    [[gameRef childByAppendingPath:@"players"] setValue:players];
-                    [self pushGameState:self.gameState];
-                    
-                    NSLog(@"Joined game at %@", [gameRef description]);
-                    
-                    // Check for game state updates
-                    [gameRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-                        [self onGameDataUpdate:snapshot.value];
-                    }];
-                    
-                    [self gameStart];
-                    return;
+                    if ([instance[@"players"] count] == 1) {
+                        
+                        self.turnId = 2;
+                        self.gameState = [(NSDictionary*)instance[@"gameState"] mutableCopy];
+                        self.gameState[@"turnId"] = @1;
+                        
+                        // Update players list on Firebase
+                        NSLog(@"Adding another player");
+                        NSMutableArray* players = instance[@"players"];
+                        [players addObject:playerId];
+                        
+                        gameRef = [instancesRef childByAppendingPath:instanceName];
+                        [[gameRef childByAppendingPath:@"players"] setValue:players];
+                        [self pushGameState:self.gameState];
+                        
+                        NSLog(@"Joined game at %@", [gameRef description]);
+                        
+                        // Check for game state updates
+                        [gameRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                            [self onGameDataUpdate:snapshot.value];
+                        }];
+                        
+                        [self gameStart];
+                        return;
+                    }
                 }
             }
             

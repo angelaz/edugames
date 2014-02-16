@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Angela Zhang, Lucy Guo, Ivan Wang, Gregory Rose. All rights reserved.
 //
 
+
 #import "GameViewController.h"
 #import "ConquerViewController.h"
 
@@ -13,19 +14,22 @@
 
 @end
 
-@implementation GameViewController {
-    NSArray *games;
-    NSMutableArray *myGames;
-}
+@implementation GameViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
+        // Set up games with Firebase
+        self.firebase = [[Firebase alloc] initWithUrl:firebaseURL];
+        
+        
         //  TODO: Need to populate this properly with teacher's games.
         //  Would be nice if teacher games could be stored with format [Title, Image Name, Game ID] (or if necessary we can
         //    have numbers that correspond to different game templates and associate those)
-        myGames = [[NSMutableArray alloc] initWithObjects:@[@"Simple Addition", @1, @12345], @[@"Chapter 1 History", @2, @12345], @[@"Hyrodgen Facts", @3, @12345], @[@"Millionaire Test", @0, @1342], nil];
+        /*myGames = [[NSMutableArray alloc] initWithObjects:@[@"Simple Addition", @1, @12345], @[@"Chapter 1 History", @2, @12345], @[@"Hydrogen Facts", @3, @12345], @[@"Millionaire Test", @0, @1342], nil];*/
     }
     return self;
 }
@@ -35,6 +39,13 @@
 {
     [super viewDidLoad];
     CGRect frame = [[UIScreen mainScreen] applicationFrame];
+    
+    Firebase* gamesRef = [self.firebase childByAppendingPath:@"games"];
+    [gamesRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+         self.myGames = snapshot.value;
+         self.gameKeys = self.myGames.allKeys;
+        [_collectionView reloadData];
+    }];
     
     UICollectionViewFlowLayout *layout= [[UICollectionViewFlowLayout alloc] init];
     layout.minimumInteritemSpacing = 0;
@@ -50,16 +61,14 @@
     
     [self.view addSubview:_collectionView];
     
-    // Set up games with Firebase
-    games = [NSArray arrayWithObject:@"login-button.png"]; // TODO: change icons
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-    //[super viewDidLoad];
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [myGames count];
+    return [self.gameKeys count];
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -67,16 +76,15 @@
 {
     UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
-    NSLog(@"%zd", indexPath.row);
     cell.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"card-millionaire.png"]];
     
     //  TODO: This is temporary before we associate either image names directly or use IDs for templates
-    if ([[[myGames objectAtIndex:indexPath.row] objectAtIndex:1] isEqual:@2]) {
+    /*if ([[[myGames objectAtIndex:indexPath.row] objectAtIndex:1] isEqual:@2]) {
         cell.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"card-millionaire-alt.png"]];
-    }
+    }*/
     
     UILabel *gameNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 280, 280, 25)];
-    gameNameLabel.text = [[myGames objectAtIndex:indexPath.row] objectAtIndex:0];
+    gameNameLabel.text = self.myGames[[self.gameKeys objectAtIndex:indexPath.row]][@"title"];
     gameNameLabel.textAlignment = NSTextAlignmentCenter;
     [cell addSubview:gameNameLabel];
     
@@ -85,7 +93,6 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Look: %zd", indexPath.row);
     
     //MillionaireViewController *mvc = [[MillionaireViewController alloc] initWithNibName:nil bundle:nil];
     //[self presentViewController:mvc animated:YES completion:nil];
@@ -93,10 +100,14 @@
     //[self.navigationController pushViewController:mvc animated:YES];
     
     // TODO: case on games
-    //if ([games objectAtIndex:indexPath.row] isEqualToString:@"conqueror") {
-        ConquerViewController *conquerViewController = [[ConquerViewController alloc] initWithKey:@"-JFolzigUK-BhNxu3jRv"]; // TODO: replace with actual key!
+    NSString* key = [self.gameKeys objectAtIndex:indexPath.row];
+    NSDictionary* game = self.myGames[key];
+    
+    if ([game[@"template"] isEqualToString:@"conqueror"]) {
+        
+        ConquerViewController *conquerViewController = [[ConquerViewController alloc] initWithKey:key];
         [self.navigationController presentViewController:conquerViewController animated:YES completion:nil];
-    //}
+    }
     
     /*NSLog(@"%@", [[myGames objectAtIndex:indexPath.row] objectAtIndex:1]);
     if ([[[myGames objectAtIndex:indexPath.row] objectAtIndex:1] isEqual:@0]) {
@@ -107,7 +118,7 @@
     
     
     // TODO: what is this?*/
-//    [collectionView reloadData];
+    [collectionView reloadData];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
