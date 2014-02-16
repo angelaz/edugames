@@ -10,4 +10,6 @@
 
 @interface ConquerScene : SKScene
 
+- (void) onUpdate:(NSDictionary*) gameData;
+
 @end

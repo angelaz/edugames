@@ -11,6 +11,11 @@
 @implementation ConquerScene
 {
     NSDictionary* gameState;
+    NSMutableDictionary* hexagons;
+    
+    SKSpriteNode* player1Sprite;
+    SKSpriteNode* player2Sprite;
+    
     // map of hexagons
     // player locations
 }
@@ -25,9 +30,15 @@ int getj(int u)
     return u % 5;
 }
 
-int pack(int i, int j)
+CGPoint unpack(NSNumber* x)
 {
-    return 5*i + j;
+    int u = [x intValue];
+    return CGPointMake(geti(u), getj(u));
+}
+
+NSNumber* pack(int i, int j)
+{
+    return [NSNumber numberWithInt:(5*i + j)];
 }
 
 CGPoint coordToPoint(int i, int j)
@@ -44,8 +55,6 @@ CGPoint coordToPoint(int i, int j)
     }
     int x = startx + j*100;
     int y = starty + j*60;
-    
-    NSLog(@"i: %d, j: %d, x: %d, y: %d", i, j, x, y);
     
     return CGPointMake(x,y);
 }
@@ -72,7 +81,7 @@ CGPoint coordToPoint(int i, int j)
         
         
         NSMutableDictionary* points = [[NSMutableDictionary alloc] init];
-        NSMutableDictionary* hexagons = [[NSMutableDictionary alloc] init];
+        hexagons = [[NSMutableDictionary alloc] init];
         
         for (int i = 0; i < 5; i++) {
             int limit = 5;
@@ -81,19 +90,38 @@ CGPoint coordToPoint(int i, int j)
             
             int blocked = arc4random() % limit;
             for (int j = 0; j < limit; j++) {
-                NSNumber* u = [NSNumber numberWithInt:pack(i, j)];
+                NSNumber* u = pack(i, j);
                 points[u] = [NSNumber numberWithBool:(blocked == j)];
                 
                 SKSpriteNode *hexagon = [SKSpriteNode spriteNodeWithImageNamed:@"close-button.png"];
                 hexagon.position = coordToPoint(i, j);
-                //hexagon.isHidden = (blocked == j);
+                [hexagon setHidden:(blocked != j)];
                 [self addChild:hexagon];
                 hexagons[u] = hexagon;
             }
         }
+        
+        // Create game state
+        NSNumber* player1 = pack(0, 0);
+        NSNumber* player2 = pack(4, 3);
+        
+        gameState = [NSDictionary dictionaryWithObjects:@[points, player1, player2] forKeys:@[@"points", @"player1", @"player2"]];
+        
+        player1Sprite = [SKSpriteNode spriteNodeWithImageNamed:@"leafers.png"];
+        [player1Sprite setScale:0.5];
+        player1Sprite.xScale *= -1.0;
+        player1Sprite.position = coordToPoint(0, 0);
+        [self addChild:player1Sprite];
+        
+        player2Sprite = [SKSpriteNode spriteNodeWithImageNamed:@"piceratops.png"];
+        [player2Sprite setScale:0.5];
+        player2Sprite.position = coordToPoint(4, 3);
+        [self addChild:player2Sprite];
+        
     }
     return self;
 }
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
@@ -116,5 +144,19 @@ CGPoint coordToPoint(int i, int j)
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 }
+- (void) onUpdate:(NSDictionary*) gameData {
+    NSLog(@"Got update");
+    player1Sprite.position = unpack(gameData[@"player1"]);
+    player2Sprite.position = unpack(gameData[@"player2"]);
+    NSDictionary* points = gameData[@"points"];
+    
+    for (NSNumber* point in points)
+    {
+            SKSpriteNode *hexagon = hexagons[point];// [NSNumber numberWithBool:(blocked == j)];
+            BOOL hide = (BOOL)points[point];
+            [hexagon setHidden:hide];
+    }
+    NSLog(@"Updated!");
+};
 
 @end

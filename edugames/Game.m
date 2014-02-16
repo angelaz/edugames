@@ -54,7 +54,7 @@
                     Firebase* instanceRef = [gameRef childByAppendingPath:instanceName];
                     [[instanceRef childByAppendingPath:@"players"] setValue:players];
                     
-//                    NSLog(@"Set value at %@ to %@", [instanceRef description], @{@"players": players});
+                    NSLog(@"Joined game at %@", [instanceRef description]);
                     
                     isMyTurn = NO;
                     [self gameStart];

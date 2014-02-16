@@ -86,18 +86,18 @@
 {
     NSLog(@"Look: %zd", indexPath.row);
     
-    MillionaireViewController *mvc = [[MillionaireViewController alloc] initWithNibName:nil bundle:nil];
+    //MillionaireViewController *mvc = [[MillionaireViewController alloc] initWithNibName:nil bundle:nil];
     //[self presentViewController:mvc animated:YES completion:nil];
     
-    [self.navigationController pushViewController:mvc animated:YES];
-    /*
+    //[self.navigationController pushViewController:mvc animated:YES];
+    
     // TODO: case on games
     //if ([games objectAtIndex:indexPath.row] isEqualToString:@"conqueror") {
         ConquerViewController *conquerViewController = [[ConquerViewController alloc] initWithKey:@"-JFolzigUK-BhNxu3jRv"]; // TODO: replace with actual key!
         [self presentViewController:conquerViewController animated:YES completion:nil];
     //}
     
-    NSLog(@"%@", [[myGames objectAtIndex:indexPath.row] objectAtIndex:1]);
+    /*NSLog(@"%@", [[myGames objectAtIndex:indexPath.row] objectAtIndex:1]);
     if ([[[myGames objectAtIndex:indexPath.row] objectAtIndex:1] isEqual:@0]) {
         MillionaireViewController *mvc = [[MillionaireViewController alloc] init];
         //[self presentViewController:mvc animated:YES completion:nil];

@@ -11,9 +11,12 @@
 #import "ConquerScene.h"
 
 @implementation ConquerViewController
+{
+    ConquerScene* scene;
+}
 
 - (void) onUpdate:(NSDictionary*) gameData {
-    
+    [scene onUpdate:gameData];
 };
 
 - (void) playerInput:(NSDictionary*) inputData {
@@ -40,11 +43,12 @@
     
     // Configure the view.
     SKView * skView = (SKView *)self.view;
+    
 //    skView.showsFPS = YES;
 //    skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [ConquerScene sceneWithSize:skView.bounds.size];
+    scene = [ConquerScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
 //    
 //    UIImage *image = [UIImage imageNamed:@"game-bg-2.png"];
