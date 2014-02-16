@@ -48,7 +48,7 @@
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
     closeButton.frame = CGRectMake(12, 12, 17, 17);
-    [closeButton addTarget:self action:@selector(closeModalView) forControlEvents:UIControlEventTouchUpInside];
+    [closeButton addTarget:self action:@selector(closeLoginView) forControlEvents:UIControlEventTouchUpInside];
     
     UIImage *btnImage = [UIImage imageNamed:@"close-button.png"];
     [closeButton setImage:btnImage forState:UIControlStateNormal];
@@ -93,7 +93,7 @@
         // Close the session and remove the access token from the cache
         // The session state handler (in the app delegate) will be called automatically
         [FBSession.activeSession closeAndClearTokenInformation];
-        
+        [self closeLoginView];
         // If the session state is not any of the two "open" states when the button is clicked
     } else {
         // Open a session showing the user the login UI
@@ -104,25 +104,20 @@
              AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
              // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
              [appDelegate sessionStateChanged:session state:state error:error];
+             [self closeLoginView];
          }];
     }
+
 }
 
-- (void)closeModalView
+- (void)closeLoginView
 {
     NSLog(@"did it go in here");
-    [self.modalView dismissViewControllerAnimated:YES completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)addBackgroundImage
 {
-//    UIGraphicsBeginImageContext(self.view.frame.size);
-//    [[UIImage imageNamed:@"login-bg.png"] drawInRect:self.view.bounds];
-//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-    
     UIImage *image = [UIImage imageNamed:@"login-bg.png"];
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:image];
     [self.view addSubview:backgroundView];
