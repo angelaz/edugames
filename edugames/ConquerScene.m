@@ -135,7 +135,7 @@ bool moveAllowed(CGPoint start, CGPoint end)
         abs(start.y - end.y) <= 1 &&
         !((end.x - start.x) == 1 && (endy - starty) == 1) &&
         !((end.x - start.x) == -1 && (endy - starty) == -1) &&
-    coordInBounds(end);
+    coordInBounds(end) && !(start.x == end.x && start.y == end.y);
 }
 
 + (NSMutableDictionary*) createGameState {
