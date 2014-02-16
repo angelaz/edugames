@@ -93,10 +93,7 @@
 
 - (void)closeButton:(UIButton *)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    //[self dismissViewControllerAnimated:YES completion:nil];
-    //[[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
-    
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void) showQuestionsWithCallback:(void (^)(bool))callback
@@ -134,7 +131,8 @@
 
     scene = [[ConquerScene alloc] initWithSize:skView.bounds.size andGame:conquerorGame andController:self];
     scene.scaleMode = SKSceneScaleModeAspectFill;
-//    
+//
+    [self addCloseButton];
 //    UIImage *image = [UIImage imageNamed:@"game-bg-2.png"];
 //    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:image];
 //    [skView addSubview:backgroundView];

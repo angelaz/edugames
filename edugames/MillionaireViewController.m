@@ -73,10 +73,7 @@
 
 - (void)closeButton:(UIButton *)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    //[self dismissViewControllerAnimated:YES completion:nil];
-    //[[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
-
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)addQuestionLabel
