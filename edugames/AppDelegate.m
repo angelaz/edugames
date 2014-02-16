@@ -56,10 +56,17 @@
     
     self.barController = [[CKSideBarController alloc] init];
     self.barController.delegate = self;
+//    self.barController.viewControllers = @[
+//                                           self.controller1,
+//                                           self.controller2,
+//                                           self.controller3,
+//                                           self.controller4,
+//                                           self.controller5
+//                                           ];
+    
     self.barController.viewControllers = @[
                                            self.controller1,
                                            self.controller2,
-                                           self.controller3,
                                            self.controller4,
                                            self.controller5
                                            ];
