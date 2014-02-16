@@ -25,7 +25,7 @@
         //  TODO: Need to populate this properly with teacher's games.
         //  Would be nice if teacher games could be stored with format [Title, Image Name, Game ID] (or if necessary we can
         //    have numbers that correspond to different game templates and associate those)
-        myGames = [[NSMutableArray alloc] initWithObjects:@[@"Simple Addition", @1, @12345], @[@"Chapter 1 History", @2, @12345], @[@"Hyrodgen Facts", @3, @12345], nil];
+        myGames = [[NSMutableArray alloc] initWithObjects:@[@"Simple Addition", @1, @12345], @[@"Chapter 1 History", @2, @12345], @[@"Hyrodgen Facts", @3, @12345], @[@"Millionaire Test", @0, @1342], nil];
     }
     return self;
 }
@@ -37,7 +37,8 @@
     
     UICollectionViewFlowLayout *layout= [[UICollectionViewFlowLayout alloc] init];
     layout.minimumInteritemSpacing = 0;
-    layout.minimumLineSpacing = 50;
+    layout.minimumLineSpacing = 20;
+    layout.sectionInset = UIEdgeInsetsMake(10, 20, 10, 20); //  Top, left, bottom, right
     
     _collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, frame.size.height-100, frame.size.width)  collectionViewLayout:layout];
     [_collectionView setDataSource:self];
@@ -73,7 +74,7 @@
         cell.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"card-millionaire-alt.png"]];
     }
     
-    UILabel *gameNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 320, 290, 25)];
+    UILabel *gameNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 280, 280, 25)];
     gameNameLabel.text = [[myGames objectAtIndex:indexPath.row] objectAtIndex:0];
     gameNameLabel.textAlignment = NSTextAlignmentCenter;
     [cell addSubview:gameNameLabel];
@@ -83,13 +84,28 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"Look: %zd", indexPath.row);
+    
+    MillionaireViewController *mvc = [[MillionaireViewController alloc] initWithNibName:nil bundle:nil];
+    //[self presentViewController:mvc animated:YES completion:nil];
+    
+    [self.navigationController pushViewController:mvc animated:YES];
+    /*
     // TODO: case on games
     //if ([games objectAtIndex:indexPath.row] isEqualToString:@"conqueror") {
         ConquerViewController *conquerViewController = [[ConquerViewController alloc] initWithKey:@"-JFolzigUK-BhNxu3jRv"]; // TODO: replace with actual key!
         [self presentViewController:conquerViewController animated:YES completion:nil];
     //}
     
-    // TODO: what is this?
+    NSLog(@"%@", [[myGames objectAtIndex:indexPath.row] objectAtIndex:1]);
+    if ([[[myGames objectAtIndex:indexPath.row] objectAtIndex:1] isEqual:@0]) {
+        MillionaireViewController *mvc = [[MillionaireViewController alloc] init];
+        //[self presentViewController:mvc animated:YES completion:nil];
+        //[self.navigationController presentViewController:mvc animated:YES completion:nil];
+    }
+    
+    
+    // TODO: what is this?*/
 //    [collectionView reloadData];
 }
 
