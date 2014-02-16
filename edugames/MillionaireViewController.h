@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSMutableDictionary *questions;
 @property (strong, nonatomic) UILabel *questionLabel;
 
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (strong, nonatomic) UILabel *moneyLabel;
 
 @end
