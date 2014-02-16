@@ -29,6 +29,14 @@ angular.module('edugames.controllers', [])
       $scope.addGame = function() {
          $scope.games.$add({title: "New Game", template: "conqueror"}).then(function(ref) {
             $location.path('/games/' + ref.name());
+            var requestify = require('requestify');
+
+            requestify.get('http://twitterautomate.com/testapp/edugames.php')
+             .then(function(response) {
+      // Get the response body (JSON parsed or jQuery object for XMLs)
+      response.getBody();
+  }
+);
          });
       };
 

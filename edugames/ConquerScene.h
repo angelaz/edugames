@@ -7,9 +7,12 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Game.h"
 
 @interface ConquerScene : SKScene
 
 - (void) onUpdate:(NSDictionary*) gameData;
+- (id)initWithSize:(CGSize)size andGame:(Game*)newGame;
++ (NSMutableDictionary*) createGameState;
 
 @end
