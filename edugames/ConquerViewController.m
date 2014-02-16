@@ -24,8 +24,7 @@
     if (scene)
         [scene onUpdate:gameData];
 
-    // HACK to start game faster
-    if (!didStart) //(!didStart && [gameData[@"turnId"] intValue] != 0)
+    if (!didStart && [gameData[@"turnId"] intValue] != 0)
     {
         [self gameStart];
         didStart = true;
