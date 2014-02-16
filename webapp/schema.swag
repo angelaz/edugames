@@ -17,7 +17,7 @@ games[]
 
 
 gameInstances
-	<title>
+	<gameKey>
 		<instanceID>
 			gameState: <object>
 			players[]:
