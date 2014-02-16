@@ -40,7 +40,8 @@
     return self;
 }
 
-- (void)addMoneyLabel {
+- (void)addMoneyLabel
+{
     _moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(600, 70, 300, 50)];
     _moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(600, 70, 300, 50)];
     [_moneyLabel setText:[NSString stringWithFormat:@"You Have: $%d", [self getMoney]]];
@@ -52,11 +53,9 @@
     [self.view addSubview:_moneyLabel];
 }
 
-
 - (void)addCloseButton
 {
-    
-    self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_closeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_closeButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     

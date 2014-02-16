@@ -18,11 +18,12 @@
 @property (strong, nonatomic) IBOutlet UIButton *topRight;
 @property (strong, nonatomic) IBOutlet UIButton *bottomRight;
 
+@property (strong, nonatomic) IBOutlet UIButton *closeButton;
+
 @property (strong, nonatomic) NSMutableDictionary *questions;
 @property (strong, nonatomic) UILabel *questionLabel;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (strong, nonatomic) UILabel *moneyLabel;
-@property (strong, nonatomic) UIButton *closeButton;
 
 @end
