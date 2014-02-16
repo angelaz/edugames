@@ -6,9 +6,24 @@ angular.module('edugames.controllers', [])
    .controller('HomeCtrl', ['$scope', function($scope) {
    }])
 
-   .controller('GameListCtrl', ['$scope', 'syncData', '$location', function($scope, syncData, $location) {
+   .controller('MenuCtrl', ['$scope', '$rootScope', 'loginService', function($scope, $rootScope, loginService) {
+      $scope.logout = function() {
+         loginService.logout();
+      };
+
+      $scope.searchGames = "";
+      $scope.filterGames = function() {
+         $rootScope.$emit('filterGames', $scope.searchGames);
+      }
+   }])
+
+   .controller('GameListCtrl', ['$scope', '$rootScope', 'syncData', '$location', function($scope, $rootScope, syncData, $location) {
       $scope.location = $location;
       $scope.games = syncData('games', 10);
+
+      $rootScope.$on('filterGames', function(e, v) {
+         $scope.filteredGames = v;
+      });
 
       // Add new game to the list
       $scope.addGame = function() {
@@ -107,10 +122,6 @@ angular.module('edugames.controllers', [])
 
    .controller('AccountCtrl', ['$scope', 'loginService', 'syncData', '$location', function($scope, loginService, syncData, $location) {
       syncData(['users', $scope.auth.user.uid]).$bind($scope, 'user');
-
-      $scope.logout = function() {
-         loginService.logout();
-      };
 
       $scope.oldpass = null;
       $scope.newpass = null;

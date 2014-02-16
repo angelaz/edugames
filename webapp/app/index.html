@@ -59,96 +59,80 @@
     <li ng-show-auth="login"><a href="#/account">account</a></li>
 </ul> -->
 
-<div class="">
-  <ul id="gn-menu" class="gn-menu-main">
-    <li class="gn-trigger">
-      <a class="gn-icon gn-icon-menu">
-        <span>Menu</span>
-      </a>
-      <nav class="gn-menu-wrapper">
-        <div class="gn-scroller">
-          <ul class="gn-menu">
-            <li class="gn-search-item">
-              <input placeholder="Search" type="search" class="gn-search">
-              <a class="gn-icon gn-icon-search">
-                <span>Search</span>
-              </a>
-            </li>
-            <!-- <li>
-              <a class="gn-icon gn-icon-help" href="#/chat">
-                Chat
-              </a>
-            </li> -->
-            <li>
-              <a class="gn-icon gn-icon-download" href="#/games">
-                Games
-              </a>
-            </li>
-            <li ng-show-auth="logout,error">
-              <a class="gn-icon gn-icon-cog" href="#/login">
-                Login
-              </a>
-            </li>
-            <li ng-show-auth="login">
-              <a class="gn-icon gn-icon-archive" href="#/account">
-                Account
-              </a>
-            </li>
+  <div class="menu-header" ng-controller="MenuCtrl">
+    <ul id="gn-menu" class="gn-menu-main">
+      <li class="gn-trigger">
+          <a class="gn-icon gn-icon-menu">
+              <span>Menu</span>
+          </a>
+          <nav class="gn-menu-wrapper">
+              <div class="gn-scroller">
+                  <ul class="gn-menu">
+                      <li class="gn-search-item">
+                          <input placeholder="Search" ng-model="searchGames" ng-change="filterGames()" type="search" class="gn-search">
+                          <a class="gn-icon gn-icon-search">
+                              <span>Search</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a class="gn-icon gn-icon-download" href="#/games">Games</a>
+                      </li>
+                      <li ng-show-auth="logout,error">
+                          <a class="gn-icon gn-icon-cog" href="#/login">Login</a>
+                      </li>
+                      <li ng-show-auth="login">
+                          <a class="gn-icon gn-icon-archive" href="#/account">Account</a>
+                      </li>
+                  </ul>
+              </div>
+              <!-- /gn-scroller -->
+          </nav>
+      </li>
+
+      <!-- logo -->
+      <li><a href="#/games">EduGames</a></li>
+      
+      <!-- replace with facebook profile pic and that jazz -->
+      <li class="dropdown">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              <img alt="" src="img/avatar1_small.jpg">
+              <span class="username">
+                  Jhon Doue
+              </span>
+              <b class="caret">
+          </b>
+          </a>
+          <ul class="dropdown-menu extended logout">
+              <div class="log-arrow-up">
+              </div>
+              <li>
+                  <a href="#">
+                      <i class=" icon-suitcase"></i>
+                      Profile
+                  </a>
+              </li>
+              <li>
+                  <a href="#">
+                      <i class="icon-cog"></i>
+                      Settings
+                  </a>
+              </li>
+              <li>
+                  <a href="#">
+                      <i class="icon-bell-alt"></i>
+                      Notification
+                  </a>
+              </li>
+              <li>
+                  <a ng-click="logout()">
+                      <i class="icon-key"></i>
+                      Log Out
+                  </a>
+              </li>
           </ul>
-        </div>
-        <!-- /gn-scroller -->
-      </nav>
-    </li>
-
-    <!-- logo -->
-    <li>
-      <a href="#/games">
-        EduGames
-      </a>
-    </li>
-    <!-- replace with facebook profile pic and that jazz -->
-    <li class="dropdown">
-      <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-        <img alt="" src="img/avatar1_small.jpg">
-        <span class="username">
-          Jhon Doue
-        </span>
-        <b class="caret">
-        </b>
-      </a>
-      <ul class="dropdown-menu extended logout">
-        <div class="log-arrow-up">
-        </div>
-        <li>
-          <a href="#">
-            <i class=" icon-suitcase"></i>
-            Profile
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="icon-cog"></i>
-            Settings
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="icon-bell-alt"></i>
-            Notification
-          </a>
-        </li>
-        <li>
-          <a ng-click="logout()">
-            <i class="icon-key"></i>
-            Log Out
-          </a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-
-
-</div>
+      </li>
+    </ul>
+  </div>
 <!-- /container -->
 
   <div ng-view></div>
