@@ -231,7 +231,7 @@ bool moveAllowed(CGPoint start, CGPoint end)
         SKSpriteNode* hexagon = hexagons[cgpack(dest)];
         
         int currentTurn = [game.gameState[@"turnId"] intValue];
-        if (true) //currentTurn == game.turnId)
+        if (currentTurn == game.turnId)
         {
             NSString* playerString;
             UIColor *playerColor;
