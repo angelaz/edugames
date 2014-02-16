@@ -117,15 +117,14 @@
         [self.navigationController presentViewController:conquerViewController animated:YES completion:nil];
     }
     
-    /*NSLog(@"%@", [[myGames objectAtIndex:indexPath.row] objectAtIndex:1]);
-    if ([[[myGames objectAtIndex:indexPath.row] objectAtIndex:1] isEqual:@0]) {
+    if ([game[@"template"] isEqualToString:@"millionaire"]) {
+        
         MillionaireViewController *mvc = [[MillionaireViewController alloc] init];
-        //[self presentViewController:mvc animated:YES completion:nil];
-        //[self.navigationController presentViewController:mvc animated:YES completion:nil];
+        [self.navigationController presentViewController:mvc animated:YES completion:nil];
     }
     
     
-    // TODO: what is this?*/
+    // TODO: what is this?
     [collectionView reloadData];
 }
 
