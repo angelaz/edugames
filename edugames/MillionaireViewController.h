@@ -14,11 +14,14 @@
 @property (strong, nonatomic) UIViewController *modalView;
 
 @property (strong, nonatomic) IBOutlet UIButton *topLeft;
-@property (strong, nonatomic) IBOutlet UIButton *closeButton;
+@property (strong, nonatomic) IBOutlet UIButton *bottomLeft;
+@property (strong, nonatomic) IBOutlet UIButton *topRight;
+@property (strong, nonatomic) IBOutlet UIButton *bottomRight;
 
-@property (strong, nonatomic) NSMutableArray *questions;
+@property (strong, nonatomic) NSMutableDictionary *questions;
 @property (strong, nonatomic) UILabel *questionLabel;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
+@property (strong, nonatomic) UILabel *moneyLabel;
 
 @end
