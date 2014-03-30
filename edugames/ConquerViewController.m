@@ -29,6 +29,13 @@
     {
         [self gameStart];
         didStart = true;
+        
+        // LUCY ANGELA Mar 30
+        // This is how you get turn ID
+        if (conquerorGame.turnId == 1)
+            NSLog(@"You are player 1");
+        else
+            NSLog(@"You are player 2");
     }
     
 };

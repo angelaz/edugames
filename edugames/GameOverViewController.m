@@ -26,12 +26,14 @@
     return self;
 }
 
+bool youWin;
+
 - (id)initWithWinner:(int)winner andPlayerId:(int)playerId
 {
     // TODO(Mar 30): put winner text
     // TODO(Lucy): display name of person
     
-    bool youWin = (winner == playerId);
+    youWin = (winner == playerId);
     
     return [self init];
 }
@@ -89,7 +91,7 @@
     [_pointsLabel1 setTextColor:[UIColor whiteColor]];
     [_pointsLabel1 setLineBreakMode:NSLineBreakByWordWrapping];
     [_pointsLabel1 setNumberOfLines:0];
-    [self.view addSubview:_pointsLabel1];
+    //[self.view addSubview:_pointsLabel1];
     
     //player2 points
     _pointsLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.height/4 +500, self.view.frame.size.width/2-20, self.view.frame.size.width/1.4, 300)];
@@ -99,11 +101,15 @@
     [_pointsLabel2 setTextColor:[UIColor whiteColor]];
     [_pointsLabel2 setLineBreakMode:NSLineBreakByWordWrapping];
     [_pointsLabel2 setNumberOfLines:0];
-    [self.view addSubview:_pointsLabel2];
+    //[self.view addSubview:_pointsLabel2];
     
     //add player name
     _winner = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.height/4 + 230, self.view.frame.size.width/2-20, self.view.frame.size.width/1.4, 610)];
-    [_winner setText:@"Matthew Thomas"];
+    if (youWin)
+        [_winner setText:@"You win!"];
+    else
+        [_winner setText:@"You lose"];
+    
     _winner.font = [_winner.font fontWithSize:60];
     [_winner setTextColor:[UIColor whiteColor]];
     [_winner setLineBreakMode:NSLineBreakByWordWrapping];
