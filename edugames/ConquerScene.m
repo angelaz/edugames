@@ -298,6 +298,11 @@ bool moveAllowed(CGPoint start, CGPoint end)
     //player1Sprite.position = coordToPoint(0, 0);
     //[self addChild:player1Sprite];
 
+    if ([gameState[@"turnId"] intValue] < 0)
+    {
+        // TODO(Mar 30): Call game over screen
+        return;
+    }
 };
 
 @end

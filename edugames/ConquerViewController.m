@@ -93,7 +93,14 @@
 
 - (void)closeButton:(UIButton *)sender
 {
+    // TODO(MAR 30)
     [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+    // if player1: set turnid to -2, else -1
+    // push to firebase
+    [conquerorGame endGame:(3-conquerorGame.turnId)];
+    // on callback delete instance
+    
+    
     [conquerorGame deleteInstance];
 }
 

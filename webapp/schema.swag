@@ -19,7 +19,12 @@ games[]
 gameInstances
 	<gameKey>
 		<instanceID>
-			gameState: <object>
+			gameState:
+				player1:
+				player2:
+				points[]:
+				turnId:
+
 			players[]:
 				<playerId>
 			turnId: <int>

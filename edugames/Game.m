@@ -104,6 +104,11 @@
     [cvc gameStart];
 }
 
+-(void)endGame:(int)winner {
+    self.gameState[@"turnId"] = [NSNumber numberWithInt:(-winner)];
+    [self pushGameState:self.gameState];
+}
+
 - (void) pushGameState:(NSMutableDictionary*)newGameState {
     self.gameState = newGameState;
     [[gameRef childByAppendingPath:@"gameState"] setValue:self.gameState];
@@ -118,7 +123,7 @@
 
 - (void) deleteInstance {
     [gameRef removeAllObservers];
-    [gameRef removeValue];
+    //[gameRef removeValue];
 }
 
 
