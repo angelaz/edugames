@@ -8,6 +8,7 @@
 
 #import "ConquerScene.h"
 #import "Game.h"
+#import "GameOverViewController.h"
 
 @implementation ConquerScene
 {
@@ -301,6 +302,11 @@ bool moveAllowed(CGPoint start, CGPoint end)
     if ([gameState[@"turnId"] intValue] < 0)
     {
         // TODO(Mar 30): Call game over screen
+        
+        GameOverViewController *giovanni = [[GameOverViewController alloc] init];
+        
+        [cvc presentViewController:giovanni animated:NO completion:nil];
+        //[cvc dismissViewControllerAnimated:NO completion:nil];
         return;
     }
 };
