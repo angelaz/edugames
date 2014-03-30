@@ -95,9 +95,9 @@
     _winner = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.height/4 + 300, self.view.frame.size.width/2-20, self.view.frame.size.width/1.4, 400)];
     [_winner setText:@"Matthew Thomas"];
     _winner.font = [_winner.font fontWithSize:50];
-    [_pointsLabel2 setTextColor:[UIColor whiteColor]];
-    [_pointsLabel2 setLineBreakMode:NSLineBreakByWordWrapping];
-    [_pointsLabel2 setNumberOfLines:0];
+    [_winner setTextColor:[UIColor whiteColor]];
+    [_winner setLineBreakMode:NSLineBreakByWordWrapping];
+    [_winner setNumberOfLines:0];
     [self.view addSubview:_winner];
 
     
