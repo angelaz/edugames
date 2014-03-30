@@ -14,4 +14,10 @@
 
 - (id)initWithWinner:(int)winner andPlayerId:(int)playerId;
 
+@property (strong, nonatomic) UILabel *pointsLabel1;
+
+@property (strong, nonatomic) UILabel *pointsLabel2;
+
+@property (strong, nonatomic) UILabel *winner;
+
 @end

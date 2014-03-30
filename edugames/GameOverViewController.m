@@ -21,6 +21,7 @@
         // Custom initialization
         [self addBackgroundImage];
         [self addCloseButton];
+        [self addLabels];
     }
     return self;
 }
@@ -76,6 +77,40 @@
 - (void)closeButton:(UIButton *)sender
 {
     [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+}
+
+- (void)addLabels
+{
+    //player 1 points
+    _pointsLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.height/4 - 13, self.view.frame.size.width/2-20, self.view.frame.size.width/1.4, 300)];
+    [_pointsLabel1 setText:@"2047"];
+    _pointsLabel1.font = [_pointsLabel1.font fontWithSize:30];
+    
+    [_pointsLabel1 setTextColor:[UIColor whiteColor]];
+    [_pointsLabel1 setLineBreakMode:NSLineBreakByWordWrapping];
+    [_pointsLabel1 setNumberOfLines:0];
+    [self.view addSubview:_pointsLabel1];
+    
+    //player2 points
+    _pointsLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.height/4 +500, self.view.frame.size.width/2-20, self.view.frame.size.width/1.4, 300)];
+    [_pointsLabel2 setText:@"2047"];
+    _pointsLabel2.font = [_pointsLabel1.font fontWithSize:30];
+    
+    [_pointsLabel2 setTextColor:[UIColor whiteColor]];
+    [_pointsLabel2 setLineBreakMode:NSLineBreakByWordWrapping];
+    [_pointsLabel2 setNumberOfLines:0];
+    [self.view addSubview:_pointsLabel2];
+    
+    //add player name
+    _winner = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.height/4 + 230, self.view.frame.size.width/2-20, self.view.frame.size.width/1.4, 610)];
+    [_winner setText:@"Matthew Thomas"];
+    _winner.font = [_winner.font fontWithSize:60];
+    [_winner setTextColor:[UIColor whiteColor]];
+    [_winner setLineBreakMode:NSLineBreakByWordWrapping];
+    [_winner setNumberOfLines:0];
+    [self.view addSubview:_winner];
+
+    
 }
 
 @end
