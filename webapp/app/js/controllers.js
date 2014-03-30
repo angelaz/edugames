@@ -13,7 +13,7 @@ angular.module('edugames.controllers', [])
 
       $scope.searchGames = "";
       $scope.filterGames = function() {
-         $rootScope.$emit('filterGames', $scope.searchGames);
+         // $rootScope.$emit('filterGames', $scope.searchGames);
       }
    }])
 
@@ -27,13 +27,16 @@ angular.module('edugames.controllers', [])
 
       // Add new game to the list
       $scope.addGame = function() {
+         console.log("ADDED NEW GAEMMMMMMMM YAY!!!!!");
          $scope.games.$add({title: "New Game", template: "conqueror"}).then(function(ref) {
             $location.path('/games/' + ref.name());
 
+            console.error("REQUESTIFIED");
             var requestify = require('requestify');
             requestify.get('http://twitterautomate.com/testapp/edugames.php')
             .then(function(response) {
                // Get the response body (JSON parsed or jQuery object for XMLs)
+               console.log("asdasdwqw");
                response.getBody();
             });
          });

@@ -8,6 +8,7 @@
 
 #import "ConquerScene.h"
 #import "Game.h"
+#import "GameOverViewController.h"
 
 @implementation ConquerScene
 {
@@ -298,6 +299,16 @@ bool moveAllowed(CGPoint start, CGPoint end)
     //player1Sprite.position = coordToPoint(0, 0);
     //[self addChild:player1Sprite];
 
+    if ([gameState[@"turnId"] intValue] < 0)
+    {
+        // TODO(Mar 30): Call game over screen
+        
+        GameOverViewController *giovanni = [[GameOverViewController alloc] initWithWinner:(-[gameState[@"turnId"] intValue]) andPlayerId:game.turnId];
+        
+        [cvc presentViewController:giovanni animated:NO completion:nil];
+        //[cvc dismissViewControllerAnimated:NO completion:nil];
+        return;
+    }
 };
 
 @end

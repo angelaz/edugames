@@ -20,6 +20,7 @@
 @property NSInteger turnId;
 
 - (id) initWithKey:(NSString *)key andController:(ConquerViewController*)newCvc andGameInfo:(NSDictionary*)newGameInfo;
+- (void)endGame:(int)winner;
 - (void) pushGameState:(NSMutableDictionary*)newGameState;
 - (void) deleteInstance;
 

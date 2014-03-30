@@ -26,6 +26,16 @@
     return self;
 }
 
+- (id)initWithWinner:(int)winner andPlayerId:(int)playerId
+{
+    // TODO(Mar 30): put winner text
+    // TODO(Lucy): display name of person
+    
+    bool youWin = (winner == playerId);
+    
+    return [self init];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
