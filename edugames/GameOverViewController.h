@@ -12,4 +12,6 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *closeButton;
 
+- (id)initWithWinner:(int)winner andPlayerId:(int)playerId;
+
 @end
