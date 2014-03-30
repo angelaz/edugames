@@ -92,9 +92,9 @@
     [self.view addSubview:_pointsLabel2];
     
     //add player name
-    _winner = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.height/4 + 300, self.view.frame.size.width/2-20, self.view.frame.size.width/1.4, 400)];
+    _winner = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.height/4 + 230, self.view.frame.size.width/2-20, self.view.frame.size.width/1.4, 610)];
     [_winner setText:@"Matthew Thomas"];
-    _winner.font = [_winner.font fontWithSize:50];
+    _winner.font = [_winner.font fontWithSize:60];
     [_winner setTextColor:[UIColor whiteColor]];
     [_winner setLineBreakMode:NSLineBreakByWordWrapping];
     [_winner setNumberOfLines:0];
