@@ -112,7 +112,6 @@
 
 - (void)closeLoginView
 {
-    NSLog(@"did it go in here");
     [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
 }
 

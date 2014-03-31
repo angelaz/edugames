@@ -82,12 +82,10 @@
     
     if (correct)
     {
-        NSLog(@"that is correct!");
         self.view.backgroundColor = [UIColor greenColor];
     }
     else
     {
-        NSLog(@"wah wah");
         self.view.backgroundColor = [UIColor redColor];
 
     }

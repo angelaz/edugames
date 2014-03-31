@@ -82,24 +82,28 @@
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
-    
-    [[cell.contentView subviews]
-     makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier"
+                                                                         forIndexPath:indexPath];
     
     NSString* key = [self.gameKeys objectAtIndex:indexPath.row];
     NSDictionary* game = self.myGames[key];
     
     cell.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"card-millionaire-alt-old.png"]];
-    
     if ([game[@"template"] isEqualToString:@"conqueror"]) {
         cell.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"card-conquerer.png"]];
     }
     
-    UILabel *gameNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 280, 280, 25)];
-    gameNameLabel.text = self.myGames[[self.gameKeys objectAtIndex:indexPath.row]][@"title"];
-    gameNameLabel.textAlignment = NSTextAlignmentCenter;
-    [cell addSubview:gameNameLabel];
+    UILabel *label = (UILabel*)[cell.contentView viewWithTag:1];
+    
+    if (!label) {
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 280, 280, 25)];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor colorWithRed:46.0/255.0 green:63.0/255.0 blue:81.0/255.0 alpha:1.0];
+        label.tag = 1;
+        [cell.contentView addSubview:label];
+    }
+    
+    label.text = self.myGames[[self.gameKeys objectAtIndex:indexPath.row]][@"title"];
     
     return cell;
 }

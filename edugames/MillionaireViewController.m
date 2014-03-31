@@ -218,9 +218,7 @@
 
 - (void)buttonTouched:(id)sender
 {
-    NSLog(@"button touched!");
     UIButton *button = (UIButton*)sender;
-    NSLog(@"%zd", button.tag);
     NSString *buttonName = [self getButton:button.tag];
     
     NSString *ans = [[_questions objectForKey:[qKeys objectAtIndex:qIndex]] objectForKey:@"correct"];
@@ -243,7 +241,6 @@
     UIButton *button = (UIButton*)sender;
     [button setTitle:@"Changed!" forState:UIControlStateNormal];
     NSDictionary *curQuestion = [_questions objectForKey:[qKeys objectAtIndex:qIndex]];
-    NSLog(@"%@", curQuestion);
     _questionLabel.text = [curQuestion objectForKey:@"text"];
     [_topLeft setTitle:[curQuestion objectForKey:@"a"] forState:UIControlStateNormal];
     [_bottomLeft setTitle:[curQuestion objectForKey:@"b"] forState:UIControlStateNormal];
