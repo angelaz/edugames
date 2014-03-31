@@ -84,6 +84,9 @@
 {
     UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
+    [[cell.contentView subviews]
+     makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     NSString* key = [self.gameKeys objectAtIndex:indexPath.row];
     NSDictionary* game = self.myGames[key];
     
