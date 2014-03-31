@@ -44,6 +44,7 @@ bool youWin;
 	// Do any additional setup after loading the view.
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -104,11 +105,11 @@ bool youWin;
     //[self.view addSubview:_pointsLabel2];
     
     //add player name
-    _winner = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.height/4 + 230, self.view.frame.size.width/2-20, self.view.frame.size.width/1.4, 610)];
+    _winner = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.height/4 + 150, self.view.frame.size.width/2-20, self.view.frame.size.width/1.4, 610)];
     if (youWin)
         [_winner setText:@"You win!"];
     else
-        [_winner setText:@"You lose"];
+        [_winner setText:@"Nice try!"];
     
     _winner.font = [_winner.font fontWithSize:60];
     [_winner setTextColor:[UIColor whiteColor]];
